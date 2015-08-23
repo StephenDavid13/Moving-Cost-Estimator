@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moving Cost Estimator</title>
+    <meta name="viewport" content="width=device-width,height=device-height,minimum-scale=1,maximum-scale=1"/>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="css/index.css" /> 
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/add_total.js"></script>
+    <script>
+        
+        var listofchapters = [  
+                                "Next to Dining Room", 
+                                "Next to Lounge", 
+                                "Next to Hall", 
+                                "Next to Laundry",
+                                "Next to Bedroom 1",
+                                "Next to Bedroom 2",
+                                "Next to Bedroom 3",
+                                "Next to Bedroom 3",
+                                "Next to Bedroom 4",
+                                "Next to Bedroom 5",
+                                "Next to Bedroom 6",
+                                "Next to Bedroom 7",
+                                "Next to Garage \& Outside"
+                             ];
+        
+        $(document).on('swipeleft', '.ui-page', function(event){    
+            if(event.handled !== true) {
+                var nextpage = $.mobile.activePage.next('[data-role="page"]');
+                if (nextpage.length > 0) {
+                    $.mobile.changePage(nextpage, {transition: "slide", reverse: false}, true, true);
+                }
+                event.handled = true;
+            }
+            return false;         
+        });
+
+        $(document).on('swiperight', '.ui-page', function(event){     
+            if(event.handled !== true) {  
+                var prevpage = $(this).prev('[data-role="page"]');
+                if (prevpage.length > 0) {
+                    $.mobile.changePage(prevpage, {transition: "slide", reverse: true}, true, true);
+                }
+                event.handled = true;
+            }
+            return false;            
+        });
+    </script>
+</head>
+
+<body>
+    <div data-role="page" id="article1">
+        <div data-role="header" data-theme="b" data-position="fixed" data-id="footer">
+            <p style="float: left; margin-left: 10px;width: 150px;">Volume calculator and checklist</p>
+            <p id="amount" class="meter-cubic">0.00</p>
+        </div>
+        <div data-role="content">
+            <div class="sub-header">
+                <h1>Kitchen</h1>
+            </div>
+            <div class="types" style="padding-left: 10px; float: left;">
+                <p>Fridge/ Freezer Large:</p>
+            </div>
+            <div style="padding-right: 10px; float: right; display: inline;">
+                <input type="number" name="txtAmountBed" style="width: 50px;"/>
+            </div>
+            <div style="bottom: 10px; right: 10px; position: fixed;">
+                <p>Dining Room ></p>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="article2">
+        <div data-role="header" data-theme="b" data-position="fixed" data-id="footer">
+            <p style="float: left; margin-left: 10px;width: 150px;">Volume calculator and checklist</p>
+            <p class="meter-cubic">0.00</p>
+        </div>
+        <div data-role="content">
+            <div class="sub-header">
+                <h1>Dining Room</h1>
+            </div>
+        </div>
+     </div>
+
+    <div data-role="page" id="article3">
+        <div data-role="header" data-theme="b" data-position="fixed" data-id="footer">
+            <p style="float: left; margin-left: 10px;width: 150px;">Volume calculator and checklist</p>
+            <p class="meter-cubic">0.00</p>
+        </div>
+        <div data-role="content">
+            <p>Article 3</p>
+        </div>
+    </div>
+    <div>
+        <div data-role="footer" data-theme="b" data-position="fixed" data-id="footer">
+        <p style="float: left; margin-left: 10px;width: 150px;">listofchapters[]</p>
+        <p id="amount" class="meter-cubic">0.00</p>
+    </div>
+</body>
+</html>

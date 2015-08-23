@@ -1,0 +1,11 @@
+{
+    "it.mobimentum.phonegapspinnerplugin": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mobimentum/phonegap-plugin-loading-spinner.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}
