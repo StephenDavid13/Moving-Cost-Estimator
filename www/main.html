@@ -13,28 +13,6 @@
 		function callTheEstimator() {
 			window.location = "estimator.html";
 		}
-		
-		function SetAmtKitchen() {
-			//var val-kitchen = document.getElementById('get-amt-kitchen').value;
-			$("#popup-kitchen").popup("close");
-		}
-		
-		$(document).on("pagecreate", "#main", function() {
-			$("#checkbox-kitchen").on("change", function() {
-				var val = $(this).val();
-				$("#popup-header-kitchen").html(val);
-				if(document.getElementById('checkbox-kitchen').checked) {
-					$("#popup-kitchen").popup("open");
-					
-					$("#set-amt-kitchen").on("click", function() {
-						var drp = document.getElementById("get-amt-kitchen");
-						var value = drp.options[ drp.options.selectedIndex ].value;
-						$("#amt-kitchen").html(value);
-						$("#popup-kitchen").popup("close");
-					});
-				}
-			});
-		});
     </script>
 </head>
 
@@ -56,13 +34,7 @@
 						<div data-role="content">
 							<h4 id="popup-header-kitchen"></h4>
 							<form>
-								<select name="get-amt-kitchen" id="get-amt-kitchen">
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-							</select>
+								<select name="get-amt-kitchen" id="get-amt-kitchen"></select>
 							</form>
 							<button type="submit" name="set-amt-kitchen" id="set-amt-kitchen">OK</button>
 						</div>
