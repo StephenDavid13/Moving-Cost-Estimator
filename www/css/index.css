@@ -114,6 +114,9 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 
+/* Kiwise Custom CSS
+---------------------------------------------------------------------------- */
+
 .meter-cubic {
     float: right;  
     margin-right: 10px;
@@ -127,5 +130,40 @@ h1 {
 }
 
 p {
-    font-size: 14   
+    font-size: 14px; 
+}
+
+.mini label {
+	font-size: 15px;
+}
+
+.ui-btn {
+	padding: 0.2em 2em;
+}
+
+.ui-checkbox input {
+	left: 0.7em;
+	width: 18px;
+	height: 18px;
+	margin: -9px 0 0 0;
+}
+
+.ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after {
+	width: 16px;
+	height: 16px;
+	margin: -9px 0px 0px 0px;
+}
+
+.ui-page-theme-a .ui-btn {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.ui-page-theme-a .ui-btn:hover {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.ui-checkbox {
+	margin: 2em 0;
 }
