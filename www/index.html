@@ -10,86 +10,19 @@
     <script src="js/index.js"></script>
     <script src="js/add_total.js"></script>
     <script>
-        
-        var listofchapters = [  
-                                "Next to Dining Room", 
-                                "Next to Lounge", 
-                                "Next to Hall", 
-                                "Next to Laundry",
-                                "Next to Bedroom 1",
-                                "Next to Bedroom 2",
-                                "Next to Bedroom 3",
-                                "Next to Bedroom 3",
-                                "Next to Bedroom 4",
-                                "Next to Bedroom 5",
-                                "Next to Bedroom 6",
-                                "Next to Bedroom 7",
-                                "Next to Garage \& Outside"
-                             ];
-        
-        $(document).on('swipeleft', '.ui-page', function(event){    
-            if(event.handled !== true) {
-                var nextpage = $.mobile.activePage.next('[data-role="page"]');
-                if (nextpage.length > 0) {
-                    $.mobile.changePage(nextpage, {transition: "slide", reverse: false}, true, true);
-                }
-                event.handled = true;
-            }
-            return false;         
-        });
-
-        $(document).on('swiperight', '.ui-page', function(event){     
-            if(event.handled !== true) {  
-                var prevpage = $(this).prev('[data-role="page"]');
-                if (prevpage.length > 0) {
-                    $.mobile.changePage(prevpage, {transition: "slide", reverse: true}, true, true);
-                }
-                event.handled = true;
-            }
-            return false;            
-        });
+        function onLoad() {
+			var temp = setTimeout(callMainPage, 2000);
+		}
 		
-		$(document).on("pagecreate", "#page1", function () {
-			$("#checkbox-fridge-large").on("change", function () {
-				var val = $(#checkbox-fridge-large).val();
-				$("#header-fridge-large").html(val);
-				$("#popupDialog").popup("open");
-			});
-		});
+		function callMainPage() {
+			window.location = "main.html";
+		}
     </script>
 </head>
 
-<body>
-    <div data-role="page" id="article1">
-        <div data-role="header" data-theme="b" data-position="fixed" data-id="footer">
-            <p style="float: left; width: 150px;">Volume calculator and checklist</p>
-            <p id="amount" class="meter-cubic">0.00</p>
-        </div>
-        <div data-role="content">
-            <div class="sub-header">
-                <h1>Kitchen</h1>
-            </div>
-            <div class="types" style="padding-left: 10px; float: left; width: 100%;">
-				<form class="mini">
-					<input type="checkbox" name="checkbox-fridge-large" id="checkbox-fridge-large">
-					<label for="checkbox-fridge-large">Fridge/ Freezer Large <span id="amt-fridge-large" style="float: right">0</span></label>
-					<input type="checkbox" name="checkbox-fridge-small" id="checkbox-fridge-small">
-					<label for="checkbox-fridge-small">Fridge/ Freezer Small</label>
-				</form>
-            </div>
-        </div>
-		<div data-role="footer" data-position="fixed">
-			<p style="text-align:center">Next to Dining Room</p>
-		</div>
-    </div>
-	
-	<div data-role="popup" id="popup-fridge-large" style="max-width: 80%;">
-		<div data-role="header" data-theme="a">
-             <h1 id="header-fridge-large"></h1>
-        </div>
-		<div data-role="content">
-			<p>0</p>
-		</div>
+<body onload="onLoad();">
+    <div data-role="page" id="home-splash">
+        <h1>WELCOME</h1>
 	</div>
 </body>
 </html>

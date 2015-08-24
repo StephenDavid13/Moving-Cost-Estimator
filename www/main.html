@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moving Cost Estimator</title>
+    <meta name="viewport" content="width=device-width,height=device-height,minimum-scale=1,maximum-scale=1"/>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="css/index.css" /> 
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/add_total.js"></script>
+    <script>        
+		function callTheEstimator() {
+			window.location = "estimator.html";
+		}
+    </script>
+</head>
+
+<body>
+    <div data-role="page" id="main">
+        <div data-role="header" data-theme="b" data-position="fixed" data-id="footer">
+            <p style="float: left; width: 150px;">Volume calculator and checklist</p>
+            <p id="amount" class="meter-cubic">0.00</p>
+        </div>
+        <div data-role="content">
+            <div class="sub-header">
+                <h1>Rooms you want to move:</h1>
+            </div>
+            <div class="types" style="padding-left: 10px; float: left; width: 100%;">
+				<form class="mini">
+					<input type="checkbox" name="checkbox-kitchen" id="checkbox-kitchen">
+					<label for="checkbox-kitchen">Kitchen<span id="amt-kitchen" style="float: right">0</span></label>
+					
+					<input type="checkbox" name="checkbox-dining" id="checkbox-dining">
+					<label for="checkbox-dining">Dining Room<span id="amt-dining" style="float: right">0</span></label>
+					
+					<input type="checkbox" name="checkbox-lounge" id="checkbox-lounge">
+					<label for="checkbox-lounge">Lounge<span id="amt-lounge" style="float: right">0</span></label>
+					
+					<input type="checkbox" name="checkbox-hall" id="checkbox-hall">
+					<label for="checkbox-hall">Hall<span id="amt-hall" style="float: right">0</span></label>
+					
+					<input type="checkbox" name="checkbox-laundry" id="checkbox-laundry">
+					<label for="checkbox-laundry">Laundry<span id="amt-laundry" style="float: right">0</span></label>
+					
+					<input type="checkbox" name="checkbox-bedroom" id="checkbox-bedroom">
+					<label for="checkbox-bedroom">Bedroom<span id="amt-bedroom" style="float: right">0</span></label>
+					
+					<input type="checkbox" name="checkbox-garage" id="checkbox-garage">
+					<label for="checkbox-garage">Garage and Outside<span id="amt-garage" style="float: right">0</span></label>
+					
+					<input type="checkbox" name="checkbox-sundries" id="checkbox-sundries">
+					<label for="checkbox-sundries">Sundries<span id="amt-sundries" style="float: right">0</span></label>
+				</form>
+            </div>
+        </div>
+		<div data-role="footer" data-position="fixed">
+			<button name="toEstimator" onClick="callTheEstimator()" style="text-align:center">ESTIMATE MOVE</button>
+		</div>
+    </div>
+	
+	<div data-role="popup" id="popup-fridge-large" style="max-width: 80%;">
+		<div data-role="header" data-theme="a">
+             <h1 id="header-fridge-large"></h1>
+        </div>
+		<div data-role="content">
+			<p>0</p>
+		</div>
+	</div>
+</body>
+</html>
