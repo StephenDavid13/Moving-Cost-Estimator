@@ -8,11 +8,26 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script src="js/index.js"></script>
-    <script src="js/add_total.js"></script>
-    <script>        
+    <script src="js/count-rooms.js"></script>
+	<script type="text/javascript">        
 		function callTheEstimator() {
 			window.location = "estimator.html";
 		}
+		
+		function SetAmtKitchen() {
+			//var val-kitchen = document.getElementById('get-amt-kitchen').value;
+			$("#popup-kitchen").popup("close");
+		}
+		
+		$(document).on("pagecreate", "#main", function() {
+			$("#checkbox-kitchen").on("change", function() {
+				var val = $(this).val();
+				$("#popup-header-kitchen").html(val);
+				if(document.getElementById('checkbox-kitchen').checked) {
+					$("#popup-kitchen").popup("open");
+				}
+			});
+		});
     </script>
 </head>
 
@@ -28,8 +43,20 @@
             </div>
             <div class="types" style="padding-left: 10px; float: left; width: 100%;">
 				<form class="mini">
-					<input type="checkbox" name="checkbox-kitchen" id="checkbox-kitchen">
-					<label for="checkbox-kitchen">Kitchen<span id="amt-kitchen" style="float: right">0</span></label>
+					<input type="checkbox" name="checkbox-kitchen" id="checkbox-kitchen" value="Kitchen">
+					<label for="checkbox-kitchen">Kitchen<span id="amt-kitchen" style="float: right"></span></label>
+					<div data-role="popup" id="popup-kitchen" style="max-width: 100%;">
+						<div data-role="content">
+							<h4 id="popup-header-kitchen"></h4>
+							<select name="get-amt-kitchen" id="get-amt-kitchen">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+							</select>
+							<input type="button" value="OK" onclick="SetAmtKitchen();" />
+						</div>
+					</div>
 					
 					<input type="checkbox" name="checkbox-dining" id="checkbox-dining">
 					<label for="checkbox-dining">Dining Room<span id="amt-dining" style="float: right">0</span></label>
