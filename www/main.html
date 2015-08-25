@@ -28,37 +28,28 @@
             </div>
             <div class="types" style="padding-left: 10px; float: left; width: 100%;">
 				<form class="mini">
-					<input type="checkbox" name="checkbox-kitchen" id="checkbox-kitchen" value="Kitchen">
+					<input type="checkbox" name="kitchen" id="checkbox-kitchen" value="Kitchen">
 					<label for="checkbox-kitchen">Kitchen<span id="amt-kitchen" style="float: right">0</span></label>
-					<div data-role="popup" id="popup-kitchen" style="max-width: 100%;">
-						<div data-role="content">
-							<h4 id="popup-header-kitchen"></h4>
-							<form>
-								<select name="get-amt-kitchen" id="get-amt-kitchen"></select>
-							</form>
-							<button type="submit" name="set-amt-kitchen" id="set-amt-kitchen">OK</button>
-						</div>
-					</div>
 					
-					<input type="checkbox" name="checkbox-dining" id="checkbox-dining">
+					<input type="checkbox" name="checkbox-dining" id="checkbox-dining" value="Dining Room">
 					<label for="checkbox-dining">Dining Room<span id="amt-dining" style="float: right">0</span></label>
 					
-					<input type="checkbox" name="checkbox-lounge" id="checkbox-lounge">
+					<input type="checkbox" name="checkbox-lounge" id="checkbox-lounge" value="Lounge">
 					<label for="checkbox-lounge">Lounge<span id="amt-lounge" style="float: right">0</span></label>
 					
-					<input type="checkbox" name="checkbox-hall" id="checkbox-hall">
+					<input type="checkbox" name="checkbox-hall" id="checkbox-hall" value="Hall">
 					<label for="checkbox-hall">Hall<span id="amt-hall" style="float: right">0</span></label>
 					
-					<input type="checkbox" name="checkbox-laundry" id="checkbox-laundry">
+					<input type="checkbox" name="checkbox-laundry" id="checkbox-laundry" value="Laundry">
 					<label for="checkbox-laundry">Laundry<span id="amt-laundry" style="float: right">0</span></label>
 					
-					<input type="checkbox" name="checkbox-bedroom" id="checkbox-bedroom">
+					<input type="checkbox" name="checkbox-bedroom" id="checkbox-bedroom" value="Bedroom">
 					<label for="checkbox-bedroom">Bedroom<span id="amt-bedroom" style="float: right">0</span></label>
 					
-					<input type="checkbox" name="checkbox-garage" id="checkbox-garage">
+					<input type="checkbox" name="checkbox-garage" id="checkbox-garage" value="Garage and Outside">
 					<label for="checkbox-garage">Garage and Outside<span id="amt-garage" style="float: right">0</span></label>
 					
-					<input type="checkbox" name="checkbox-sundries" id="checkbox-sundries">
+					<input type="checkbox" name="checkbox-sundries" id="checkbox-sundries" value="Sundries">
 					<label for="checkbox-sundries">Sundries<span id="amt-sundries" style="float: right">0</span></label>
 				</form>
             </div>
@@ -66,15 +57,15 @@
 		<div data-role="footer" data-position="fixed">
 			<button name="toEstimator" onClick="callTheEstimator()" style="text-align:center">ESTIMATE MOVE</button>
 		</div>
-    </div>
-	
-	<div data-role="popup" id="popup-fridge-large" style="max-width: 80%;">
-		<div data-role="header" data-theme="a">
-             <h1 id="header-fridge-large"></h1>
-        </div>
-		<div data-role="content">
-			<p>0</p>
+		<div data-role="popup" id="popup-num-rooms" style="max-width: 100%;">
+			<div data-role="content">
+				<h4 id="popup-header"></h4>
+				<form>
+					<select name="get-amt" id="get-amt"></select>
+				</form>
+				<button type="submit" name="set-amt" id="set-amt">OK</button>
+			</div>
 		</div>
-	</div>
+    </div>
 </body>
 </html>
