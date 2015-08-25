@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+</html>
 <head>
     <title>Moving Cost Estimator</title>
     <meta name="viewport" content="width=device-width,height=device-height,minimum-scale=1,maximum-scale=1"/>
@@ -8,88 +8,166 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script src="js/index.js"></script>
-    <script src="js/add_total.js"></script>
-    <script>
-        
-        var listofchapters = [  
-                                "Next to Dining Room", 
-                                "Next to Lounge", 
-                                "Next to Hall", 
-                                "Next to Laundry",
-                                "Next to Bedroom 1",
-                                "Next to Bedroom 2",
-                                "Next to Bedroom 3",
-                                "Next to Bedroom 3",
-                                "Next to Bedroom 4",
-                                "Next to Bedroom 5",
-                                "Next to Bedroom 6",
-                                "Next to Bedroom 7",
-                                "Next to Garage \& Outside"
-                             ];
-        
-        $(document).on('swipeleft', '.ui-page', function(event){    
-            if(event.handled !== true) {
-                var nextpage = $.mobile.activePage.next('[data-role="page"]');
-                if (nextpage.length > 0) {
-                    $.mobile.changePage(nextpage, {transition: "slide", reverse: false}, true, true);
-                }
-                event.handled = true;
-            }
-            return false;         
-        });
-
-        $(document).on('swiperight', '.ui-page', function(event){     
-            if(event.handled !== true) {  
-                var prevpage = $(this).prev('[data-role="page"]');
-                if (prevpage.length > 0) {
-                    $.mobile.changePage(prevpage, {transition: "slide", reverse: true}, true, true);
-                }
-                event.handled = true;
-            }
-            return false;            
-        });
-		
-		$(document).on("pagecreate", "#page1", function () {
-			$("#checkbox-fridge-large").on("change", function () {
-				var val = $(#checkbox-fridge-large).val();
-				$("#header-fridge-large").html(val);
-				$("#popupDialog").popup("open");
-			});
-		});
+    <script src="js/estimator-basic.js"></script>
+	<script type="text/javascript">   
     </script>
 </head>
 
-<body>
-    <div data-role="page" id="article1">
-        <div data-role="header" data-theme="b" data-position="fixed" data-id="footer">
-            <p style="float: left; width: 150px;">Volume calculator and checklist</p>
+<body onload="onLoad();">
+	<div data-role="page" id="main">
+		<div data-role="header" data-theme="b" data-position="fixed" data-id="footer">
+			<p style="float: left; width: 150px;">Volume calculator and checklist</p>
             <p id="amount" class="meter-cubic">0.00</p>
         </div>
+
         <div data-role="content">
-            <div class="sub-header">
-                <h1>Kitchen</h1>
+            <div class="sub_header">
+                <h1 id = "sub_header_title"> </h1>
             </div>
-            <div class="types" style="padding-left: 10px; float: left; width: 100%;">
-				<form class="mini">
-					<input type="checkbox" name="checkbox-fridge-large" id="checkbox-fridge-large">
-					<label for="checkbox-fridge-large">Fridge/ Freezer Large <span id="amt-fridge-large" style="float: right">0</span></label>
-					<input type="checkbox" name="checkbox-fridge-small" id="checkbox-fridge-small">
-					<label for="checkbox-fridge-small">Fridge/ Freezer Small</label>
-				</form>
+            <div class="types" style="padding-left: 10px; float: left; width: 100%;">  
+                <span id="all_chapter_articles"></span>   
             </div>
+       </div>  
+
+        <div data-role="footer" data-position="fixed">
+            <button name="toEstimator" style="text-align:center">NEXT</button>
         </div>
-		<div data-role="footer" data-position="fixed">
-			<button style="text-align:center">NEXT TO DINING ROOM</button>
-		</div>
     </div>
-	
-	<div data-role="popup" id="popup-fridge-large" style="max-width: 80%;">
-		<div data-role="header" data-theme="a">
-             <h1 id="header-fridge-large"></h1>
-        </div>
-		<div data-role="content">
-			<p>0</p>
-		</div>
-	</div>
+
+  <script type="text/javascript">
+		var arrRooms = [0, 0, 0, 0, 0, 0, 0, 0];
+		
+		function onLoad() {
+			arrRooms = localStorage.getItem("room-number"); 
+		}
+		
+        var array_list_of_chapters = [
+										"Kitchen",
+										"Dining Room ", 
+										"Lounge", 
+										"Hall", 
+										"Laundry",
+										"Bedroom",
+										"Garage \& Outside"
+                                     ];
+      
+        var obj_chapter_articles =  {
+                                        kitchen: [                                     
+                                                     "Fridge/freezer large", 
+                                                     "Fridge/freezer small",
+                                                     "Fridge Double Door",
+                                                     "Fridge large",
+                                                     "Fridge small",
+                                                     "Fridge bar",
+                                                     "Freezer",
+                                                     "Freezer chest",
+                                                     "Dishwasher",
+                                                     "Microwave",
+                                                     "Table large",
+                                                     "Table small",
+                                                     "Kitchen chair",
+                                                     "High chair",
+                                                     "Bar stool",
+                                                     "Cabinet",
+                                                     "Cabinet crystal",
+                                                     "Cabinet china large",
+                                                     "Cabinet china small",
+                                                     "Cabinet dresser",
+                                                     "Cupboard",
+                                                     "Tea chest",
+                                                     "Tea chest half",
+                                                     "Picture large",
+                                                     "Picture small",
+                                                     "Tidy rack",
+                                                     "Vegie rack",
+                                                     "Box large (tea chest size)",
+                                                     "Box small (book/wine size)",
+                                                 ], 
+
+
+                                    dining_room: [
+                                                      "Bookcase large",
+                                                      "Bookcase small",
+                                                      "Cabinet",
+                                                      "Dining Table"
+                                                 ],
+                                        lounge: [
+                                                     "Armchair", 
+                                                     "Bar", 
+                                                     "Bean bag small", 
+                                                     "Billard table"
+                                                ],
+                                         Hall: [
+                                                    "Chair",
+                                                    "Coat stand",
+                                                    "Dropside",
+                                                    "Grandfather clock"
+                                               ],
+                                        Laundry: [
+                                                    "Broom",
+                                                    "Closet",
+                                                    "Clothes dryer",
+                                                    "Ironing board"
+                                                 ],
+                                        Bedroom: [
+                                                    "Double Bed \& Matress",
+                                                    "Matress Single",
+                                                    "King Bed",
+                                                    "Small Bed"
+                                                 ],
+                                        Garage_and_outside: 
+                                                [
+                                                    "BBQ",
+                                                    "Adults Bike",
+                                                    "Childs Bike",
+                                                    "Chilly Bin"
+                                                 ],
+                                        Sudries: [
+                                                    "Bean Bag Large",
+                                                    "Bench",
+                                                    "Camp",
+                                                    "Computer"
+                                                 ]
+                                    };		 
+
+		var list_of_chapters = array_list_of_chapters,chapter_articles = obj_chapter_articles; 
+		var arrRoom1 = localStorage.getItem("room-number")
+		if(arrRoom1[0]>0) {
+			document.getElementById("sub_header_title").innerHTML = list_of_chapters[0];
+			var i = 0,tmp_amt = "", tmp_nav_chapter ="<form class='mini'>";
+				for (i ; i < chapter_articles.kitchen.length ; i++)
+				{  
+					var tmp_chapter = chapter_articles.kitchen[i];
+					tmp_nav_chapter += "<input type='checkbox' name='checkbox-"+ tmp_chapter +"' id='checkbox-"+tmp_chapter+"'  >";
+					tmp_nav_chapter += "<label for='checkbox-"+ tmp_chapter +"'> " + tmp_chapter +  "<span id='amt-"+ tmp_chapter + "' style='float: right'>0</span></label>";
+				}
+			
+			tmp_nav_chapter += "</form>";
+		}
+		if(arrRoom1[1]>0) {
+			document.getElementById("sub_header_title").innerHTML = list_of_chapters[1];
+			var i = 0,tmp_amt = "",tmp_nav_chapter ="<form class='mini'>";
+			for (i ; i < chapter_articles.dining_room.length ; i++)
+			{  
+				var tmp_chapter = chapter_articles.dining_room[i];
+				tmp_nav_chapter += "<input type='checkbox' name='checkbox-"+ tmp_chapter +"' id='checkbox-"+tmp_chapter+"'  >";
+				tmp_nav_chapter += "<label for='checkbox-"+ tmp_chapter +"'> " + tmp_chapter +  "<span id='amt-"+ tmp_chapter + "' style='float: right'>0</span></label>";
+			}
+			tmp_nav_chapter += "</form>";
+		}
+		/*
+		document.getElementById("sub_header_title").innerHTML = list_of_chapters[2] + " " + arrRoom1[0] + " " + (arrRoom1[0]>0);
+		var i = 0,tmp_amt = "",tmp_nav_chapter ="<form class='mini'>";
+			for (i ; i < chapter_articles.lounge.length ; i++)
+			{  
+				var tmp_chapter = chapter_articles.lounge[i];
+				tmp_nav_chapter += "<input type='checkbox' name='checkbox-"+ tmp_chapter +"' id='checkbox-"+tmp_chapter+"'  >";
+				tmp_nav_chapter += "<label for='checkbox-"+ tmp_chapter +"'> " + tmp_chapter +  "<span id='amt-"+ tmp_chapter + "' style='float: right'>0</span></label>";
+			}
+		
+		tmp_nav_chapter += "</form>";
+		*/
+		document.getElementById('all_chapter_articles').innerHTML = tmp_nav_chapter;
+    </script>
 </body>
 </html>
