@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Moving Cost Estimator</title>
+    <meta name="viewport" content="width=device-width,height=device-height,minimum-scale=1,maximum-scale=1"/>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="css/index.css" /> 
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script src="js/index.js"></script>
+	<script type="text/javascript">        
+    </script>
+</head>
+
+<body>
+    
+    <div data-role="page" id="main">
+
+        <div data-role="role_header" data-theme="b" data-position="fixed" data-id="footer">
+            <p style="float: left;  width: 150;">Volume calculator and checklist</p>
+            <p id="amount" class="meter-cubic">0.00</p>
+        </div>
+
+        <div data-role="content">
+            <div class="sub_header">
+                <h1 id = "sub_header_title"> </h1>
+            </div>
+
+            <div class="types" style="padding-left: 10px; float: left; width: 100%;">  
+                <span id="all_chapter_articles"></span>   
+            </div>
+       </div>  
+
+        <div data-role="footer" data-position="fixed">
+            <button name="toEstimator" onClick="callTheEstimator()" style="text-align:center">ESTIMATE MOVE</button>
+        </div>
+        
+		<div data-role="popup" id="popup-num-rooms" style="max-width: 100%;">
+            
+            <div data-role="content">
+				<h4 id="popup-header"></h4>
+				<span id="pop_win"></span>
+                <form name= "form_pop_">
+                    <select name="get-amt" id="get-amt"></select>
+				</form>
+                <button type="submit" name="set-amt" id="set-amt" form="form_pop_">OK</button>				
+			</div>
+		</div>
+        
+        
+    </div>
+
+  <script>
+        var array_list_of_chapters = [
+										"Kitchen",
+										"Dining Room ", 
+										"Lounge", 
+										"Hall", 
+										"Laundry",
+										"Bedroom",
+										"Garage \& Outside"
+                                     ]
+        ;
+      
+        var obj_chapter_articles =  {
+                                        kitchen: [                                     
+                                                     "Fridge/freezer large", 
+                                                     "Fridge/freezer small",
+                                                     "Fridge Double Door",
+                                                     "Fridge large",
+                                                     "Fridge small",
+                                                     "Fridge bar",
+                                                     "Freezer",
+                                                     "Freezer chest",
+                                                     "Dishwasher",
+                                                     "Microwave",
+                                                     "Table large",
+                                                     "Table small",
+                                                     "Kitchen chair",
+                                                     "High chair",
+                                                     "Bar stool",
+                                                     "Cabinet",
+                                                     "Cabinet crystal",
+                                                     "Cabinet china large",
+                                                     "Cabinet china small",
+                                                     "Cabinet dresser",
+                                                     "Cupboard",
+                                                     "Tea chest",
+                                                     "Tea chest half",
+                                                     "Picture large",
+                                                     "Picture small",
+                                                     "Tidy rack",
+                                                     "Vegie rack",
+                                                     "Box large (tea chest size)",
+                                                     "Box small (book/wine size)",
+                                                 ], 
+
+
+                                    dining_room: [
+                                                      "Bookcase large",
+                                                      "Bookcase small",
+                                                      "Cabinet",
+                                                      "Dining Table"
+                                                 ],
+                                        lounge: [
+                                                     "Armchair", 
+                                                     "Bar", 
+                                                     "Bean bag small", 
+                                                     "Billard table"
+                                                ],
+                                         Hall: [
+                                                    "Chair",
+                                                    "Coat stand",
+                                                    "Dropside",
+                                                    "Grandfather clock"
+                                               ],
+                                        Laundry: [
+                                                    "Broom",
+                                                    "Closet",
+                                                    "Clothes dryer",
+                                                    "Ironing board"
+                                                 ],
+                                        Bedroom: [
+                                                    "Double Bed \& Matress",
+                                                    "Matress Single",
+                                                    "King Bed",
+                                                    "Small Bed"
+                                                 ],
+                                        Garage_and_outside: 
+                                                [
+                                                    "BBQ",
+                                                    "Adults Bike",
+                                                    "Childs Bike",
+                                                    "Chilly Bin"
+                                                 ],
+                                        Sudries: [
+                                                    "Bean Bag Large",
+                                                    "Bench",
+                                                    "Camp",
+                                                    "Computer"
+                                                 ]
+                                    }
+        ;		 
+
+		var 
+            list_of_chapters = array_list_of_chapters
+		   ,chapter_articles = obj_chapter_articles 
+           ,i_loc = 0
+        ; 
+
+        document.getElementById("sub_header_title").innerHTML = "Rooms you want to move: " + list_of_chapters[i_loc];
+
+        var 
+             i = 0
+            ,tmp_amt = ""
+		    ,tmp_nav_chapter ="<form class='mini'>"
+//            ,tmp_pop_win = ""
+        ;
+      
+		for (i ; i < list_of_chapters.length ; i++)
+		{  
+		    var tmp_chapter = list_of_chapters[i].toLowerCase();
+            
+			tmp_nav_chapter += "<input type='checkbox' name='checkbox-"+ tmp_chapter +"' id='checkbox-"+tmp_chapter+"'  >";
+			tmp_nav_chapter += "<label for='checkbox-"+ tmp_chapter +"'> " + tmp_chapter +  " </label><span id='amt-"+ tmp_chapter + "' style='float: right'>0</span></label>";
+            
+//            tmp_pop_win += "<form name= 'form_pop_"+ tmp_chapter  + "'>" + "<select name='get-amt-"+ tmp_chapter +"' id='get-amt-" + tmp_chapter + "'></select></form>";
+//            tmp_pop_win += "<button type='submit' name='set-amt-"+ tmp_chapter  + "' id='set-amt-"+ tmp_chapter  + "' form='form_pop_"+ tmp_chapter  + "'>OK</button>";
+		}
+		
+        tmp_nav_chapter += "</form>";
+      
+		document.getElementById('all_chapter_articles').innerHTML = tmp_nav_chapter;
+//		document.getElementById('pop_win').innerHTML = tmp_pop_win;
+    </script>
+</body>
+</html>
+
