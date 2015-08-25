@@ -26,7 +26,7 @@ $(document).on("pagecreate", "#main", function() {
 		var val = $(this).val();
 		$("#popup-header").html(val);
 		if(document.getElementById('checkbox-dining').checked) {
-			$("#popup-dining").popup("open");
+			$("#popup-num-rooms").popup("open");
 			$("#set-amt").on("click", function() {
 				var drp = document.getElementById("get-amt");
 				var value = drp.options[ drp.options.selectedIndex ].value;
