@@ -19,3 +19,14 @@ $(document).on('swiperight', '.ui-page', function(event){
 	}
 	return false;            
 });
+
+$(document).on('click', '#toNext', function(event){    
+	if(event.handled !== true) {
+		var nextpage = $.mobile.activePage.next('[data-role="page"]');
+		if (nextpage.length > 0) {
+			$.mobile.changePage(nextpage, {transition: "slide", reverse: false}, true, true);
+		}
+		event.handled = true;
+	}
+	return false;         
+});

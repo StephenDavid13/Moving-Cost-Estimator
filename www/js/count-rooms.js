@@ -1,15 +1,12 @@
 $(document).on("pagecreate", "#main", function() {
-	var div_class_form = 'ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow';
-	
-	var select_kitchen = $("<select name=get-amt-kitchen id=get-amt-kitchen></select></div></div>");
-	
-	var select_dining = $("<select name=get-amt-dining id=get-amt-dining></select></div></div>");
-	var select_lounge = $("<select name=get-amt-lounge id=get-amt-lounge></select></div></div>");
-	var select_hall = $("<select name=get-amt-hall id=get-amt-hall></select></div></div>");
-	var select_laundry = $("<select name=get-amt-laundry id=get-amt-laundry></select></div></div>");
-	var select_bedroom = $("<select name=get-amt-bedroom id=get-amt-bedroom></select></div></div>");
-	var select_garage = $("<select name=get-amt-garage id=get-amt-garage></select></div></div>");
-	var select_sundries = $("<select name=get-amt-sundries id=get-amt-sundries></select></div></div>");
+	var select_kitchen = $("<select name=get-amt-kitchen id=get-amt-kitchen></select>");
+	var select_dining = $("<select name=get-amt-dining id=get-amt-dining></select>");
+	var select_lounge = $("<select name=get-amt-lounge id=get-amt-lounge></select>");
+	var select_hall = $("<select name=get-amt-hall id=get-amt-hall></select>");
+	var select_laundry = $("<select name=get-amt-laundry id=get-amt-laundry></select>");
+	var select_bedroom = $("<select name=get-amt-bedroom id=get-amt-bedroom></select>");
+	var select_garage = $("<select name=get-amt-garage id=get-amt-garage></select>");
+	var select_sundries = $("<select name=get-amt-sundries id=get-amt-sundries></select>");
 
 	select_kitchen.appendTo('#popup_form');
 	select_dining.appendTo('#popup_form');
@@ -100,12 +97,14 @@ $(document).on("pagecreate", "#main", function() {
 			$("#popup-num-rooms").popup("open");
 			$("#get-amt-kitchen").show();
 			$("#set-amt").on("click", function() {
-				var drp = document.getElementById("get-amt-kitchen");
-				var value = drp.options[ drp.options.selectedIndex ].value;
-				$("#amt-kitchen").html(value);
-				arrRooms[0] = value;
-				$("#get-amt-kitchen").hide();
-				$("#popup-num-rooms").popup("close");
+				if(document.getElementById('checkbox-kitchen').checked) {
+					var drp = document.getElementById("get-amt-kitchen");
+					var value = drp.options[ drp.options.selectedIndex ].value;
+					$("#amt-kitchen").html(value);
+					arrRooms[0] = value;
+					$("#get-amt-kitchen").hide();
+					$("#popup-num-rooms").popup("close");
+				}
 			});
 		}
 		else {
@@ -122,13 +121,20 @@ $(document).on("pagecreate", "#main", function() {
 			$("#popup-num-rooms").popup("open");
 			$("#get-amt-dining").show();
 			$("#set-amt").on("click", function() {
-				var drp = document.getElementById("get-amt-dining");
-				var value = drp.options[ drp.options.selectedIndex ].value;
-				$("#amt-dining").html(value);
-				arrRooms[1] = value;
-				$("#get-amt-dining").hide();
-				$("#popup-num-rooms").popup("close");
+				if(document.getElementById('checkbox-dining').checked) {
+					var drp = document.getElementById("get-amt-dining");
+					var value = drp.options[ drp.options.selectedIndex ].value;
+					$("#amt-dining").html(value);
+					arrRooms[1] = value;
+					$("#get-amt-dining").hide();
+					$("#popup-num-rooms").popup("close");
+				}
 			});
+		}
+		else {
+			var unchecked = 0;
+			$("#amt-dining").html(0);
+			arrRooms[1] = unchecked;
 		}
 	});
 
@@ -139,13 +145,20 @@ $(document).on("pagecreate", "#main", function() {
 			$("#popup-num-rooms").popup("open");
 			$("#get-amt-lounge").show();
 			$("#set-amt").on("click", function() {
-				var drp = document.getElementById("get-amt-lounge");
-				var value = drp.options[ drp.options.selectedIndex ].value;
-				$("#amt-lounge").html(value);
-				arrRooms[2] = value;
-				$("#get-amt-lounge").hide();
-				$("#popup-num-rooms").popup("close");
+				if(document.getElementById('checkbox-lounge').checked) {
+					var drp = document.getElementById("get-amt-lounge");
+					var value = drp.options[ drp.options.selectedIndex ].value;
+					$("#amt-lounge").html(value);
+					arrRooms[2] = value;
+					$("#get-amt-lounge").hide();
+					$("#popup-num-rooms").popup("close");
+				}
 			});
+		}
+		else {
+			var unchecked = 0;
+			$("#amt-lounge").html(0);
+			arrRooms[2] = unchecked;
 		}
 	});
 	
@@ -156,13 +169,20 @@ $(document).on("pagecreate", "#main", function() {
 			$("#popup-num-rooms").popup("open");
 			$("#get-amt-hall").show();
 			$("#set-amt").on("click", function() {
-				var drp = document.getElementById("get-amt-hall");
-				var value = drp.options[ drp.options.selectedIndex ].value;
-				$("#amt-hall").html(value);
-				arrRooms[3] = value;
-				$("#get-amt-hall").hide();
-				$("#popup-num-rooms").popup("close");
+				if(document.getElementById('checkbox-hall').checked) {
+					var drp = document.getElementById("get-amt-hall");
+					var value = drp.options[ drp.options.selectedIndex ].value;
+					$("#amt-hall").html(value);
+					arrRooms[3] = value;
+					$("#get-amt-hall").hide();
+					$("#popup-num-rooms").popup("close");
+				}
 			});
+		}
+		else {
+			var unchecked = 0;
+			$("#amt-hall").html(0);
+			arrRooms[3] = unchecked;
 		}
 	});
 	
@@ -173,13 +193,20 @@ $(document).on("pagecreate", "#main", function() {
 			$("#popup-num-rooms").popup("open");
 			$("#get-amt-laundry").show();
 			$("#set-amt").on("click", function() {
-				var drp = document.getElementById("get-amt-laundry");
-				var value = drp.options[ drp.options.selectedIndex ].value;
-				$("#amt-laundry").html(value);
-				arrRooms[4] = value;
-				$("#get-amt-laundry").hide();
-				$("#popup-num-rooms").popup("close");
+				if(document.getElementById('checkbox-laundry').checked) {
+					var drp = document.getElementById("get-amt-laundry");
+					var value = drp.options[ drp.options.selectedIndex ].value;
+					$("#amt-laundry").html(value);
+					arrRooms[4] = value;
+					$("#get-amt-laundry").hide();
+					$("#popup-num-rooms").popup("close");
+				}
 			});
+		}
+		else {
+			var unchecked = 0;
+			$("#amt-laundry").html(0);
+			arrRooms[4] = unchecked;
 		}
 	});
 	
@@ -190,13 +217,20 @@ $(document).on("pagecreate", "#main", function() {
 			$("#popup-num-rooms").popup("open");
 			$("#get-amt-bedroom").show();
 			$("#set-amt").on("click", function() {
-				var drp = document.getElementById("get-amt-bedroom");
-				var value = drp.options[ drp.options.selectedIndex ].value;
-				$("#amt-bedroom").html(value);
-				arrRooms[5] = value;
-				$("#get-amt-bedroom").hide();
-				$("#popup-num-rooms").popup("close");
+				if(document.getElementById('checkbox-bedroom').checked) {
+					var drp = document.getElementById("get-amt-bedroom");
+					var value = drp.options[ drp.options.selectedIndex ].value;
+					$("#amt-bedroom").html(value);
+					arrRooms[5] = value;
+					$("#get-amt-bedroom").hide();
+					$("#popup-num-rooms").popup("close");
+				}
 			});
+		}
+		else {
+			var unchecked = 0;
+			$("#amt-bedroom").html(0);
+			arrRooms[5] = unchecked;
 		}
 	});
 	
@@ -207,13 +241,20 @@ $(document).on("pagecreate", "#main", function() {
 			$("#popup-num-rooms").popup("open");
 			$("#get-amt-garage").show();
 			$("#set-amt").on("click", function() {
-				var drp = document.getElementById("get-amt-garage");
-				var value = drp.options[ drp.options.selectedIndex ].value;
-				$("#amt-garage").html(value);
-				arrRooms[6] = value;
-				$("#get-amt-garage").hide();
-				$("#popup-num-rooms").popup("close");
+				if(document.getElementById('checkbox-garage').checked) {
+					var drp = document.getElementById("get-amt-garage");
+					var value = drp.options[ drp.options.selectedIndex ].value;
+					$("#amt-garage").html(value);
+					arrRooms[6] = value;
+					$("#get-amt-garage").hide();
+					$("#popup-num-rooms").popup("close");
+				}
 			});
+		}
+		else {
+			var unchecked = 0;
+			$("#amt-garage").html(0);
+			arrRooms[6] = unchecked;
 		}
 	});
 	
@@ -224,13 +265,20 @@ $(document).on("pagecreate", "#main", function() {
 			$("#popup-num-rooms").popup("open");
 			$("#get-amt-sundries").show();
 			$("#set-amt").on("click", function() {
-				var drp = document.getElementById("get-amt-sundries");
-				var value = drp.options[ drp.options.selectedIndex ].value;
-				$("#amt-sundries").html(value);
-				arrRooms[7] = value;
-				$("#get-amt-sundries").hide();
-				$("#popup-num-rooms").popup("close");
+				if(document.getElementById('checkbox-sundries').checked) {
+					var drp = document.getElementById("get-amt-sundries");
+					var value = drp.options[ drp.options.selectedIndex ].value;
+					$("#amt-sundries").html(value);
+					arrRooms[7] = value;
+					$("#get-amt-sundries").hide();
+					$("#popup-num-rooms").popup("close");
+				}
 			});
+		}
+		else {
+			var unchecked = 0;
+			$("#amt-sundries").html(0);
+			arrRooms[7] = unchecked;
 		}
 	});
 });

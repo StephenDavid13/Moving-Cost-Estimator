@@ -99,7 +99,7 @@ for(rooms=0; rooms<15; rooms+=2) {
 		for(i=1; i<=arrRoom1[rooms]; i++) {
 			var newPage = $("<div data-role=page data-url=room-" + rooms + "-" + i + "><div data-role=header data-theme=b data-position=fixed data-id=footer><p class=header-checklist>Volume calculator and checklist</p><p id=amount class=meter-cubic>0.00</p></div>" +
 				"<div data-role=content><div class=sub_header><h1 id=sub_header_title-" + rooms + "-" + i + "></h1></div><div class=types class=subheader-checklist><span id=all_chapter_articles-" + rooms + "-" + i + "></span></div></div>" +
-				"<div data-role=footer data-position=fixed><button name=toNext class=button-next>NEXT</button></div></div>");
+				"<div data-role=footer data-position=fixed><button name=toNext id=toNext class=button-next>NEXT</button></div></div>");
 			newPage.appendTo('body');
 			$("#sub_header_title-" + rooms + "-" + i).html(list_of_chapters[(rooms/2)] + " " + i);
 			var j = 0,tmp_amt = "", tmp_nav_chapter ="<form class='mini'>";
