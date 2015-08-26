@@ -106,8 +106,12 @@ $(document).on("pagecreate", "#main", function() {
 				arrRooms[0] = value;
 				$("#get-amt-kitchen").hide();
 				$("#popup-num-rooms").popup("close");
-				$("#temp").html(arrRooms);
 			});
+		}
+		else {
+			var unchecked = 0;
+			$("#amt-kitchen").html(0);
+			arrRooms[0] = unchecked;
 		}
 	});
 	
@@ -124,7 +128,6 @@ $(document).on("pagecreate", "#main", function() {
 				arrRooms[1] = value;
 				$("#get-amt-dining").hide();
 				$("#popup-num-rooms").popup("close");
-				$("#temp").html(arrRooms);
 			});
 		}
 	});
@@ -142,7 +145,6 @@ $(document).on("pagecreate", "#main", function() {
 				arrRooms[2] = value;
 				$("#get-amt-lounge").hide();
 				$("#popup-num-rooms").popup("close");
-				$("#temp").html(arrRooms);
 			});
 		}
 	});
@@ -160,7 +162,6 @@ $(document).on("pagecreate", "#main", function() {
 				arrRooms[3] = value;
 				$("#get-amt-hall").hide();
 				$("#popup-num-rooms").popup("close");
-				$("#temp").html(arrRooms);
 			});
 		}
 	});
@@ -178,7 +179,6 @@ $(document).on("pagecreate", "#main", function() {
 				arrRooms[4] = value;
 				$("#get-amt-laundry").hide();
 				$("#popup-num-rooms").popup("close");
-				$("#temp").html(arrRooms);
 			});
 		}
 	});
@@ -196,7 +196,6 @@ $(document).on("pagecreate", "#main", function() {
 				arrRooms[5] = value;
 				$("#get-amt-bedroom").hide();
 				$("#popup-num-rooms").popup("close");
-				$("#temp").html(arrRooms);
 			});
 		}
 	});
@@ -214,7 +213,6 @@ $(document).on("pagecreate", "#main", function() {
 				arrRooms[6] = value;
 				$("#get-amt-garage").hide();
 				$("#popup-num-rooms").popup("close");
-				$("#temp").html(arrRooms);
 			});
 		}
 	});
@@ -232,7 +230,6 @@ $(document).on("pagecreate", "#main", function() {
 				arrRooms[7] = value;
 				$("#get-amt-sundries").hide();
 				$("#popup-num-rooms").popup("close");
-				$("#temp").html(arrRooms);
 			});
 		}
 	});
