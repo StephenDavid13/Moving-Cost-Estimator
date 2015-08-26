@@ -8,8 +8,14 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script src="js/index.js"></script>
-<!--    <script src="js/count-rooms.js"></script> put it down-->
-	<script type="text/javascript">        
+    <script src="js/count-rooms.js"></script>  
+	<script type="text/javascript">     
+		var arrRooms = [0, 0, 0, 0, 0, 0, 0, 0];
+		
+		function callTheEstimator() {
+			localStorage.setItem("room-number", arrRooms);
+			window.location = "estimator.html";
+		}
     </script>
 </head>
 
@@ -39,17 +45,28 @@
         <span id="popup_win"></span>
     </div>
 
+    
   <script>
-        var array_list_of_chapters = [
-										"Kitchen",
-										"Dining Room ", 
-										"Lounge", 
-										"Hall", 
-										"Laundry",
-										"Bedroom",
-										"Garage \& Outside"
+          var array_list_of_chapters = [
+										"kitchen",
+										"dining-room", 
+										"lounge", 
+										"hall", 
+										"laundry",
+										"bedroom",
+										"garage-outside"
                                      ]
         ;
+//        ;   var array_list_of_chapters = [
+//										"Kitchen",
+//										"Dining Room ", 
+//										"Lounge", 
+//										"Hall", 
+//										"Laundry",
+//										"Bedroom",
+//										"Garage \& Outside"
+//                                     ]
+//        ;
       
         var obj_chapter_articles =  {
                                         kitchen: [                                     
@@ -146,17 +163,31 @@
             ,tmp_popup_win = ""
         ;
       
-		for (i ; i < list_of_chapters.length ; i++)
+          var list_of_chapters_ids = [
+										"kitchen",
+										"dining-room", 
+										"lounge", 
+										"hall", 
+										"laundry",
+										"bedroom",
+										"garage-outside"
+                                     ]
+        ;
+      
+
+      
+      
+		for (i ; i < list_of_chapters_ids.length ; i++)
 		{  
-		    var tmp_chapter = list_of_chapters[i].toLowerCase();
+		    var tmp_chapter = list_of_chapters_ids[i];
             
-			tmp_nav_chapter += "<input type='checkbox' name="+ tmp_chapter +" id='checkbox-"+tmp_chapter+"' value="+tmp_chapter+">";
-			tmp_nav_chapter += "<label for='checkbox-"+ tmp_chapter +"'> " + tmp_chapter +  " <span id='amt-"+ tmp_chapter + "' style='float: right'>0</span></label>";
+			tmp_nav_chapter += "<input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_chapter+"' value="+tmp_chapter+">";
+			tmp_nav_chapter += "<label for='checkbox-"+tmp_chapter+"'>"+tmp_chapter+"<span id='amt-"+tmp_chapter+"' style='float: right'>0</span></label>";
             /**/
-            tmp_popup_win += "<div data-role='popup' id='popup-num-rooms-"+ tmp_chapter +"' style='max-width: 100%;'><div data-role='content'>";
-            tmp_popup_win += "<h4 id='popup-header'></h4><form name= 'form_pop_"+ tmp_chapter  + "'>";
-            tmp_popup_win += "<select name='get-amt-"+ tmp_chapter +"' id='get-amt-" + tmp_chapter + "'></select></form>";
-            tmp_popup_win += "<button type='submit' name='set-amt-"+ tmp_chapter  + "' id='set-amt-"+ tmp_chapter  + "' form='form_pop_"+ tmp_chapter  + "'>OK</button>";
+            tmp_popup_win += "<div data-role='popup' id='popup-num-rooms-"+tmp_chapter+"' style='max-width: 100%;'><div data-role='content'>";
+            tmp_popup_win += "<h4 id='popup-header'></h4><form name= 'form_pop_"+tmp_chapter+"'>";
+            tmp_popup_win += "<select name='get-amt-"+tmp_chapter+"' id='get-amt-"+tmp_chapter+"'></select></form>";
+            tmp_popup_win += "<button type='submit' name='set-amt-"+tmp_chapter+"' id='set-amt-"+tmp_chapter+"' form='form_pop_"+tmp_chapter+"'>OK</button>";
             tmp_popup_win +="</div></div>";
 		}
 		   
@@ -164,7 +195,7 @@
 		document.getElementById('popup_win').innerHTML = tmp_popup_win;
     </script>
     
-    <script src="js/count-rooms.js"></script>
+
 </body>
 </html>
 
