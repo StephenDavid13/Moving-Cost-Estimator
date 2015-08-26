@@ -1,6 +1,6 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.kiwise.movingcostestimator" version="1.0.0">
   <name>Moving Cost Estimator</name>
-  <description>Hello World sample application that responds to the deviceready event.</description>
+  <description>Moving House App Volume Calculator.</description>
   <author href="http://www.kiwise.com" email="coder@kiwisemarketing.co.nz">Kiwise Digital</author>
   <content src="index.html"/>
   <preference name="permissions" value="none"/>

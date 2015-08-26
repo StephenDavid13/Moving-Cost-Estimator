@@ -1,12 +1,12 @@
 $(document).on("pagecreate", "#main", function() {
-	var select_kitchen = $("<select name=get-amt-kitchen id=get-amt-kitchen></select>");
-	var select_dining = $("<select name=get-amt-dining id=get-amt-dining></select>");
-	var select_lounge = $("<select name=get-amt-lounge id=get-amt-lounge></select>");
-	var select_hall = $("<select name=get-amt-hall id=get-amt-hall></select>");
-	var select_laundry = $("<select name=get-amt-laundry id=get-amt-laundry></select>");
-	var select_bedroom = $("<select name=get-amt-bedroom id=get-amt-bedroom></select>");
-	var select_garage = $("<select name=get-amt-garage id=get-amt-garage></select>");
-	var select_sundries = $("<select name=get-amt-sundries id=get-amt-sundries></select>");
+	var select_kitchen = $("<select name=get-amt-kitchen id=get-amt-kitchen class=main-form></select>");
+	var select_dining = $("<select name=get-amt-dining id=get-amt-dining class=main-form></select>");
+	var select_lounge = $("<select name=get-amt-lounge id=get-amt-lounge class=main-form></select>");
+	var select_hall = $("<select name=get-amt-hall id=get-amt-hall class=main-form></select>");
+	var select_laundry = $("<select name=get-amt-laundry id=get-amt-laundry class=main-form></select>");
+	var select_bedroom = $("<select name=get-amt-bedroom id=get-amt-bedroom class=main-form></select>");
+	var select_garage = $("<select name=get-amt-garage id=get-amt-garage class=main-form></select>");
+	var select_sundries = $("<select name=get-amt-sundries id=get-amt-sundries class=main-form></select>");
 
 	select_kitchen.appendTo('#popup_form');
 	select_dining.appendTo('#popup_form');
@@ -27,7 +27,7 @@ $(document).on("pagecreate", "#main", function() {
 	$("#get-amt-sundries").hide();
 	
 	var dropDown_kitchen = document.getElementById("get-amt-kitchen");
-	for (i=0; i<=20; i++) {
+	for (i=0; i<=5; i++) {
 		var listItem = document.createElement("option");
 		listItem.text = i;
 		listItem.value = i;
@@ -35,7 +35,7 @@ $(document).on("pagecreate", "#main", function() {
 	}
 	
 	var dropDown_dining = document.getElementById("get-amt-dining");
-	for (i=0; i<=20; i++) {
+	for (i=0; i<=5; i++) {
 		var listItem = document.createElement("option");
 		listItem.text = i;
 		listItem.value = i;
@@ -43,7 +43,7 @@ $(document).on("pagecreate", "#main", function() {
 	}
 	
 	var dropDown_lounge = document.getElementById("get-amt-lounge");
-	for (i=0; i<=20; i++) {
+	for (i=0; i<=5; i++) {
 		var listItem = document.createElement("option");
 		listItem.text = i;
 		listItem.value = i;
@@ -51,7 +51,7 @@ $(document).on("pagecreate", "#main", function() {
 	}
 	
 	var dropDown_hall = document.getElementById("get-amt-hall");
-	for (i=0; i<=20; i++) {
+	for (i=0; i<=5; i++) {
 		var listItem = document.createElement("option");
 		listItem.text = i;
 		listItem.value = i;
@@ -59,7 +59,7 @@ $(document).on("pagecreate", "#main", function() {
 	}
 	
 	var dropDown_laundry = document.getElementById("get-amt-laundry");
-	for (i=0; i<=20; i++) {
+	for (i=0; i<=5; i++) {
 		var listItem = document.createElement("option");
 		listItem.text = i;
 		listItem.value = i;
@@ -67,7 +67,7 @@ $(document).on("pagecreate", "#main", function() {
 	}
 	
 	var dropDown_bedroom = document.getElementById("get-amt-bedroom");
-	for (i=0; i<=20; i++) {
+	for (i=0; i<=5; i++) {
 		var listItem = document.createElement("option");
 		listItem.text = i;
 		listItem.value = i;
@@ -75,7 +75,7 @@ $(document).on("pagecreate", "#main", function() {
 	}
 	
 	var dropDown_garage = document.getElementById("get-amt-garage");
-	for (i=0; i<=20; i++) {
+	for (i=0; i<=5; i++) {
 		var listItem = document.createElement("option");
 		listItem.text = i;
 		listItem.value = i;
@@ -83,7 +83,7 @@ $(document).on("pagecreate", "#main", function() {
 	}
 	
 	var dropDown_sundries = document.getElementById("get-amt-sundries");
-	for (i=0; i<=20; i++) {
+	for (i=0; i<=5; i++) {
 		var listItem = document.createElement("option");
 		listItem.text = i;
 		listItem.value = i;
