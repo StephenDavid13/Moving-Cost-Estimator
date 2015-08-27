@@ -1,12 +1,12 @@
 var array_list_of_chapters = [
-								"Kitchen",
-								"Dining Room", 
-								"Lounge", 
-								"Hall", 
-								"Laundry",
-								"Bedroom",
+								"kitchen",
+								"dining-room", 
+								"lounge", 
+								"hall", 
+								"laundry",
+								"bedroom",
 								"Garage \& Outside",
-								"Sundries"
+								"sundries"
 							 ];
 
 var obj_chapter_articles =  {
@@ -99,18 +99,23 @@ var arrRooms1 = JSON.parse(localStorage.getItem('room'));
 
 console.log(arrRooms1);
 
+/*run thru all chapters*/
 for (i_rooms = 0; i_rooms < array_list_of_chapters.length; i_rooms++) 
 {
-    var number_of_rooms : arrRooms1[array_list_of_chapters[i_rooms]];
-    var crnt_chapter = array_list_of_chapters[i_rooms];
+    var number_of_rooms = arrRooms1[array_list_of_chapters[i_rooms]];
+    var curnt_chapter = array_list_of_chapters[i_rooms];
         
-   if(arrRooms1[array_list_of_chapters[i_rooms]])
+    console.log(curnt_chapter);
+    console.log(arrRooms1[curnt_chapter]);
+    
+   if(arrRooms1[array_list_of_chapters[i_rooms]]>0)
    {
 		var j_room_number = 0;
+console.log("sadf");
 
         for(j_room_number; j_room_number < number_of_rooms; j_room_number++) 
         {
-            
+console.log("sadfd");            
             var newPage = $("<div data-role=page data-url=room-" + curnt_chapter + "-" + j_room_number + "><div data-role=header data-theme=b data-position=fixed data-id=footer><p class=header-checklist>Volume calculator and checklist</p><p id=amount class=meter-cubic>0.00</p></div>" +
 				"<div data-role=content><div class=sub_header><h1 id=sub_header_title-" + curnt_chapter + "-" + j_room_number + "></h1></div><div class=types class=subheader-checklist><span id=all_chapter_articles-" + curnt_chapter + "-" + j_room_number + "></span></div></div>" +
 				"<div data-role=footer data-position=fixed><button name=toNext id=toNext class=button-next>NEXT</button></div></div>");
