@@ -97,7 +97,7 @@ for(rooms=0; rooms<15; rooms+=2) {
 	if(arrRoom1[rooms]>0) {
 		var i = 1;
 		for(i=1; i<=arrRoom1[rooms]; i++) {
-			var newPage = $("<div data-role=page data-url=room-" + rooms + "-" + i + "><div data-role=header data-theme=b data-position=fixed data-id=footer><p class=header-checklist>Volume calculator and checklist</p><p id=amount class=meter-cubic>0.00</p></div>" +
+			var newPage = $("<div data-role=page data-url=room-" + rooms + "-" + i + "><div data-role=header data-theme=b data-position=fixed data-id=footer><p class=header-checklist>Volume calculator and checklist</p><p id=amount class=meter-cubic><span class=total-amt>0.00</span> M<sup>3</sup></p></div>" +
 				"<div data-role=content><div class=sub_header><h1 id=sub_header_title-" + rooms + "-" + i + "></h1></div><div class=types class=subheader-checklist><span id=all_chapter_articles-" + rooms + "-" + i + "></span></div></div>" +
 				"<div data-role=footer data-position=fixed><button name=toNext id=toNext class=button-next>NEXT</button></div></div>");
 			newPage.appendTo('body');
@@ -168,7 +168,7 @@ for(rooms=0; rooms<15; rooms+=2) {
 	}
 }
 
-var quotePage = $("<div data-role=page data-url=quote><div data-role=header data-theme=b data-position=fixed data-id=footer><p class=header-checklist>Volume calculator and checklist</p><p id=amount class=meter-cubic>0.00</p></div>" +
+var quotePage = $("<div data-role=page data-url=quote><div data-role=header data-theme=b data-position=fixed data-id=footer><p class=header-checklist>Volume calculator and checklist</p><p id=amount class=meter-cubic><span class=total-amt>0.00</span> M<sup>3</sup></p></div>" +
 				"<div data-role=content><div class=sub_header><h1 id=sub_header_title-quote>Get A Quote</h1></div><div class=types class=subheader-checklist><span id=quote_form></span></div></div>" +
 				"<div data-role=footer data-position=fixed><button type=submit name=toNext id=toNext class=button-submit>SUBMIT QUOTE</button></div></div>");
 quotePage.appendTo('body');
