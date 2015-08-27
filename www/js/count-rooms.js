@@ -44,19 +44,58 @@
                     $("#popup-num-rooms-"+id_name).popup("open");
                     $("#set-amt-"+id_name).on("click", function() 
                     {
-                        var drp = document.getElementById("get-amt-"+id_name);
+                        var 
+                             drp = document.getElementById("get-amt-"+id_name)
+                            ,value = drp.options[ drp.options.selectedIndex ].value
+//                            ,tmp_obj = {}
+                        ;  
 
-                        var value = drp.options[ drp.options.selectedIndex ].value;
-
+//                        tmp_obj[id_name]= value;
+//                        localStorage.getItem("room_number", JSON.stringify(arrRooms));
+                        
+//                        var retrievedObject = localStorage.getItem('room_number');
+                        
+//                        var new_ob = JSON.parse(retrievedObject);
+                        
+                                    console.log(arrRooms);
+                        arrRooms[id_name] = value;
+                        
+                        
+                        localStorage.setItem('room', JSON.stringify(arrRooms));
+                        
+                        console.log(arrRooms);
+           
+                        
+//                        console.log(new_ob);
+                        
+//                        function callTheEstimator() 
+//                        {
+//                            localStorage.setItem("room-number2", arrRooms);
+//                            window.location = "create-content-franks.html";
+//		                }
+//                        
                         $("#amt-"+id_name).html(value);
-                        //arrRooms[k] = value;
 
                         $("#popup-num-rooms-"+id_name).popup("close");
+                        
                     });
                 }
             });
         }
     });
-     
  });
  
+//                        console.log(arrRooms);
+//                        console.log(tmp_obj);
+//                        console.log("halllo"); 
+//                        console.log(id_name);
+                        
+//                        console.log(arrRooms[0]);
+                        
+//                        console.log( [arrRooms[id_name][id_name] );
+                        
+//                        console.log( arrRooms[arrRooms[0]][arrRooms[0]] );
+                        
+//                        console.log( arrRooms[id_name][id_name] );
+                     
+//                        console.log(tmp_obj);

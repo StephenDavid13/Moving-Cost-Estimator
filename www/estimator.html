@@ -8,15 +8,25 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script src="js/index.js"></script>
-    <script src="js/count-rooms.js"></script>  
 	<script type="text/javascript">     
-		var arrRooms = [0, 0, 0, 0, 0, 0, 0, 0];
-		
-		function callTheEstimator() {
-			localStorage.setItem("room-number", arrRooms);
-			window.location = "estimator.html";
+   
+        var arrRooms = {
+                            "kitchen":0,
+                            "dining-room":0, 
+                            "lounge":0, 
+                            "hall":0, 
+                            "laundry":0,
+                            "bedroom":0,
+                            "garage-outside":0
+                       };
+        
+		function callTheEstimator() 
+        {
+			localStorage.setItem("room_number", arrRooms);
+			window.location = "aside_estimator.html";
 		}
     </script>
+    <script src="js/count-rooms.js"></script>  
 </head>
 
 <body>
@@ -193,6 +203,7 @@
 		   
 		document.getElementById('all_chapter_articles').innerHTML = tmp_nav_chapter;
 		document.getElementById('popup_win').innerHTML = tmp_popup_win;
+      
     </script>
     
 

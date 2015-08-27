@@ -117,6 +117,27 @@ h1 {
 /* Kiwise Custom CSS
 ---------------------------------------------------------------------------- */
 
+.center-text {
+	text-align: center;
+	padding: 5px 0px;
+}
+
+
+.button-next {
+	text-align: center;
+}
+
+.header-checklist {
+	float: left;
+	width: 150px;
+}
+
+.subheader-checklist {
+	padding-left: 10px; 
+	float: left; 
+	width: 100%;
+}
+
 .meter-cubic {
     float: right;  
     margin-right: 10px;
@@ -166,4 +187,20 @@ p {
 
 .ui-checkbox {
 	margin: 2em 0;
+}
+
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.1px;
+    text-overflow: '';
+	font-size: 70px;
+	color: #0000ff;
+	background-color: #fff;
+}
+
+select.main-form {
+		margin: 10px 70px;
+		border: 0px;
 }
