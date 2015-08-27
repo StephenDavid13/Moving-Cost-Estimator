@@ -101,7 +101,10 @@ $(document).on("pagecreate", "#main", function() {
 					var drp = document.getElementById("get-amt-kitchen");
 					var value = drp.options[ drp.options.selectedIndex ].value;
 					$("#amt-kitchen").html(value);
+					console.log(arrRooms);
 					arrRooms[0] = value;
+					console.log(arrRooms);
+					
 					$("#get-amt-kitchen").hide();
 					$("#popup-num-rooms").popup("close");
 				}
@@ -126,6 +129,7 @@ $(document).on("pagecreate", "#main", function() {
 					var value = drp.options[ drp.options.selectedIndex ].value;
 					$("#amt-dining").html(value);
 					arrRooms[1] = value;
+					
 					$("#get-amt-dining").hide();
 					$("#popup-num-rooms").popup("close");
 				}

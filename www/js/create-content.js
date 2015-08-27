@@ -173,7 +173,24 @@ var quotePage = $("<div data-role=page data-url=quote><div data-role=header data
 				"<div data-role=footer data-position=fixed><button type=submit name=toNext id=toNext class=button-submit>SUBMIT QUOTE</button></div></div>");
 quotePage.appendTo('body');
 
-var tmp_quote ="<form class='mini'>";
-tmp_quote += "<select><option></option>"
-tmp_quote += "</select>"
+var tmp_quote ="<form class='mini quote'>";
+tmp_quote += "<label for=find-us>How did you find us?</label><select name=find-us id=find-us><option value=Google>Google</option><option value=Customer>I'm a customer</option><option value=Friend>Referred by a Friend</option>";
+tmp_quote += "<option value=Social-Media>Social Media, Facebook etc.</option><option value=TradeMe>TradeMe</option><option value=Yellow>Yellow, Finda, Localist</option><option value=Truck>Our Trucks and Vans</option>";
+tmp_quote += "<option value=Others>Others</option></select><br />";
+
+tmp_quote += "<label for=full-name>Full Name*</label><input type=text name=full-name><br />";
+tmp_quote += "<label for=phone>Phone*</label><input type=number name=phone><br />";
+tmp_quote += "<label for=email>Email*</label><input type=email name=email><br />";
+tmp_quote += "<label for=confirm-email>Confirm Email*</label><input type=email name=confirm-email><br />";
+
+tmp_quote += "<label for=region>Region</label><select name=region id=region><option value=Auckland>Auckland</option><option value=Northland>Northland</option><option value=Coromandel>Coromandel</option>";
+tmp_quote += "<option value=Waikato>Waikato</option><option value=Bay-of-Plenty>Bay of Plenty</option><option value=East-Coast>East Coast</option><option value=Central-Plateau>Central Plateau</option>";
+tmp_quote += "<option value=Manawatu-Wanganui>Manawatu - Wanganui</option><option value=Wairarapa>Wairarapa</option><option value=Wellington>Wellington</option> <option value=Nelson>Nelson</option>";
+tmp_quote += "<option value=Marlborough>Marlborough</option><option value=West-Coast>West Coast</option><option value=Canterbury>Canterbury</option><option value=Otago>Otago</option><option value=Fiordland>Fiordland</option>";
+tmp_quote += "<option value=Southland>Southland</option></select><br />";
+
+tmp_quote += "<label for=pickup>Pickup Address*</label><input type=text name=pickup><br />";
+tmp_quote += "<label for=delivery-name>Delivery Address*</label><input type=text name=delivery><br />";
+tmp_quote += "<label for=notes>Notes</label><input type=text name=notes placeholder='Tell us about access, heavy items etc.'><br />";
+
 $("#quote_form").html(tmp_quote);

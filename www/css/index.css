@@ -190,7 +190,7 @@ p {
 }
 
 
-select {
+select.main-form {
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 0.1px;
@@ -198,9 +198,14 @@ select {
 	font-size: 70px;
 	color: #0000ff;
 	background-color: #fff;
+	margin: 10px 70px;
+	border: 0px;
 }
 
-select.main-form {
-		margin: 10px 70px;
-		border: 0px;
+.quote {
+	text-transform:	none;
+}
+
+.quote .ui-btn {
+	text-align: left;
 }
