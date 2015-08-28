@@ -12,12 +12,13 @@
    
         var arrRooms = {
                             "kitchen":0,
-                            "dining-room":0, 
+                            "dining_room":0, 
                             "lounge":0, 
                             "hall":0, 
                             "laundry":0,
                             "bedroom":0,
-                            "garage-outside":0
+                            "garage_outside":0,
+                            "sundries":0
                        };
         
 		function callTheEstimator() 
@@ -26,7 +27,8 @@
 			window.location = "aside_estimator.html";
 		}
     </script>
-    <script src="js/count-rooms.js"></script>  
+    <script src="js/count-rooms.js"></script>
+<!--    <script src="js/count-rooms.js"></script>  -->
 </head>
 
 <body>
@@ -59,29 +61,19 @@
   <script>
           var array_list_of_chapters = [
 										"kitchen",
-										"dining-room", 
+										"dining_room", 
 										"lounge", 
 										"hall", 
 										"laundry",
 										"bedroom",
-										"garage-outside"
+										"garage_outside"
                                      ]
         ;
-//        ;   var array_list_of_chapters = [
-//										"Kitchen",
-//										"Dining Room ", 
-//										"Lounge", 
-//										"Hall", 
-//										"Laundry",
-//										"Bedroom",
-//										"Garage \& Outside"
-//                                     ]
-//        ;
       
         var obj_chapter_articles =  {
                                         kitchen: [                                     
-                                                     "Fridge/freezer large", 
-                                                     "Fridge/freezer small",
+                                                     "Fridge / freezer large", 
+                                                     "Fridge / freezer small",
                                                      "Fridge Double Door",
                                                      "Fridge large",
                                                      "Fridge small",
@@ -108,15 +100,15 @@
                                                      "Tidy rack",
                                                      "Vegie rack",
                                                      "Box large (tea chest size)",
-                                                     "Box small (book/wine size)",
+                                                     "Box small (book wine size)",
                                                  ], 
 
 
                                     dining_room: [
-                                                      "Bookcase large",
-                                                      "Bookcase small",
+                                                      "Bookcase-large",
+                                                      "Bookcase-small",
                                                       "Cabinet",
-                                                      "Dining Table"
+                                                      "Dining-Table"
                                                  ],
                                         lounge: [
                                                      "Armchair", 
@@ -164,7 +156,7 @@
            ,i_loc = 0
         ; 
 
-        document.getElementById("sub-header-title").innerHTML = "Rooms you want to move: " + list_of_chapters[i_loc];
+        document.getElementById("sub-header-title").innerHTML = "Rooms you want to move : " ;
 
         var 
              i = 0
@@ -175,17 +167,15 @@
       
           var list_of_chapters_ids = [
 										"kitchen",
-										"dining-room", 
+										"dining_room", 
 										"lounge", 
 										"hall", 
 										"laundry",
 										"bedroom",
-										"garage-outside"
+										"garage_outside"
                                      ]
         ;
-      
 
-      
       
 		for (i ; i < list_of_chapters_ids.length ; i++)
 		{  
@@ -194,10 +184,15 @@
 			tmp_nav_chapter += "<input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_chapter+"' value="+tmp_chapter+">";
 			tmp_nav_chapter += "<label for='checkbox-"+tmp_chapter+"'>"+tmp_chapter+"<span id='amt-"+tmp_chapter+"' style='float: right'>0</span></label>";
             /**/
+            
             tmp_popup_win += "<div data-role='popup' id='popup-num-rooms-"+tmp_chapter+"' style='max-width: 100%;'><div data-role='content'>";
+            
             tmp_popup_win += "<h4 id='popup-header'></h4><form name= 'form_pop_"+tmp_chapter+"'>";
+            
             tmp_popup_win += "<select name='get-amt-"+tmp_chapter+"' id='get-amt-"+tmp_chapter+"'></select></form>";
+            
             tmp_popup_win += "<button type='submit' name='set-amt-"+tmp_chapter+"' id='set-amt-"+tmp_chapter+"' form='form_pop_"+tmp_chapter+"'>OK</button>";
+            
             tmp_popup_win +="</div></div>";
 		}
 		   

@@ -2,12 +2,12 @@
 {
     var list_of_chapters = [
 										"kitchen",
-										"dining-room", 
+										"dining_room", 
 										"lounge", 
 										"hall", 
 										"laundry",
 										"bedroom",
-										"garage-outside"
+										"garage_outside"
                                      ]
     var  j = 0; 
     for (j; j < list_of_chapters.length ; j++)
@@ -30,6 +30,7 @@
      
     $(function()
     {
+        console.log("asdkljfh");
         window.f_checkbox = function f_checkbox(ckbx_id) 
         {
              $("#"+ckbx_id).on("change", function() 
@@ -47,33 +48,12 @@
                         var 
                              drp = document.getElementById("get-amt-"+id_name)
                             ,value = drp.options[ drp.options.selectedIndex ].value
-//                            ,tmp_obj = {}
                         ;  
-
-//                        tmp_obj[id_name]= value;
-//                        localStorage.getItem("room_number", JSON.stringify(arrRooms));
                         
-//                        var retrievedObject = localStorage.getItem('room_number');
-                        
-//                        var new_ob = JSON.parse(retrievedObject);
-                        
-                                    console.log(arrRooms);
                         arrRooms[id_name] = value;
-                        
                         
                         localStorage.setItem('room', JSON.stringify(arrRooms));
                         
-                        console.log(arrRooms);
-           
-                        
-//                        console.log(new_ob);
-                        
-//                        function callTheEstimator() 
-//                        {
-//                            localStorage.setItem("room-number2", arrRooms);
-//                            window.location = "create-content-franks.html";
-//		                }
-//                        
                         $("#amt-"+id_name).html(value);
 
                         $("#popup-num-rooms-"+id_name).popup("close");
@@ -84,18 +64,3 @@
         }
     });
  });
- 
-//                        console.log(arrRooms);
-//                        console.log(tmp_obj);
-//                        console.log("halllo"); 
-//                        console.log(id_name);
-                        
-//                        console.log(arrRooms[0]);
-                        
-//                        console.log( [arrRooms[id_name][id_name] );
-                        
-//                        console.log( arrRooms[arrRooms[0]][arrRooms[0]] );
-                        
-//                        console.log( arrRooms[id_name][id_name] );
-                     
-//                        console.log(tmp_obj);

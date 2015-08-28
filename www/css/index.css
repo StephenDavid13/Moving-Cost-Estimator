@@ -117,11 +117,18 @@ h1 {
 /* Kiwise Custom CSS
 ---------------------------------------------------------------------------- */
 
+#amount {
+	font-size: 20px;
+}
+
+.total-amt {
+	font-size: 35px;
+}
+
 .center-text {
 	text-align: center;
 	padding: 5px 0px;
 }
-
 
 .button-next {
 	text-align: center;
@@ -129,7 +136,8 @@ h1 {
 
 .header-checklist {
 	float: left;
-	width: 150px;
+	width: 230px;
+	font-size: 20px;
 }
 
 .subheader-checklist {
@@ -190,17 +198,34 @@ p {
 }
 
 
-select {
+select.main-form {
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 0.1px;
     text-overflow: '';
 	font-size: 70px;
-	color: #0000ff;
+	color: #0289cc;
 	background-color: #fff;
+	margin: 10px 70px;
+	border: 0px;
 }
 
-select.main-form {
-		margin: 10px 70px;
-		border: 0px;
+.quote {
+	text-transform:	none;
+}
+
+.quote .ui-btn {
+	text-align: left;
+}
+
+.ui-header-fixed {
+	background-color: #0289cc;
+}
+
+button {
+	background-color: #0289cc !important;
+	width: 75% !important;
+	height: 50px;
+	margin: .5em 12.5% !important;
+	color: #fff !important;
 }

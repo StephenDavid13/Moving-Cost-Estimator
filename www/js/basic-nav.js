@@ -42,7 +42,7 @@ $(document).on('click', '#toNext', function(event){
                 {
                     $.mobile.changePage(nextpage, {transition: "slide", reverse: false}, true, true);
                     document.getElementById("chapter").innerHTML = list_of_chapterschapters[i_loc];
-                    document.getElementById("sub_header_title").innerHTML = "Rooms you want to move: " + list_of_chapterschapters[i_loc];
+                    document.getElementById("sub_header_title").innerHTML = "Rooms you want to move: ";
                     i_loc += 1;
                     
                     var text = '<ol>';

@@ -101,9 +101,12 @@ for(rooms=0; rooms<15; rooms+=2) {
 				"<div data-role=content><div class=sub_header><h1 id=sub_header_title-" + rooms + "-" + i + "></h1></div><div class=types class=subheader-checklist><span id=all_chapter_articles-" + rooms + "-" + i + "></span></div></div>" +
 				"<div data-role=footer data-position=fixed><button name=toNext id=toNext class=button-next>NEXT</button></div></div>");
 			newPage.appendTo('body');
+            
 			$("#sub_header_title-" + rooms + "-" + i).html(list_of_chapters[(rooms/2)] + " " + i);
-			var j = 0,tmp_amt = "", tmp_nav_chapter ="<form class='mini'>";
-			switch((rooms/2)) {
+			
+            var j = 0,tmp_amt = "", tmp_nav_chapter ="<form class='mini'>";
+			
+            switch((rooms/2)) {
 				case 0:
 					for (j ; j < chapter_articles.kitchen.length ; j++) {  
 						var tmp_chapter = chapter_articles.kitchen[j];
