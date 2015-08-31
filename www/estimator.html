@@ -12,22 +12,22 @@
 	<script src="js/create-content.js"></script>
 	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
 	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
-	<script type="text/javascript">
-
+	<script type="text/javascript">	
+		/*
 		function CalculateSig(stringToSign, privateKey){
 			var hash = CryptoJS.HmacSHA1(stringToSign, privateKey);
 			var base64 = hash.toString(CryptoJS.enc.Base64);
 			return encodeURIComponent(base64);
 		}
-
+	
 		var d = new Date,
-			 expiration = 3600 // 1 hour,
-			 unixtime = parseInt(d.getTime() / 1000),
-			 future_unixtime = unixtime + expiration,
-			 publicKey = "c172c4db1d",
-			 privateKey = "a630380116e6552",
-			 method = "POST",
-			 route = "forms/2/entries";
+		expiration = 3600 // 1 hour,
+		unixtime = parseInt(d.getTime() / 1000),
+		future_unixtime = unixtime + expiration,
+		publicKey = "c172c4db1d",
+		privateKey = "a630380116e6552",
+		method = "POST",
+		route = "forms/2/entries";
 
 		stringToSign = publicKey + ":" + method + ":" + route + ":" + future_unixtime;
 		sig = CalculateSig(stringToSign, privateKey);
@@ -36,38 +36,95 @@
 		var url = 'http://www.movinghouseapps.co.nz/gravityformsapi/forms/2/', api = '?api_key=', signature = '&signature=', expires = '&expires=';
 		var url_final = url + api + publicKey + signature + sig + expires + future_unixtime;
 		var url_final_1 = "http://www.movinghouseapps.co.nz/gravityformsapi/forms/2/?api_key=c172c4db1d&signature=0GFUWadt6YsaBRBjlajI1z6qFYM%3D&expires=1443367274";
-		
+	
 		console.log(url_final_1);
 		console.log(url_final);
+		console.log(url_final_2);
+		*/
 		
-		$.ajax({
-			url: 'http://www.movinghouseapps.co.nz/gravityformsapi/forms/2/?api_key=c172c4db1d&signature=0GFUWadt6YsaBRBjlajI1z6qFYM%3D&expires=1443367274',
-			type: 'POST',
-			data: JSON.stringify({"1": "Google"})
-		})
+		$.support.cors = true;
+		$.mobile.allowCrossDomainPages = true;
+        $.mobile.pushStateEnabled = false;
 		
-		var tmp_quote ="<form class='mini quote' enctype='multipart/form-data'>";
-		tmp_quote += "<label for=find-us>How did you find us?</label><select name=find-us id=find-us><option value=Google>Google</option><option value=Customer>I'm a customer</option><option value=Friend>Referred by a Friend</option>";
+		$(document).ready(function () {
+			$('#btn_submit').click(function () {
+				var data = {
+					"input_values": {
+						"input_10": $('#find_us').val(),
+						"input_2": $('#full_name').val(),
+						"input_3": $('#phone').val(),
+						"input_5": $('#email').val(),
+						"input_11": $('#region').val(),
+						"input_12": $('#pickup').val(),
+						"input_13": $('#delivery').val(),
+						"input_8": $('#notes').val(),
+						"input_9": 'TEST',
+						"input_6": '0.00'
+					}
+				};
+				
+				var url = 'http://www.movinghouseapps.co.nz/gravityformsapi/forms/2/submissions/';
+				var xmlrequest = new XMLHttpRequest();
+				xmlrequest.open('POST', url, true);
+				xmlrequest.send(JSON.stringify(data));
+				console.log(JSON.stringify(data));
+				xmlrequest.onreadystatechange = function() {
+					if (xmlrequest.readyState == 4) {
+						if(xmlrequest.status == 200 || xmlrequest.status == 0) {
+							alert("IT'S A SUCCESS" + xmlrequest.responseText + " |||||| " + JSON.stringify(data));
+							window.location = "main.html";
+						}
+					}
+				};
+				
+				
+			});
+			/*
+				$.ajax({
+					type: 'POST',
+					url: url,
+					crossDomain: true,
+					cache: false,
+					data: JSON.stringify(data),
+					dataType: 'json',
+					beforeSend: function() {
+						console.log('WORKING...');
+					},
+					success: function() {
+						//alert("success");
+						window.location = "main.html";
+					}
+				})
+			}
+			*/
+		});
+		
+		var $sending;
+		$sending= $("#sending");
+		
+		var tmp_quote ="<form class='mini quote'>";
+		tmp_quote += "<label for=find-us>How did you find us?</label><select data-id=10 name=find-us id=find_us><option value=Google>Google</option><option value=Customer>I'm a customer</option><option value=Friend>Referred by a Friend</option>";
 		tmp_quote += "<option value=Social-Media>Social Media, Facebook etc.</option><option value=TradeMe>TradeMe</option><option value=Yellow>Yellow, Finda, Localist</option><option value=Truck>Our Trucks and Vans</option>";
 		tmp_quote += "<option value=Others>Others</option></select><br />";
 
-		tmp_quote += "<label for=full-name>Full Name*</label><input type=text name=full-name><br />";
-		tmp_quote += "<label for=phone>Phone*</label><input type=number name=phone><br />";
-		tmp_quote += "<label for=email>Email*</label><input type=email name=email><br />";
+		tmp_quote += "<label for=full_name>Full Name*</label><input data-id=2 type=text name=full_name id=full_name><br />";
+		tmp_quote += "<label for=phone>Phone*</label><input data-id=3 type=number name=phone id=phone><br />";
+		tmp_quote += "<label for=email>Email*</label><input data-id=5 type=email name=email id=email><br />";
 		tmp_quote += "<label for=confirm-email>Confirm Email*</label><input type=email name=confirm-email><br />";
 
-		tmp_quote += "<label for=region>Region</label><select name=region id=region><option value=Auckland>Auckland</option><option value=Northland>Northland</option><option value=Coromandel>Coromandel</option>";
+		tmp_quote += "<label for=region>Region</label><select data-id=11 name=region id=region><option value=Auckland>Auckland</option><option value=Northland>Northland</option><option value=Coromandel>Coromandel</option>";
 		tmp_quote += "<option value=Waikato>Waikato</option><option value=Bay-of-Plenty>Bay of Plenty</option><option value=East-Coast>East Coast</option><option value=Central-Plateau>Central Plateau</option>";
 		tmp_quote += "<option value=Manawatu-Wanganui>Manawatu - Wanganui</option><option value=Wairarapa>Wairarapa</option><option value=Wellington>Wellington</option> <option value=Nelson>Nelson</option>";
 		tmp_quote += "<option value=Marlborough>Marlborough</option><option value=West-Coast>West Coast</option><option value=Canterbury>Canterbury</option><option value=Otago>Otago</option><option value=Fiordland>Fiordland</option>";
 		tmp_quote += "<option value=Southland>Southland</option></select><br />";
 
-		tmp_quote += "<label for=pickup>Pickup Address*</label><input type=text name=pickup><br />";
-		tmp_quote += "<label for=delivery-name>Delivery Address*</label><input type=text name=delivery><br />";
-		tmp_quote += "<label for=notes>Notes</label><input type=text name=notes placeholder='Tell us about access, heavy items etc.'><br />";
+		tmp_quote += "<label for=pickup>Pickup Address*</label><input data-id=12 type=text name=pickup id=pickup><br />";
+		tmp_quote += "<label for=delivery-name>Delivery Address*</label><input data-id=13 type=text name=delivery id=delivery><br />";
+		tmp_quote += "<label for=notes>Notes</label><input data-id=8 type=text name=notes id=notes placeholder='Tell us about access, heavy items etc.'><br />";
 
-		tmp_quote += "<button type='submit'>GET A QUOTE</button>";
+		tmp_quote += "<button id=btn_submit>GET A QUOTE</button>";
 		$("#quote_form").html(tmp_quote);
+			
 	</script>
 </head>
 <body>
