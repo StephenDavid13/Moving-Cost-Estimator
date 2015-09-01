@@ -7,7 +7,7 @@ $(document).on("pagecreate", "#main", function() {
 		dropDown.appendChild(listItem);
 	}
 	
-	$("#checkbox-kitchen").on("change", function() {
+	$("#checkbox-kitchen").on("click", function() {
 		var val = $(this).val();
 		$("#popup-header").html(val);
 		if(document.getElementById('checkbox-kitchen').checked) {

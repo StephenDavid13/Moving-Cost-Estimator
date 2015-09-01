@@ -7,28 +7,31 @@
     <link rel="stylesheet" href="css/index.css" /> 
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/index.js"></script> <!---->
 	<script type="text/javascript">     
    
         var arrRooms = {
                             "kitchen":0,
-                            "dining_room":0, 
+                            "dining-room":0, 
                             "lounge":0, 
                             "hall":0, 
                             "laundry":0,
                             "bedroom":0,
-                            "garage_outside":0,
-                            "sundries":0
+                            "garage-outside":0
                        };
         
+        /*called the function estmator*/
 		function callTheEstimator() 
         {
 			localStorage.setItem("room_number", arrRooms);
 			window.location = "aside_estimator.html";
 		}
+        
+        
+        
+        
     </script>
-    <script src="js/count-rooms.js"></script>
-<!--    <script src="js/count-rooms.js"></script>  -->
+    <script src="js/count-rooms.js"></script>  
 </head>
 
 <body>
@@ -59,148 +62,45 @@
 
     
   <script>
-          var array_list_of_chapters = [
-										"kitchen",
-										"dining_room", 
-										"lounge", 
-										"hall", 
-										"laundry",
-										"bedroom",
-										"garage_outside"
-                                     ]
-        ;
       
-        var obj_chapter_articles =  {
-                                        kitchen: [                                     
-                                                     "Fridge / freezer large", 
-                                                     "Fridge / freezer small",
-                                                     "Fridge Double Door",
-                                                     "Fridge large",
-                                                     "Fridge small",
-                                                     "Fridge bar",
-                                                     "Freezer",
-                                                     "Freezer chest",
-                                                     "Dishwasher",
-                                                     "Microwave",
-                                                     "Table large",
-                                                     "Table small",
-                                                     "Kitchen chair",
-                                                     "High chair",
-                                                     "Bar stool",
-                                                     "Cabinet",
-                                                     "Cabinet crystal",
-                                                     "Cabinet china large",
-                                                     "Cabinet china small",
-                                                     "Cabinet dresser",
-                                                     "Cupboard",
-                                                     "Tea chest",
-                                                     "Tea chest half",
-                                                     "Picture large",
-                                                     "Picture small",
-                                                     "Tidy rack",
-                                                     "Vegie rack",
-                                                     "Box large (tea chest size)",
-                                                     "Box small (book wine size)",
-                                                 ], 
-
-
-                                    dining_room: [
-                                                      "Bookcase-large",
-                                                      "Bookcase-small",
-                                                      "Cabinet",
-                                                      "Dining-Table"
-                                                 ],
-                                        lounge: [
-                                                     "Armchair", 
-                                                     "Bar", 
-                                                     "Bean bag small", 
-                                                     "Billard table"
-                                                ],
-                                         Hall: [
-                                                    "Chair",
-                                                    "Coat stand",
-                                                    "Dropside",
-                                                    "Grandfather clock"
-                                               ],
-                                        Laundry: [
-                                                    "Broom",
-                                                    "Closet",
-                                                    "Clothes dryer",
-                                                    "Ironing board"
-                                                 ],
-                                        Bedroom: [
-                                                    "Double Bed \& Matress",
-                                                    "Matress Single",
-                                                    "King Bed",
-                                                    "Small Bed"
-                                                 ],
-                                        Garage_and_outside: 
-                                                [
-                                                    "BBQ",
-                                                    "Adults Bike",
-                                                    "Childs Bike",
-                                                    "Chilly Bin"
-                                                 ],
-                                        Sudries: [
-                                                    "Bean Bag Large",
-                                                    "Bench",
-                                                    "Camp",
-                                                    "Computer"
-                                                 ]
-                                    }
-        ;		 
-
-		var 
-            list_of_chapters = array_list_of_chapters
-		   ,chapter_articles = obj_chapter_articles 
-           ,i_loc = 0
-        ; 
-
-        document.getElementById("sub-header-title").innerHTML = "Rooms you want to move : " ;
+        document.getElementById("sub-header-title").innerHTML = "Rooms you want to move : ";
 
         var 
-             i = 0
-            ,tmp_amt = ""
-		    ,tmp_nav_chapter =""
-            ,tmp_popup_win = ""
-        ;
-      
-          var list_of_chapters_ids = [
-										"kitchen",
-										"dining_room", 
-										"lounge", 
-										"hall", 
-										"laundry",
-										"bedroom",
-										"garage_outside"
-                                     ]
-        ;
+          list_of_chapters_ids = [
+                                    "kitchen",
+                                    "dining_room", 
+                                    "lounge", 
+                                    "hall", 
+                                    "laundry",
+                                    "bedroom",
+                                    "garage_outside",
+                                    "sundries"
+                                 ]
+         ,i = 0
+         ,tmp_amt = ""
+         ,tmp_nav_chapter =""
+         ,tmp_popup_win = ""
+         ,number_of_rooms = list_of_chapters_ids.length
+       ;
 
-      
 		for (i ; i < list_of_chapters_ids.length ; i++)
 		{  
 		    var tmp_chapter = list_of_chapters_ids[i];
             
-			tmp_nav_chapter += "<input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_chapter+"' value="+tmp_chapter+">";
-			tmp_nav_chapter += "<label for='checkbox-"+tmp_chapter+"'>"+tmp_chapter+"<span id='amt-"+tmp_chapter+"' style='float: right'>0</span></label>";
+			tmp_nav_chapter += " <input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_chapter+"' value="+tmp_chapter+">\n"+
+			                   " <label for='checkbox-"+tmp_chapter+"'>"+tmp_chapter+"<span id='amt-"+tmp_chapter+"' style='float: right'>0</span></label>";
             /**/
-            
-            tmp_popup_win += "<div data-role='popup' id='popup-num-rooms-"+tmp_chapter+"' style='max-width: 100%;'><div data-role='content'>";
-            
-            tmp_popup_win += "<h4 id='popup-header'></h4><form name= 'form_pop_"+tmp_chapter+"'>";
-            
-            tmp_popup_win += "<select name='get-amt-"+tmp_chapter+"' id='get-amt-"+tmp_chapter+"'></select></form>";
-            
-            tmp_popup_win += "<button type='submit' name='set-amt-"+tmp_chapter+"' id='set-amt-"+tmp_chapter+"' form='form_pop_"+tmp_chapter+"'>OK</button>";
-            
-            tmp_popup_win +="</div></div>";
+            tmp_popup_win += " <div data-role='popup' id='popup-num-rooms-"+tmp_chapter+"' style='max-width: 100%;'><div data-role='content'>\n"+
+                             " <h4 id='popup-header'>"+tmp_chapter+"</h4><form name= 'form_pop_"+tmp_chapter+"'>\n"+
+                             " <select name='get-amt-"+tmp_chapter+"' id='get-amt-"+tmp_chapter+"'></select></form>\n"+
+                             " <button type='submit' name='set-amt-"+tmp_chapter+"' id='set-amt-"+tmp_chapter+"' form='form_pop_"+tmp_chapter+"'>OK</button>\n"+
+                             " </div></div>";
 		}
 		   
 		document.getElementById('all_chapter_articles').innerHTML = tmp_nav_chapter;
 		document.getElementById('popup_win').innerHTML = tmp_popup_win;
       
     </script>
-    
 
 </body>
 </html>

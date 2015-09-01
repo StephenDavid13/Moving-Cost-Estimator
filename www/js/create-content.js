@@ -88,6 +88,16 @@ var obj_chapter_articles =  {
 										 ]
 							};		 
 
+
+
+function f_checkbox_articles(article_id)
+{
+
+    
+}
+
+
+
 var list_of_chapters = array_list_of_chapters,chapter_articles = obj_chapter_articles;
 var rooms = 0;
 var arrRoom1 = localStorage.getItem("room-number");
@@ -101,16 +111,13 @@ for(rooms=0; rooms<15; rooms+=2) {
 				"<div data-role=content><div class=sub_header><h1 id=sub_header_title-" + rooms + "-" + i + "></h1></div><div class=types class=subheader-checklist><span id=all_chapter_articles-" + rooms + "-" + i + "></span></div></div>" +
 				"<div data-role=footer data-position=fixed><button name=toNext id=toNext class=button-next>NEXT</button></div></div>");
 			newPage.appendTo('body');
-            
 			$("#sub_header_title-" + rooms + "-" + i).html(list_of_chapters[(rooms/2)] + " " + i);
-			
-            var j = 0,tmp_amt = "", tmp_nav_chapter ="<form class='mini'>";
-			
-            switch((rooms/2)) {
+			var j = 0,tmp_amt = "", tmp_nav_chapter ="<form class='mini'>";
+			switch((rooms/2)) {
 				case 0:
 					for (j ; j < chapter_articles.kitchen.length ; j++) {  
 						var tmp_chapter = chapter_articles.kitchen[j];
-						tmp_nav_chapter += "<input type='checkbox' name='checkbox-"+ tmp_chapter +"' id='checkbox-"+tmp_chapter+"'  >";
+						tmp_nav_chapter += "<input type='checkbox' name='checkbox-"+ tmp_chapter +"' onclick='f_checkbox_articles(this.id)' id='checkbox-"+tmp_chapter+"'  >";
 						tmp_nav_chapter += "<label for='checkbox-"+ tmp_chapter +"'> " + tmp_chapter +  "<span id='amt-"+ tmp_chapter + "' style='float: right'>0</span></label>";
 					}
 					break;
