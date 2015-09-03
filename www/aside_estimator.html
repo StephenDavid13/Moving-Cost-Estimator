@@ -8,31 +8,27 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script src="js/index.js"></script>
-<!--	<script src="js/create-content-franks.js"></script>-->
     <script src="js/basic-nav.js"></script>    
-    <script src="js/amt_article.js"></script>
-<!--    <script src="js/count-articles.js"></script> -->
+    <script src="js/room_info.js"></script>
+    <script type="text/javascript"></script>
+    
     <script>
         
-var 
-    amt_price = 0
-   ,id_attribute_collector = []
-;
-        console.log(amt_article_info);
-   
+    var 
+        amt_volume = 0
+    ;
+      
         
-        
-function f_set_checkbox_articles(rooms_to_create) 
+function f_set_checkbox_articles(ckbx_to_create) 
 {
     var  j = 0; 
-    for (j; j < rooms_to_create.length ; j++)
+    for (j; j < ckbx_to_create.length ; j++)
     {      
-//        console.log("AAAAA");
        var 
-             tmp_get_id="get-amt-"+rooms_to_create[j].id_attribute
-            ,dropDown = document.getElementById(tmp_get_id)
-       ;
-
+           tmp_ckbx_id="get-amt-"+ckbx_to_create[j].item_room_id
+          ,dropDown = document.getElementById(tmp_ckbx_id)
+        ;
+        
         for (var i=0; i<=20; i++) 
         {
             var listItem = document.createElement("option");
@@ -43,180 +39,113 @@ function f_set_checkbox_articles(rooms_to_create)
      }
 }
    
+$(document).ready(function(){     
 $(function()
+{
+    window.f_checkbox_articles = function f_checkbox_articles(ckbx_id) 
     {
-        window.f_checkbox_articles = function f_checkbox_articles(ckbx_id) 
-        {
-             var id_name = ckbx_id.substring(9);
-             $("#"+ckbx_id).on("change", function() 
+        
+//       $(".checkbox_items").on("click", function(e) 
+         $("#"+ckbx_id).on("change", function(e) 
+         {
+            var 
+                        item_room_id = this.value
+                         ,drp = document.getElementById("get-amt-"+item_room_id)
+                        ,founded = false
+                        ,tmp_volume = 0
+                        ,number_of_items = 0
+            ;
+             
+           if($(this).is(":checked") ) 
+//             if ($(this).prop("checked"))
+//             if($(this).is(':checked'))
              {
+                $("#popup-num-rooms-"+item_room_id).popup("open");
                  
-                $("#popup-header-"+id_name).html(id_name);
-               
-                 if(document.getElementById(ckbx_id).checked) 
-                 {
-                    $("#popup-num-rooms-"+id_name).popup("open");
-                    $("#set-amt-"+id_name).on("click", function() 
-                    {
-                        if(document.getElementById(ckbx_id).checked) {
-                            var 
-                                 drp = document.getElementById("get-amt-"+id_name)
-                                ,value = drp.options[ drp.options.selectedIndex ].value
-                            ;  
-                            
-                            //for (var )
-                            // a for loop thru obj with price 
-//                            // if article is same add price
-//                            var l = 0;
-//                            while( l < id_attribute_collector.length && )
-//                            {
-//                             if (id_attribute_collector[l] == 
-//                            
-//                            }
-                            
-                            
-                            console.log("if"+value);
-                            amt_price += (1.5*value);
-                            value = 0;
-                            
-                            $("#amt-"+id_name).html(value);
-                            $("#amount").html(amt_price);
-                            
-                            $("#popup-num-rooms-"+id_name).popup("close");
-                        }
-                    });
-                }
-            });
-            
-             $("#"+ckbx_id).on("click", function() 
-             {
-                if(!document.getElementById(ckbx_id).checked) 
-                 {
+                $("#set-amt-"+item_room_id).on("click", function(f) 
+                {
                     var 
-                         drp = document.getElementById("get-amt-"+id_name)
-                        ,value = drp.options[ drp.options.selectedIndex ].value
-                    ;  
-                     
-                     console.log("else"+value);
-                    // a for loop thru obj with price 
-                    // if article is same add price
-//                        for (var l = 0; l < amt_price.length; l++){}
-                     
-                     
-                        console.log(value + " || " + amt_price);
-                     
-                    amt_price -= (1.5*value);
+                        number_of_items = drp.options[ drp.options.selectedIndex ].value
+                    ;
                     
-                    value = 0;  
-                    console.log(value + " ^^ " + amt_price);
+                    $("#amt-"+ item_room_id).html(number_of_items);
+                    
                         
-                    $("#amount").html(amt_price);
-                    $("#amt-"+id_name).html(value);
-                 }
-            });
-        }
-    });
+                    var i_item = 0
+                    while ((!founded) && (i_item < gl_item_room_id_collector.length))
+                    {
+                        console.log(i_item + ': ' +founded);
+                        if( (!founded) && (gl_item_room_id_collector[i_item].item_room_id == item_room_id))
+                        {
+                            alert('abc');
+                            founded = true;
+                            
+                            if(founded)
+                            {
+                                tmp_volume = gl_item_room_id_collector[i_item].item_volume;
+
+                                amt_volume += (tmp_volume * number_of_items);
+                                
+                                // give me price
+    //                            console.log(tmp_volume);
+
+                                $("#amount-"+ gl_item_room_id_collector[i_item].room_id + "_" + gl_item_room_id_collector[i_item].room_number).html(amt_volume); 
+
+                                $("#amt-"+ item_room_id).html(number_of_items);
+
+                                $("#popup-num-rooms-"+item_room_id).popup("close");
+                                
+                                number_of_items = 0;
+                            }
+                            
+                        }
+                        i_item++
+                    }
+                     f.stopPropagation();
+                });
+            }// if checkbox cehecked
+            else
+            {
+                var   
+                     founded = false
+                    ,tmp_volume = 0
+                ;
+                
+                var i_item = 0
+                while ((!founded) && (i_item < gl_item_room_id_collector.length))
+                {
+                    if( gl_item_room_id_collector[i_item].item_room_id == item_room_id)
+                    {
+                        number_of_items = $("#amt-"+ item_room_id).text();
+                        
+                        tmp_volume = gl_item_room_id_collector[i_item].item_volume;
+                            
+                        amt_volume -= (tmp_volume * number_of_items);
+                        
+                        $("#amount-"+ gl_item_room_id_collector[i_item].room_id + "_" + gl_item_room_id_collector[i_item].room_number).html(amt_volume); 
+                        
+                        founded = true;
+                    }
+                    i_item++;
+                }
+                
+                $("#amt-"+ item_room_id).html("0");
+                
+            } // else
+              e.stopPropagation();
+         }); //checkbox change
         
-
-        
-    var array_list_of_rooms= [
-								"kitchen",
-								"dining_room", 
-								"lounge", 
-								"hall", 
-								"laundry",
-								"bedroom",
-								"garage_outside",
-								"sundries"
-							 ];
-
-var obj_room_articles =  {
-								kitchen: [                                     
-											 "fridge_freezer_large", 
-											 "fridge_freezer_small",
-											 "fridge_double_door",
-											 "fridge_large",
-											 "fridge_small",
-											 "fridge_bar",
-											 "freezer",
-											 "freezer_chest",
-											 "dishwasher",
-											 "microwave",
-											 "table_large",
-											 "table_small",
-											 "kitchen_chair",
-											 "high_chair",
-											 "bar_stool",
-											 "cabinet",
-											 "cabinet_crystal",
-											 "cabinet_china_large",
-											 "cabinet_china_small",
-											 "cabinet_dresser",
-											 "cupboard",
-											 "tea_chest",
-											 "tea_chest_half",
-											 "picture_large",
-											 "picture_small",
-											 "tidy_rack",
-											 "vegie_rack",
-											 "box_large_tea_chest_size",
-											 "box_small_book_wine_size",
-										 ], 
-
-
-								dining_room: [
-											  "bookcase_large",
-											  "bookcase_small",
-											  "cabinet",
-											  "dining_table"
-										 ],
-								lounge: [
-											 "armchair", 
-											 "bar", 
-											 "bean_bag_small", 
-											 "billard_table"
-										],
-								 hall: [
-											"chair",
-											"coat_stand",
-											"dropside",
-											"grandfather_clock"
-									   ],
-								laundry: [
-											"broom",
-											"closet",
-											"clothes_dryer",
-											"ironing_board"
-										 ],
-								bedroom: [
-											"double_bed_matress",
-											"matress_single",
-											"king_bed",
-											"Small_bed"
-										 ],
-								garage_outside: 
-										[
-											"bbq",
-											"adults_bike",
-											"childs_bike",
-											"chilly_bin"
-										 ],
-								sundries: [
-											"bean_bag_Large",
-											"bench",
-											"camp",
-											"computer"
-										 ]
-							};	
-        
-
+    } // window function
+    return false;
+});
+});
         
 var 
      rooms = 0
     ,arrRooms1 = JSON.parse(localStorage.getItem('room'))
-    ,number_of_total_rooms = array_list_of_rooms.length
+    ,number_of_total_rooms = gl_room_info.length
     ,rooms_to_create = []
-    ,id_attribute_collector = []
+    ,gl_item_room_id_collector = []
 ;
 
 
@@ -224,88 +153,205 @@ var
 for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++) 
 {
     var  
-         crnt_room = array_list_of_rooms[i_rooms]
-        ,i_number_of_rooms = arrRooms1[crnt_room]
+         crnt_room = gl_room_info[i_rooms].room_id
+        ,rooms_to_create = arrRooms1[crnt_room]
     ;
 
-    
-   if(i_number_of_rooms)
+   if(rooms_to_create)
    {
-		var j_room_number = 1;
+		var j_room = 1;
         
-        for(j_room_number; j_room_number <= i_number_of_rooms; j_room_number++) 
+        for(j_room; j_room <= rooms_to_create; j_room++) 
         {      
-             var newPage = $("<div data-role=page data-url=room-" +crnt_room+ "_" +j_room_number+ ">\n"+
+             var newPage = $("<div data-role=page data-url=room-" +crnt_room+ "_" +j_room+ ">\n"+
                                  "<div data-role=header data-theme=b data-position=fixed data-id=footer>\n"+
                                     "<p class=header-checklist>Volume calculator and checklist</p>\n"+
-                                    "<p id=amount class=meter-cubic>0.00</p>\n"+
+                                    "<p id=amount-" +crnt_room+ "_" +j_room+ " class=meter-cubic>0.00</p>\n"+
                                 "</div>\n"+
                                 "<div data-role=content>\n"+
                                      "<div class=sub-header>\n"+
-                                        "<h1 id=sub_header_title_"+crnt_room+"_"+j_room_number+"></h1>\n"+
+                                        "<h1 id=sub_header_title_"+crnt_room+"_"+j_room+"></h1>\n"+
                                      "</div>\n"+
                                      "<div class=types class=subheader-checklist>\n"+
-                                        "<form class=mini id=all_chapter_articles_"+crnt_room+"_"+j_room_number+"></form>\n"+
+                                        "<form class=mini id=all_chapter_articles_"+crnt_room+"_"+j_room+"></form>\n"+
                                      "</div>\n"+
                                 "</div>\n"+
                                 "<div data-role=footer data-position=fixed>\n"+
-                                    "<button name=toNext id=toNext class=button-next>NEXT</button>\n"+
+                                    "<button name=toNext id=toNext-"+i_rooms+"_"+j_room+" class=button-next>NEXT</button>\n"+
                                 "</div>\n"+
-                                "<span id=popup_win_"+crnt_room+"_"+j_room_number+"></span>\n"+
+                                "<span id=popup_win_"+crnt_room+"_"+j_room+"></span>\n"+
                             "</div>");
                    
             newPage.appendTo('body');
-
+            
+            
             
             var 
-                 k_article_number = 0
-                ,tmp_amt = ""
-                ,tmp_popup_win = ""
-                ,tmp_ckbx_article= ""
+                 k_item     = 0
+                ,tmp_amt    = ""
+                ,tmp_popup_win  = ""
+                ,tmp_ckbx_item  = ""
             ;
 
 
-            for (k_article_number ; k_article_number < obj_room_articles[crnt_room].length ; k_article_number++) 
+            for (k_item ; k_item < gl_room_info[i_rooms].items.length ; k_item++) 
             {  
                 var 
-                     tmp_article = obj_room_articles[crnt_room][k_article_number]
-                    ,id_attribute = tmp_article+"_"+j_room_number+"_"+k_article_number
+                     tmp_item_id   = gl_room_info[i_rooms].items[k_item].item_id
+                    ,tmp_item_name = gl_room_info[i_rooms].items[k_item].item_name
+                    ,tmp_item_volume = gl_room_info[i_rooms].items[k_item].volume
+                    ,tmp_room_name = gl_room_info[i_rooms].room_name
+                    ,tmp_item_room_id  = tmp_item_id+"_"+j_room+"_"+k_item
                 ;
                 
-                id_attribute_collector.push({
-                                                id_attribute : id_attribute,
-                                                article_name : tmp_article,
-                                                room         : crnt_room
+                gl_item_room_id_collector.push({
+                                                item_room_id : tmp_item_room_id,
+                                                item_name    : tmp_item_name,
+                                                item_volume  : tmp_item_volume,
+                                                item_id      : tmp_item_id,
+                                                room_id      : crnt_room,
+                                                room_name    : tmp_room_name,
+                                                room_number  : j_room
                                              });
-                
 
-                tmp_ckbx_article += " <input type='checkbox'  name='checkbox_"+id_attribute+"'\n"+                    
-                                    " onClick='f_checkbox_articles(this.id)' id='checkbox-"+id_attribute+"'\n"+
-                                    " value="+tmp_article+">\n"+" <label for='checkbox-"+id_attribute+"'>\n"+  
-                                      tmp_article +"<span id='amt-"+id_attribute+"'\n"+ 
+                
+                tmp_ckbx_item +=    " <input type='checkbox'   name="+tmp_item_name+"\n"+                    
+                                    " onClick='f_checkbox_articles(this.id)' id='checkbox-"+tmp_item_room_id+"'\n"+
+                                    " id='checkbox-"+tmp_item_room_id+"'\n"+
+                                    " value="+tmp_item_room_id+">\n"+" <label for='checkbox-"+tmp_item_room_id+"' id='label-"+tmp_item_room_id+"'>\n"+  
+                                      tmp_item_name +"<span id='amt-"+tmp_item_room_id+"'\n"+ 
                                     " style='float: right'>0</span></label>";
 
-                tmp_popup_win += " <div data-role='popup' id='popup-num-rooms-"+id_attribute+"'\n"+ 
+                tmp_popup_win += " <div data-role='popup' id='popup-num-rooms-"+tmp_item_room_id+"'\n"+ 
                                  " style='max-width: 100%;'><div data-role='content'>\n"+
-                                 " <h4 id='popup-header-"+id_attribute+"'></h4><form name= 'form_pop_"+id_attribute+"'>\n"+
-                                 " <select name='get-amt-"+id_attribute+"'\n"+
-                                 " id='get-amt-"+id_attribute+"'>\n"+
-                                 " </select></form><button type='submit' name='set-amt-"+id_attribute+"'\n"+ 
-                                 " id='set-amt-"+id_attribute+"'\n"+ 
-                                 " form='form_pop_"+id_attribute+"'>OK</button></div></div>";
+                                 " <h4 id='popup-header-"+tmp_item_room_id+"'></h4><form name= 'form_pop_"+tmp_item_room_id+"'>\n"+
+                                 " <select name='get-amt-"+tmp_item_room_id+"'\n"+
+                                 " id='get-amt-"+tmp_item_room_id+"'>\n"+
+                                 " </select></form><button type='submit' name='set-amt-"+tmp_item_room_id+"'\n"+ 
+                                 " id='set-amt-"+tmp_item_room_id+"'\n"+ 
+                                 " form='form_pop_"+tmp_item_room_id+"'>OK</button></div></div>";
+                
             }
             
-            $("#all_chapter_articles_" + crnt_room + "_" + j_room_number).html(tmp_ckbx_article);
-            $("#popup_win_" + crnt_room + "_" + j_room_number).html(tmp_popup_win);
-            $("#sub_header_title_" + crnt_room + "_" + j_room_number).html(crnt_room + ":" + j_room_number);
+            $("#all_chapter_articles_" + crnt_room + "_" + j_room).html(tmp_ckbx_item);
+            
+            $("#popup_win_" + crnt_room + "_" + j_room).html(tmp_popup_win);
+            
+            $("#sub_header_title_" + crnt_room + "_" + j_room).html(gl_room_info[i_rooms].room_name+ ": " + j_room);
         }
     }
+    else 
+    {
+        // call function         
+        f_set_checkbox_articles(gl_item_room_id_collector);
+    }
     
+    // set all header names of popup window
+    for(var i_header = 0; i_header < gl_item_room_id_collector.length; i_header++)
+    {
+        $("#popup-header-"+gl_item_room_id_collector[i_header].item_room_id).html(gl_item_room_id_collector[i_header].item_name);
+    }
+    
+
+// change button text    
+
 }
 
-f_set_checkbox_articles(id_attribute_collector);
+        
+        
+var quotePage = $(
+                  "<div data-role=page data-url=quote>\n"+
+                    "<div data-role=header data-theme=b data-position=fixed data-id=footer>\n"+
+                        "<p class=header-checklist>Volume calculator and checklist</p>\n"+
+                        "<p id=amount class=meter-cubic><span class=total-amt>0.00</span> M<sup>3</sup></p>\n"+
+                    "</div>\n"+
+                    "<div data-role=content>\n"+
+                        "<div class=sub_header><h1 id=sub_header_title-quote>Get A Quote</h1>\n"+
+                        "</div>\n"+
+                        "<div class=types class=subheader-checklist><span id=quote_form></span>\n"+
+                        "</div>\n"+
+                    "</div>\n"+
+                 "</div>"
+                 );
 
-    </script>
+quotePage.appendTo('body');
+        
+        
+
+$.support.cors = true;
+$.mobile.allowCrossDomainPages = true;
+$.mobile.pushStateEnabled = false;
+
+$(document).ready(function () 
+{
+    $('#btn_submit').click(function () 
+    {
+        var data = 
+        {
+            "input_values": 
+            {
+                "input_10": $('#find_us').val(),
+                "input_2": $('#full_name').val(),
+                "input_3": $('#phone').val(),
+                "input_5": $('#email').val(),
+                "input_11": $('#region').val(),
+                "input_12": $('#pickup').val(),
+                "input_13": $('#delivery').val(),
+                "input_8": $('#notes').val(),
+                "input_9": 'TEST',
+                "input_6": '0.00'
+            }
+        };
+
+        var url = 'http://www.movinghouseapps.co.nz/gravityformsapi/forms/2/submissions/';
+        var xmlrequest = new XMLHttpRequest();
+        xmlrequest.open('POST', url, true);
+        xmlrequest.send(JSON.stringify(data));
+        console.log(JSON.stringify(data));
+        xmlrequest.onreadystatechange = function() 
+        {
+            if (xmlrequest.readyState == 4) 
+            {
+                if(xmlrequest.status == 200 || xmlrequest.status == 0) 
+                {
+                    window.location = "main.html";
+                }
+            }
+        };
+    });
+});
+
+var
+    $sending= $("#sending")
+
+    ,tmp_quote  = "<form class='mini quote'><label for=find-us>How did you find us?</label><select data-id=10 name=find-us id=find_us>\n"+
+                 "<option value=Google>Google</option><option value=Customer>I'm a customer</option><option value=Friend>Referred by a Friend</option>\n"+
+                 "<option value=Social-Media>Social Media, Facebook etc.</option><option value=TradeMe>TradeMe</option><option value=Yellow>\n"+
+                 "Yellow, Finda, Localist</option><option value=Truck>Our Trucks and Vans</option>\n"+
+                 "<option value=Others>Others</option></select><br />\n"+
+                 "<label for=full_name>Full Name*</label>\n"+"<input data-id=2 type=text name=full_name id=full_name><br />\n"+
+                 "<label for=phone>Phone*</label><input data-id=3 type=number name=phone id=phone><br />\n"+
+                 "<label for=email>Email*</label><input data-id=5 type=email name=email id=email><br />\n"+
+                 "<label for=confirm-email>Confirm Email*</label><input type=email name=confirm-email><br />\n"+
+                 "<label for=region>Region</label><select data-id=11 name=region id=region><option value=Auckland>Auckland</option>\n"+
+                 "<option value=Northland>Northland</option><option value=Coromandel>Coromandel</option>\n"+
+                 "<option value=Waikato>Waikato</option><option value=Bay-of-Plenty>Bay of Plenty</option>\n"+
+                 "<option value=East-Coast>East Coast</option><option value=Central-Plateau>Central Plateau</option>\n"+
+                 "<option value=Manawatu-Wanganui>Manawatu - Wanganui</option><option value=Wairarapa>Wairarapa</option>\n"+
+                 "<option value=Wellington>Wellington</option> <option value=Nelson>Nelson</option>\n"+
+                 "<option value=Marlborough>Marlborough</option><option value=West-Coast>West Coast</option>\n"+
+                 "<option value=Canterbury>Canterbury</option><option value=Otago>Otago</option><option value=Fiordland>Fiordland</option>\n"+
+                 "<option value=Southland>Southland</option></select><br />\n"+
+                 "<label for=pickup>Pickup Address*</label><input data-id=12 type=text name=pickup id=pickup><br />\n"+
+                 "<label for=delivery-name>Delivery Address*</label><input data-id=13 type=text name=delivery id=delivery><br />\n"+
+                 "<label for=notes>Notes</label><input data-id=8 type=text name=notes id=notes placeholder='Tell us about access, heavy items etc.'><br />\n"+
+                 "<button id=btn_submit>GET A QUOTE</button>"
+;
+
+$("#quote_form").html(tmp_quote);
+			
+</script>
+    
 </head>
 <body>
     <div  id="aside_estimator"> </div>

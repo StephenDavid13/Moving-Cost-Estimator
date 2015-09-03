@@ -1,37 +1,22 @@
  $(document).on("pagecreate", "#main", function() 
 {
-    var list_of_chapters = [
-										"kitchen",
-										"dining_room", 
-										"lounge", 
-										"hall", 
-										"laundry",
-										"bedroom",
-										"garage_outside",
-                                        "sundries"
-                                     ]
-    var  j = 0; 
-    for (j; j < list_of_chapters.length ; j++)
+    for (var j_room = 0; j_room < gl_room_info.length ; j_room++)
     {       
-        var tmp_chapter = list_of_chapters[j];
-        var tmp="get-amt-"+tmp_chapter;
+        var 
+             tmp_room_id = gl_room_info[j_room].room_id
+            ,tmp="get-amt-"+tmp_room_id
+            ,dropDown = document.getElementById(tmp)
+        ;
         
-        var dropDown = document.getElementById(tmp);
-             console.log(dropDown);
-             console.log(tmp);
-   
-        
-        var i=0;
-        for (i; i<=20; i++) 
+        for (var i_ckbx = 0; i_ckbx <= 20 ; i_ckbx++) 
         {
             var listItem = document.createElement("option");
-            listItem.text = i;
-            listItem.value = i;
+            listItem.text = i_ckbx;
+            listItem.value = i_ckbx;
             
             dropDown.appendChild(listItem);
         };
      }
-
      
     $(function()
     {
@@ -57,8 +42,6 @@
                         
                         localStorage.setItem('room', JSON.stringify(arrRooms));
                         
-                        console.log(arrRooms);
-                            
                         $("#amt-"+id_name).html(value);
 
                         $("#popup-num-rooms-"+id_name).popup("close");

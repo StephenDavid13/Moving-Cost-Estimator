@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/index.css" /> 
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-    <script src="js/index.js"></script> <!---->
+    <script src="js/index.js"></script>
+    <script src="js/room_info.js"></script>
 	<script type="text/javascript">     
    
         var arrRooms = {
@@ -26,7 +27,6 @@
 			localStorage.setItem("room_number", arrRooms);
 			window.location = "aside_estimator.html";
 		}
-        
         
         
         
@@ -66,38 +66,30 @@
         document.getElementById("sub-header-title").innerHTML = "Rooms you want to move : ";
 
         var 
-          list_of_chapters_ids = [
-                                    "kitchen",
-                                    "dining_room", 
-                                    "lounge", 
-                                    "hall", 
-                                    "laundry",
-                                    "bedroom",
-                                    "garage_outside",
-                                    "sundries"
-                                 ]
-         ,i = 0
-         ,tmp_amt = ""
-         ,tmp_nav_chapter =""
-         ,tmp_popup_win = ""
-         ,number_of_rooms = list_of_chapters_ids.length
+              i = 0
+             ,tmp_ckbx_room =""
+             ,tmp_popup_win = ""
+             ,number_of_rooms = gl_room_info.length
        ;
-
-		for (i ; i < list_of_chapters_ids.length ; i++)
+      
+		for (i ; i < number_of_rooms ; i++)
 		{  
-		    var tmp_chapter = list_of_chapters_ids[i];
+		    var 
+                 tmp_room_label = gl_room_info[i].room_name
+                ,tmp_room_id = gl_room_info[i].room_id
+            ;
             
-			tmp_nav_chapter += " <input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_chapter+"' value="+tmp_chapter+">\n"+
-			                   " <label for='checkbox-"+tmp_chapter+"'>"+tmp_chapter+"<span id='amt-"+tmp_chapter+"' style='float: right'>0</span></label>";
+			tmp_ckbx_room += " <input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_room_id+"' value="+tmp_room_id+">\n"+
+			                   " <label for='checkbox-"+tmp_room_id+"'>"+tmp_room_label+"<span id='amt-"+tmp_room_id+"' style='float: right'>0</span></label>";
             /**/
-            tmp_popup_win += " <div data-role='popup' id='popup-num-rooms-"+tmp_chapter+"' style='max-width: 100%;'><div data-role='content'>\n"+
-                             " <h4 id='popup-header'>"+tmp_chapter+"</h4><form name= 'form_pop_"+tmp_chapter+"'>\n"+
-                             " <select name='get-amt-"+tmp_chapter+"' id='get-amt-"+tmp_chapter+"'></select></form>\n"+
-                             " <button type='submit' name='set-amt-"+tmp_chapter+"' id='set-amt-"+tmp_chapter+"' form='form_pop_"+tmp_chapter+"'>OK</button>\n"+
+            tmp_popup_win += " <div data-role='popup' id='popup-num-rooms-"+tmp_room_id+"' style='max-width: 100%;'><div data-role='content'>\n"+
+                             " <h4 id='popup-header'>"+tmp_room_label+"</h4><form name= 'form_pop_"+tmp_room_id+"'>\n"+
+                             " <select name='get-amt-"+tmp_room_id+"' id='get-amt-"+tmp_room_id+"'></select></form>\n"+
+                             " <button type='submit' name='set-amt-"+tmp_room_id+"' id='set-amt-"+tmp_room_id+"' form='form_pop_"+tmp_room_id+"'>OK</button>\n"+
                              " </div></div>";
 		}
 		   
-		document.getElementById('all_chapter_articles').innerHTML = tmp_nav_chapter;
+		document.getElementById('all_chapter_articles').innerHTML = tmp_ckbx_room;
 		document.getElementById('popup_win').innerHTML = tmp_popup_win;
       
     </script>
