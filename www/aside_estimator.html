@@ -13,12 +13,18 @@
     <script type="text/javascript"></script>
     
     <script>
-        
-    var 
-        amt_volume = 0
-    ;
+        	var listing_text =[], txt;
+var 
+    amt_volume = 0
+;
       
-        
+/**
+* f_set_checkbox_articles :
+* create
+*
+* in : []
+* out:
+**/
 function f_set_checkbox_articles(ckbx_to_create) 
 {
     var  j = 0; 
@@ -39,69 +45,74 @@ function f_set_checkbox_articles(ckbx_to_create)
      }
 }
    
-$(document).ready(function(){     
-$(function()
-{
-    window.f_checkbox_articles = function f_checkbox_articles(ckbx_id) 
+//$(document).ready(function(){     
+ 
+    function f_checkbox_articles(item_room_id) 
     {
-        
-//       $(".checkbox_items").on("click", function(e) 
-         $("#"+ckbx_id).on("change", function(e) 
-         {
             var 
-                        item_room_id = this.value
-                         ,drp = document.getElementById("get-amt-"+item_room_id)
-                        ,founded = false
-                        ,tmp_volume = 0
-                        ,number_of_items = 0
+                tmp_amount = 0,
+                sub_amount = true,
+                tmp_i_item = 0
             ;
-             
-           if($(this).is(":checked") ) 
-//             if ($(this).prop("checked"))
-//             if($(this).is(':checked'))
-             {
+
+           if($("#checkbox-"+item_room_id).is(":checked") ) 
+            {
                 $("#popup-num-rooms-"+item_room_id).popup("open");
                  
-                $("#set-amt-"+item_room_id).on("click", function(f) 
+                $("#set-amt-"+item_room_id).on("click", function() 
                 {
+                    
                     var 
-                        number_of_items = drp.options[ drp.options.selectedIndex ].value
+                         drp = document.getElementById("get-amt-"+item_room_id)
+                        ,founded = false
+//                        ,tmp_volume = 0
+                        ,number_of_items =  drp.options[ drp.options.selectedIndex ].value
                     ;
-                    
+//                    var 
+//                        number_of_items = drp.options[ drp.options.selectedIndex ].value
+//                    ;
+
                     $("#amt-"+ item_room_id).html(number_of_items);
-                    
                         
-                    var i_item = 0
+                    var i_item = 0;
                     while ((!founded) && (i_item < gl_item_room_id_collector.length))
                     {
-                        console.log(i_item + ': ' +founded);
                         if( (!founded) && (gl_item_room_id_collector[i_item].item_room_id == item_room_id))
                         {
-                            alert('abc');
                             founded = true;
                             
-                            if(founded)
-                            {
+ 
+                                sub_amount = false;
+                                
                                 tmp_volume = gl_item_room_id_collector[i_item].item_volume;
-
+                                
+                                tmp_i_item = i_item;
+                                
+                                tmp_amount = (tmp_volume * number_of_items);
+                                
+                                console.log(tmp_amount);
+                                
+                                
                                 amt_volume += (tmp_volume * number_of_items);
                                 
-                                // give me price
-    //                            console.log(tmp_volume);
-
                                 $("#amount-"+ gl_item_room_id_collector[i_item].room_id + "_" + gl_item_room_id_collector[i_item].room_number).html(amt_volume); 
 
-                                $("#amt-"+ item_room_id).html(number_of_items);
+                                $("#amt-"+ item_room_id).html("Amount: "+number_of_items);
+                                $("#vol-"+ item_room_id).html("Volume:  "+ (tmp_volume * number_of_items));
 
                                 $("#popup-num-rooms-"+item_room_id).popup("close");
                                 
                                 number_of_items = 0;
-                            }
+                            
+                            
+                            
+                            var add_list = gl_item_room_id_collector[i_item].item_name + " (" + $("#amt-"+ item_room_id).text() + ")";
+								listing_text.push(add_list);
+                           
                             
                         }
                         i_item++
                     }
-                     f.stopPropagation();
                 });
             }// if checkbox cehecked
             else
@@ -116,11 +127,25 @@ $(function()
                 {
                     if( gl_item_room_id_collector[i_item].item_room_id == item_room_id)
                     {
+                        
+                        
+                        var remove_list = gl_item_room_id_collector[i_item].item_name + " (" + $("#amt-"+ item_room_id).text() + ")";
+						var remove_index = listing_text.indexOf(remove_list);
+						if(remove_index > -1) {
+							listing_text.splice(remove_index, 1);
+						}
+                        
+                        
+                        
+                        sub_amount =  true;
+                        
+                        tmp_i_item = i_item;
+                        
                         number_of_items = $("#amt-"+ item_room_id).text();
                         
                         tmp_volume = gl_item_room_id_collector[i_item].item_volume;
                             
-                        amt_volume -= (tmp_volume * number_of_items);
+                        tmp_amount  = (tmp_volume * number_of_items);
                         
                         $("#amount-"+ gl_item_room_id_collector[i_item].room_id + "_" + gl_item_room_id_collector[i_item].room_number).html(amt_volume); 
                         
@@ -129,16 +154,30 @@ $(function()
                     i_item++;
                 }
                 
-                $("#amt-"+ item_room_id).html("0");
+                $("#amt-"+ item_room_id).html("Amount:  0");
+                $("#vol-"+ item_room_id).html("Volume:  0");
+
                 
             } // else
-              e.stopPropagation();
-         }); //checkbox change
+//         }); //checkbox change
+
+        if(sub_amount)
+        {
+            console.log("if sub_amount: " + amt_volume);
+            amt_volume -= tmp_amount;
+        }
+        else
+        {
+                 console.log("else sub_amount: " + amt_volume);
+            amt_volume += tmp_amount;
+        }
         
+        console.log(amt_volume);
+     
+        $("#amount-"+ gl_item_room_id_collector[tmp_i_item].room_id + "_" + gl_item_room_id_collector[tmp_i_item].room_number).html(amt_volume); 
     } // window function
-    return false;
-});
-});
+
+//});
         
 var 
      rooms = 0
@@ -166,7 +205,7 @@ for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++)
              var newPage = $("<div data-role=page data-url=room-" +crnt_room+ "_" +j_room+ ">\n"+
                                  "<div data-role=header data-theme=b data-position=fixed data-id=footer>\n"+
                                     "<p class=header-checklist>Volume calculator and checklist</p>\n"+
-                                    "<p id=amount-" +crnt_room+ "_" +j_room+ " class=meter-cubic>0.00</p>\n"+
+                                    "<p id=amount-" +crnt_room+ "_" +j_room+ " class=meter-cubic><span class=total-amt>0.00</span> M<sup>3</sup></p>\n"+
                                 "</div>\n"+
                                 "<div data-role=content>\n"+
                                      "<div class=sub-header>\n"+
@@ -177,14 +216,12 @@ for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++)
                                      "</div>\n"+
                                 "</div>\n"+
                                 "<div data-role=footer data-position=fixed>\n"+
-                                    "<button name=toNext id=toNext-"+i_rooms+"_"+j_room+" class=button-next>NEXT</button>\n"+
+                                    "<button name=toNext id=toNext class='button-next toNext_"+crnt_room+"_"+j_room+"'>DONE</button>\n"+
                                 "</div>\n"+
                                 "<span id=popup_win_"+crnt_room+"_"+j_room+"></span>\n"+
                             "</div>");
                    
             newPage.appendTo('body');
-            
-            
             
             var 
                  k_item     = 0
@@ -216,11 +253,17 @@ for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++)
 
                 
                 tmp_ckbx_item +=    " <input type='checkbox'   name="+tmp_item_name+"\n"+                    
-                                    " onClick='f_checkbox_articles(this.id)' id='checkbox-"+tmp_item_room_id+"'\n"+
+                                    " onClick='f_checkbox_articles(this.value)'\n"+
                                     " id='checkbox-"+tmp_item_room_id+"'\n"+
-                                    " value="+tmp_item_room_id+">\n"+" <label for='checkbox-"+tmp_item_room_id+"' id='label-"+tmp_item_room_id+"'>\n"+  
-                                      tmp_item_name +"<span id='amt-"+tmp_item_room_id+"'\n"+ 
-                                    " style='float: right'>0</span></label>";
+                                    " value="+tmp_item_room_id+">\n"+
+                                    " <label for='checkbox-"+tmp_item_room_id+"' id='label-"+tmp_item_room_id+"'>\n"+  
+                                    " <span style='vertical-align:middle; line-height:32px'>"+tmp_item_name +"</span><span id='amt-"+tmp_item_room_id+"'\n"+ 
+                                    " style='float: right;  font-size:13px; display: inline-block;'>Amount: 0</span>\n"+
+                                    " <span id='vol-"+tmp_item_room_id+"' style='float: right;  font-size:13px; display:inline-block'>Volume:  0</span></label>";
+                                  
+//          tmp_ckbx_item +=          " <label for='checkbox-"+tmp_item_room_id+"' id='label-"+tmp_item_room_id+"'>\n"+  
+//                                      tmp_item_name +"<span id='amt-"+tmp_item_room_id+"'\n"+ 
+//                                    " style='float: right'>Amount: 0<span id='amt-item-"+tmp_item_room_id+" style='float: right'> <br>   Volume: 0</span></span></label>";
 
                 tmp_popup_win += " <div data-role='popup' id='popup-num-rooms-"+tmp_item_room_id+"'\n"+ 
                                  " style='max-width: 100%;'><div data-role='content'>\n"+
@@ -238,6 +281,27 @@ for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++)
             $("#popup_win_" + crnt_room + "_" + j_room).html(tmp_popup_win);
             
             $("#sub_header_title_" + crnt_room + "_" + j_room).html(gl_room_info[i_rooms].room_name+ ": " + j_room);
+            
+   //BUTTON TEXT
+            if ((j_room) < rooms_to_create) // (i_rooms < number_of_total_rooms)) 
+            {
+                var 
+                    tmp_crnt_room_name = gl_room_info[i_rooms].room_name
+                ;
+    
+                // change button text                          
+                $("."+"toNext_"+crnt_room+"_"+j_room).html("Next to "+tmp_crnt_room_name+" "+(j_room+1));
+            }
+            
+            if (((j_room) == rooms_to_create)  && ((i_rooms+1) < number_of_total_rooms) && (arrRooms1[gl_room_info[i_rooms+1].room_id]) ) 
+            {
+                var 
+                    tmp_crnt_room_name = gl_room_info[i_rooms+1].room_name
+                ;
+                
+                // change button text                          
+                $("."+"toNext_"+crnt_room+"_"+j_room).html("Next to "+tmp_crnt_room_name +" 1");
+            }
         }
     }
     else 
@@ -251,13 +315,8 @@ for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++)
     {
         $("#popup-header-"+gl_item_room_id_collector[i_header].item_room_id).html(gl_item_room_id_collector[i_header].item_name);
     }
-    
-
-// change button text    
-
 }
 
-        
         
 var quotePage = $(
                   "<div data-role=page data-url=quote>\n"+
@@ -275,8 +334,6 @@ var quotePage = $(
                  );
 
 quotePage.appendTo('body');
-        
-        
 
 $.support.cors = true;
 $.mobile.allowCrossDomainPages = true;
@@ -284,47 +341,105 @@ $.mobile.pushStateEnabled = false;
 
 $(document).ready(function () 
 {
-    $('#btn_submit').click(function () 
-    {
-        var data = 
-        {
-            "input_values": 
-            {
-                "input_10": $('#find_us').val(),
-                "input_2": $('#full_name').val(),
-                "input_3": $('#phone').val(),
-                "input_5": $('#email').val(),
-                "input_11": $('#region').val(),
-                "input_12": $('#pickup').val(),
-                "input_13": $('#delivery').val(),
-                "input_8": $('#notes').val(),
-                "input_9": 'TEST',
-                "input_6": '0.00'
-            }
-        };
+	var error = [0, 0, 0, 0, 0, 0];
 
-        var url = 'http://www.movinghouseapps.co.nz/gravityformsapi/forms/2/submissions/';
-        var xmlrequest = new XMLHttpRequest();
-        xmlrequest.open('POST', url, true);
-        xmlrequest.send(JSON.stringify(data));
-        console.log(JSON.stringify(data));
-        xmlrequest.onreadystatechange = function() 
-        {
-            if (xmlrequest.readyState == 4) 
-            {
-                if(xmlrequest.status == 200 || xmlrequest.status == 0) 
-                {
-                    window.location = "main.html";
-                }
-            }
-        };
+    $('#btn_submit_quote').click(function () 
+    {
+		for(var i=0; i<listing_text.length; i++) {
+			document.getElementById("listing").value += listing_text[i] + "\n";
+		}
+		
+		if($('#full_name').val() == '')  {
+			$('#full_name').parent().css({"border-color": "#ff0000"});
+			error[0] = 1;
+		}
+		else {
+			$('#full_name').parent().css({"border-color": "#ddd"});
+			error[0] = 0;
+		}
+		if($('#phone').val() == '')  {
+			$('#phone').parent().css({"border-color": "#ff0000"});
+			error[1] = 1;
+		}
+		else {
+			$('#phone').parent().css({"border-color": "#ddd"});
+			error[1] = 0;
+		}
+		if($('#email').val() == '')  {
+			$('#email').parent().css({"border-color": "#ff0000"});
+			error[2] = 1;
+		}
+		else {
+			if($('#email').val() !== $('#confirm-email').val())  {
+				$('#email').parent().css({"border-color": "#ff0000"});
+				$('#confirm-email').parent().css({"border-color": "#ff0000"});
+				error[3] = 1;
+			}
+			else {
+				$('#email').parent().css({"border-color": "#ddd"});
+				$('#confirm-email').parent().css({"border-color": "#ddd"});
+				error[3] = 0;
+			}
+			$('#email').parent().css({"border-color": "#ddd"});
+			error[2] = 0;
+		}
+		
+		if($('#pickup').val() == '')  {
+			$('#pickup').parent().css({"border-color": "#ff0000"});
+			error[4] = 1;
+		}
+		else {
+			$('#pickup').parent().css({"border-color": "#ddd"});
+			error[4] = 0;
+		}
+		if($('#delivery').val() == '')  {
+			$('#delivery').parent().css({"border-color": "#ff0000"});
+			error[5] = 1;
+		}
+		else {
+			$('#delivery').parent().css({"border-color": "#ddd"});
+			error[5] = 0;
+		}
+		if(error.indexOf(1) > -1) {
+			return false;
+		}
+		
+			var data = 
+			{
+				"input_values": 
+				{
+					"input_10": $('#find_us').val(),
+					"input_2": $('#full_name').val(),
+					"input_3": $('#phone').val(),
+					"input_5": $('#email').val(),
+					"input_11": $('#region').val(),
+					"input_12": $('#pickup').val(),
+					"input_13": $('#delivery').val(),
+					"input_8": $('#notes').val(),
+					"input_9": $('#listing').val(),
+					"input_6": amt_volume
+				}
+			};
+
+			var url = 'http://www.movinghouseapps.co.nz/gravityformsapi/forms/2/submissions/';
+			var xmlrequest = new XMLHttpRequest();
+			xmlrequest.open('POST', url, true);
+			xmlrequest.send(JSON.stringify(data));
+			xmlrequest.onreadystatechange = function() 
+			{
+				if (xmlrequest.readyState == 4) 
+				{
+					if(xmlrequest.status == 200 || xmlrequest.status == 0) 
+					{
+						window.location = "estimator.html";
+					}
+				}
+			};
     });
 });
 
 var
-    $sending= $("#sending")
-
-    ,tmp_quote  = "<form class='mini quote'><label for=find-us>How did you find us?</label><select data-id=10 name=find-us id=find_us>\n"+
+	tmp_quote  = "<form class='mini quote'><label for=find-us>How did you find us?</label><select data-id=10 name=find-us id=find_us>\n"+
                  "<option value=Google>Google</option><option value=Customer>I'm a customer</option><option value=Friend>Referred by a Friend</option>\n"+
                  "<option value=Social-Media>Social Media, Facebook etc.</option><option value=TradeMe>TradeMe</option><option value=Yellow>\n"+
                  "Yellow, Finda, Localist</option><option value=Truck>Our Trucks and Vans</option>\n"+
@@ -332,7 +447,7 @@ var
                  "<label for=full_name>Full Name*</label>\n"+"<input data-id=2 type=text name=full_name id=full_name><br />\n"+
                  "<label for=phone>Phone*</label><input data-id=3 type=number name=phone id=phone><br />\n"+
                  "<label for=email>Email*</label><input data-id=5 type=email name=email id=email><br />\n"+
-                 "<label for=confirm-email>Confirm Email*</label><input type=email name=confirm-email><br />\n"+
+                 "<label for=confirm-email>Confirm Email*</label><input type=email name=confirm-email id=confirm-email><br />\n"+
                  "<label for=region>Region</label><select data-id=11 name=region id=region><option value=Auckland>Auckland</option>\n"+
                  "<option value=Northland>Northland</option><option value=Coromandel>Coromandel</option>\n"+
                  "<option value=Waikato>Waikato</option><option value=Bay-of-Plenty>Bay of Plenty</option>\n"+
@@ -344,8 +459,9 @@ var
                  "<option value=Southland>Southland</option></select><br />\n"+
                  "<label for=pickup>Pickup Address*</label><input data-id=12 type=text name=pickup id=pickup><br />\n"+
                  "<label for=delivery-name>Delivery Address*</label><input data-id=13 type=text name=delivery id=delivery><br />\n"+
-                 "<label for=notes>Notes</label><input data-id=8 type=text name=notes id=notes placeholder='Tell us about access, heavy items etc.'><br />\n"+
-                 "<button id=btn_submit>GET A QUOTE</button>"
+                 "<label for=notes>Notes</label><textarea data-id=8 name=notes id=notes placeholder='Tell us about access, heavy items etc.'></textarea><br />\n"+
+				 "<textarea data-id=9 name=listing id=listing style=display:none;></textarea><br />\n"+
+                 "<button id=btn_submit_quote>GET A QUOTE</button></form>"
 ;
 
 $("#quote_form").html(tmp_quote);
