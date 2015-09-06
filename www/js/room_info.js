@@ -196,17 +196,17 @@ var
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Box large (tea chest size)",
+                                item_name: "Box large",
                                 item_id: "box_large_tea_chest_size",
                                 volume: 0.15,
-                                description: null,
+                                description: "Tea Chest Size",
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Box small (book/wine size)",
+                                item_name: "Box small",
                                 item_id: "box_small_book_wine_size",
                                 volume: 0.1,
-                                description: null,
+                                description: "Book/ Wine Size",
                                 info: "keep your body safe by Moving House Company"
                              }
                         ] // kitchen article Id's
@@ -280,24 +280,24 @@ var
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Dining Table with 8 chairs",
+                                item_name: "Dining Table",
                                 item_id: "dining_table_8_chairs",
                                 volume: 1.45,
-                                description: null, 
+                                description: "8 chairs", 
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Dining Table with 6 chairs",
+                                item_name: "Dining Table",
                                 item_id: "dining_table_6_chairs",
                                 volume: 0.81,
-                                description: null,
+                                description: "6 chairs",
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Dining Table with 4 chairs",
+                                item_name: "Dining Table",
                                 item_id: "dining_table_4_chairs",
                                 volume: 0.63,
-                                description: null, 
+                                description: "4 chairs", 
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
@@ -336,17 +336,17 @@ var
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Box large (tea chest size)",
+                                item_name: "Box large",
                                 item_id: "box_large",
                                 volume: 0.15,
-                                description: null, 
+                                description: "Tea Chest Size", 
                                 info: "keep your body safe by Moving House Company"
                              }, 
                              {
-                                item_name: "Box small (book/wine size)",
+                                item_name: "Box small",
                                 item_id: "box_small",
                                 volume: 0.1,
-                                description: null, 
+                                description: "Book/ Wine Size", 
                                 info: "keep your body safe by Moving House Company"
                              }
                             ] // dinning room ID's
@@ -721,17 +721,17 @@ var
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Box large (tea chest size)",
+                                item_name: "Box large",
                                 item_id: "box_large",
                                 volume: 0.15,
-                                description: null, 
+                                description: "Tea Chest Size", 
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Box small (book/wine size)",
+                                item_name: "Box small",
                                 item_id: "box_small",
                                 volume: 0.1,
-                                description: null, 
+                                description: "Book/ Wine Size", 
                                 info: "keep your body safe by Moving House Company"
                              }
                         ] // Lounge ID's
@@ -840,17 +840,17 @@ var
                                 info: "keep your body safe by Moving House Company"
                              },
                               {
-                                item_name: "Box large (tea chest size)",
+                                item_name: "Box large",
                                 item_id: "box_large",
                                 volume: 0.15,
-                                description: null, 
+                                description: "Tea Chest Size", 
                                 info: "keep your body safe by Moving House Company"
                              },
                               {
-                                item_name: "Box small (book/wine size)",
+                                item_name: "Box small",
                                 item_id: "box_small",
                                 volume: 0.1,
-                                description: null, 
+                                description: "Book/ Wine Size", 
                                 info: "keep your body safe by Moving House Company"
                              }
                         ] // Hall ID's
@@ -931,17 +931,17 @@ var
                                 info: "keep your body safe by Moving House Company"
                              },			
                              {
-                                item_name: "Box large (tea chest size)",
+                                item_name: "Box large",
                                 item_id: "box_large",
                                 volume: 0.15,
-                                description: null, 
+                                description: "Tea Chest Size", 
                                 info: "keep your body safe by Moving House Company"
                              },			
                              {
-                                item_name: "Box small (book/wine size)",
+                                item_name: "Box small",
                                 item_id: "ironing_board",
                                 volume: 0.1,
-                                description: null, 
+                                description: "Book/ Wine Size", 
                                 info: "keep your body safe by Moving House Company"
                              }
                          ] // Laundry ID's
@@ -1246,17 +1246,17 @@ var
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Box large (tea chest size)",
+                                item_name: "Box large",
                                 item_id: "box_large",
                                 volume: 0.15,
-                                description: null, 
+                                description: "Tea Chest Size", 
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Box small (book/wine size)",
+                                item_name: "Box small",
                                 item_id: "box_small",
                                 volume: 0.1,
-                                description: null, 
+                                description: "Book/ Wine Size", 
                                 info: "keep your body safe by Moving House Company"
                              }
                         ] // Bedroom ID's
@@ -1491,17 +1491,17 @@ var
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Box large (tea chest size)",
+                                item_name: "Box large",
                                 item_id: "box_large",
                                 volume: 0.15,
-                                description: null, 
+                                description: "Tea Chest Size", 
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Box small (book/wine size)",
+                                item_name: "Box small",
                                 item_id: "box_small",
                                 volume: 0.1,
-                                description: null, 
+                                description: "Book/ Wine Size", 
                                 info: "keep your body safe by Moving House Company"
                              }
                         ] // Garage Outside ID's
@@ -1575,17 +1575,17 @@ var
                                 info: "keep your body safe by Moving House Company"
                             },
                             {
-                                item_name: "Filing Cabinet 2 Drawer",
+                                item_name: "Filing Cabinet",
                                 item_id: "filing_cabinet_2_drawer",
                                 volume: 0.4,
-                                description: null, 
+                                description: "2 drawer", 
                                 info: "keep your body safe by Moving House Company"
                             },
                             {
-                                item_name: "Filing Cabinet 4 drawer",
-                                item_id: "filing_cabinet_2_drawer",
+                                item_name: "Filing Cabinet",
+                                item_id: "filing_cabinet_4_drawer",
                                 volume: 0.8,
-                                description: null, 
+                                description: "4 drawer", 
                                 info: "keep your body safe by Moving House Company"
                             },
                             {
@@ -1729,17 +1729,17 @@ var
                                 info: "keep your body safe by Moving House Company"
                             },
                              {
-                                item_name: "Box large (tea chest size)",
+                                item_name: "Box large",
                                 item_id: "box_large",
                                 volume: 0.15,
-                                description: null, 
+                                description: "Tea Chest Size", 
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Box small (book/wine size)",
+                                item_name: "Box small",
                                 item_id: "box_small",
                                 volume: 0.1,
-                                description: null, 
+                                description: "Book/ Wine Size", 
                                 info: "keep your body safe by Moving House Company"
                              }
                         ] // Sundries ID's

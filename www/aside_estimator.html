@@ -13,6 +13,7 @@
     <script type="text/javascript"></script>
     
     <script>
+	
 
 var 
      listing_text =[] 
@@ -60,7 +61,8 @@ function f_cal_set_amount()
     
     for(var i_item_runner = 0; i_item_runner < gl_item_room_id_collector.length; i_item_runner++)
     {
-        $("#amount-"+ gl_item_room_id_collector[i_item_runner].room_id + "_" + gl_item_room_id_collector[i_item_runner].room_number).html(amt_volume); 
+		var two_dec_places = parseFloat(amt_volume).toFixed(2);
+        $(".total-amt").html(two_dec_places); 
     }
 }
       
@@ -100,8 +102,12 @@ function f_checkbox_articles(item_room_id)
                     gl_item_room_id_collector[i_item].volume = tmp_item_amount;
                     
                     $("#popup-num-rooms-"+item_room_id).popup("close"); 
-                    $("#vol-"+ item_room_id).html("Volume:  "+tmp_item_amount);
-                    $("#amt-"+ item_room_id).html("Amount:  "+tmp_number_of_items);
+					
+					var two_dec_places_item_amount = parseFloat(tmp_item_amount).toFixed(2);
+					var two_dec_places_number_of_items = parseFloat(tmp_number_of_items).toFixed(2);
+					
+                    $("#vol-"+ item_room_id).html("Volume:  "+two_dec_places_item_amount);
+                    $("#amt-"+ item_room_id).html("Amount:  "+two_dec_places_number_of_items);
                     
                     f_cal_set_amount();
                     
@@ -141,8 +147,8 @@ function f_checkbox_articles(item_room_id)
                 
                 f_cal_set_amount();
 
-                $("#amt-"+ item_room_id).html("Amount: 0");
-                $("#vol-"+ item_room_id).html("Volume: 0");
+                $("#amt-"+ item_room_id).html("Amount: 0.00");
+                $("#vol-"+ item_room_id).html("Volume: 0.00");
                 
                 founded = true;
             }
@@ -234,12 +240,16 @@ for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++)
                                     " id='checkbox-"+tmp_item_room_id+"'\n"+
                                     " value="+tmp_item_room_id+">\n"+
                                     " <label for='checkbox-"+tmp_item_room_id+"' id='label-"+tmp_item_room_id+"'>\n"+  
-                                    " <ul style='vertical-align:middle;  display:inline-block;\n"+
-                                    " list-style-type:none; padding-left: 10px;'><li >"+tmp_item_name +"</li><li style='font-size: 11px'>"+tmp_description+"</li></ul>\n"+
-                                    " <ul style='float: right;  font-size:13px; display: inline-block; list-style-type:none;'>\n"+
-                                    " <li id='amt-"+tmp_item_room_id+ "'>Amount: 0</li>\n"+
-                                    " <li id='vol-"+tmp_item_room_id+"'>Volume:  0</li></ul></label>";
-                                  
+                                    " <ul style='vertical-align:middle;  display:inline-block;\n";
+									if(tmp_description == null) {
+									tmp_ckbx_item += " list-style-type:none; padding-left: 10px;'><li style='margin-top: 5px;'>"+tmp_item_name +"</li><li class='desc hide'>"+tmp_description+"</li></ul>\n";
+									}
+									else {
+									tmp_ckbx_item += " list-style-type:none; padding-left: 10px;'><li >"+tmp_item_name +"</li><li class=desc>"+tmp_description+"</li></ul>\n";
+									}
+                tmp_ckbx_item +=    " <ul style='float: right;  font-size:13px; display: inline-block; list-style-type:none;'>\n"+
+                                    " <li id='amt-"+tmp_item_room_id+ "'>Amount: 0.00</li>\n"+
+                                    " <li id='vol-"+tmp_item_room_id+"'>Volume:  0.00</li></ul></label>";              
 
                 tmp_popup_win += " <div data-role='popup' id='popup-num-rooms-"+tmp_item_room_id+"'\n"+ 
                                  " style='max-width: 100%;'><div data-role='content'>\n"+
@@ -431,7 +441,7 @@ var
                  "<option value=Southland>Southland</option></select><br />\n"+
                  "<label for=pickup>Pickup Address*</label><input data-id=12 type=text name=pickup id=pickup><br />\n"+
                  "<label for=delivery-name>Delivery Address*</label><input data-id=13 type=text name=delivery id=delivery><br />\n"+
-                 "<label for=notes>Notes</label><textarea data-id=8 name=notes id=notes placeholder='Tell us about access, heavy items etc.'></textarea><br />\n"+
+                 "<label for=notes>Notes</label><textarea data-id=8 name=notes id=notes placeholder='Tell us about access, heavy items, extra items etc.'></textarea><br />\n"+
 				 "<textarea data-id=9 name=listing id=listing style=display:none;></textarea><br />\n"+
                  "<button id=btn_submit_quote>GET A QUOTE</button></form>"
 ;

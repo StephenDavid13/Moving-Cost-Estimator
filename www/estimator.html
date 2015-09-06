@@ -9,6 +9,7 @@
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script src="js/index.js"></script>
     <script src="js/room_info.js"></script>
+	<script src="js/count-rooms.js"></script>  
 	<script type="text/javascript">     
    
         var arrRooms = {
@@ -28,43 +29,6 @@
 			window.location = "aside_estimator.html";
 		}
         
-        
-        
-    </script>
-    <script src="js/count-rooms.js"></script>  
-</head>
-
-<body>
-    
-    <div data-role="page" id="main">
-
-        <div data-role="header" data-theme="b" data-position="fixed" data-id="footer">
-            <p style="float: left;  width: 150;">Volume calculator and checklist</p>
-            <p id="amount" class="meter-cubic">0.00</p>
-        </div>
-
-        <div data-role="content">
-            <div class="sub-header">
-                <h1 id="sub-header-title"></h1>
-            </div>
-
-            <div class="types" style="padding-left: 10px; float: left; width: 100%;">  
-                <form class="mini" id="all_chapter_articles"></form>
-            </div>
-       </div>  
-
-        <div data-role="footer" data-position="fixed">
-            <button name="toEstimator" onClick="callTheEstimator()" style="text-align:center">ESTIMATE MOVE</button>
-        </div>
-        
-        <span id="popup_win"></span>
-    </div>
-
-    
-  <script>
-      
-        document.getElementById("sub-header-title").innerHTML = "Rooms you want to move : ";
-
         var 
               i = 0
              ,tmp_ckbx_room =""
@@ -88,10 +52,43 @@
                              " <button type='submit' name='set-amt-"+tmp_room_id+"' id='set-amt-"+tmp_room_id+"' form='form_pop_"+tmp_room_id+"'>OK</button>\n"+
                              " </div></div>";
 		}
-		   
+    </script>
+    
+</head>
+
+<body>
+    
+    <div data-role="page" id="main">
+		
+		<div data-role="header" data-theme="b" data-position="fixed" data-id="footer">
+			<p class="header-checklist">Volume calculator and checklist</p>
+			<!-- 
+			<p class="meter-cubic"><span class="total-amt">0.00</span> M<sup>3</sup></p>
+			-->
+		</div>
+
+        <div data-role="content">
+            <div class="sub-header">
+                <h1 id="sub-header-title"></h1>
+            </div>
+
+            <div class="types" style="padding-left: 10px; float: left; width: 100%;">  
+                <form class="mini" id="all_chapter_articles"></form>
+            </div>
+       </div>  
+
+        <div data-role="footer" data-position="fixed">
+            <button name="toEstimator" onClick="callTheEstimator()" style="text-align:center">ESTIMATE MOVE</button>
+        </div>
+        
+        <span id="popup_win"></span>
+    </div>
+
+    
+  <script>
+        document.getElementById("sub-header-title").innerHTML = "Rooms you want to move : ";
 		document.getElementById('all_chapter_articles').innerHTML = tmp_ckbx_room;
 		document.getElementById('popup_win').innerHTML = tmp_popup_win;
-      
     </script>
 
 </body>

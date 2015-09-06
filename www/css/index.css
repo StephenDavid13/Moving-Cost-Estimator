@@ -154,8 +154,17 @@ h1 {
 .meter-cubic:before {
     content: "TOTAL";  
     text-align: right;
-    font-size: 10px;
+    font-size: 13px;
     display: block;
+}
+.ui-select .ui-btn {
+	font-size: 30px !important;
+	color: #0289cc;
+}
+
+.quote .ui-select .ui-btn {
+	font-size: 1em !important;
+	color: #000;
 }
 
 p {
@@ -194,6 +203,10 @@ p {
 }
 
 .ui-checkbox {
+	margin: 0;
+}
+
+#all_chapter_articles .ui-checkbox {
 	margin: 2em 0;
 }
 
@@ -222,6 +235,14 @@ select.main-form {
 	background-color: #0289cc;
 }
 
+.desc {
+	font-size: 11px;
+}
+
+.hide {
+	display: none;
+}
+
 button {
 	background-color: #0289cc !important;
 	width: 75% !important;
@@ -229,4 +250,8 @@ button {
 	margin: .5em 12.5% !important;
 	color: #fff !important;
 	text-align: center !important;
+}
+
+.ui-btn-icon-right::after {
+	display: none;
 }
