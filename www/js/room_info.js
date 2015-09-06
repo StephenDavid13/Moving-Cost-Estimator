@@ -354,7 +354,7 @@ var
                      {
                         room_name: "Lounge",
                         room_id: "lounge",
-                        lounge: 
+                        items: 
                         [
                              {
                                 item_name: "2 Seater Couch",
@@ -1746,5 +1746,3 @@ var
                      } // Obj Sundries
         ] // Array amt
  ;
-
-console.log(gl_room_info);
