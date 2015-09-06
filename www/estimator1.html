@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Moving Cost Estimator</title>
+    <meta name="viewport" content="width=device-width,height=device-height,minimum-scale=1,maximum-scale=1"/>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="css/index.css" /> 
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/room_info.js"></script>
+	<script src="js/count-rooms.js"></script>  
+	<script type="text/javascript">     
+   
+        var arrRooms = {
+                            "kitchen":0,
+                            "dining-room":0, 
+                            "lounge":0, 
+                            "hall":0, 
+                            "laundry":0,
+                            "bedroom":0,
+                            "garage-outside":0
+                       };
+        
+        /*called the function estmator*/
+		function callTheEstimator() 
+        {
+			localStorage.setItem("room_number", arrRooms);
+			window.location = "aside_estimator.html";
+		}
+        
+        var 
+              i = 0
+             ,tmp_ckbx_room =""
+             ,tmp_popup_win = ""
+             ,number_of_rooms = gl_room_info.length
+       ;
+      
+		for (i ; i < number_of_rooms ; i++)
+		{  
+		    var 
+                 tmp_room_label = gl_room_info[i].room_name
+                ,tmp_room_id = gl_room_info[i].room_id
+            ;
+            
+			tmp_ckbx_room += " <input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_room_id+"' value="+tmp_room_id+">\n"+
+			                   " <label for='checkbox-"+tmp_room_id+"'>"+tmp_room_label+"<span id='amt-"+tmp_room_id+"' style='float: right'>0</span></label>";
+            /**/
+            tmp_popup_win += " <div data-role='popup' id='popup-num-rooms-"+tmp_room_id+"' style='max-width: 100%;'><div data-role='content'>\n"+
+                             " <h4 id='popup-header'>"+tmp_room_label+"</h4><form name= 'form_pop_"+tmp_room_id+"'>\n"+
+                             " <select name='get-amt-"+tmp_room_id+"' id='get-amt-"+tmp_room_id+"'></select></form>\n"+
+                             " <button type='submit' name='set-amt-"+tmp_room_id+"' id='set-amt-"+tmp_room_id+"' form='form_pop_"+tmp_room_id+"'>OK</button>\n"+
+                             " </div></div>";
+		}
+    </script>  
+    
+</head>
+
+<body>
+    
+    <div data-role="page" id="main">
+		
+		<div data-role="header" data-theme="b" data-position="fixed" data-id="footer">
+			<p class="header-checklist">Volume calculator and checklist</p>
+			<!-- 
+			<p class="meter-cubic"><span class="total-amt">0.00</span> M<sup>3</sup></p>
+			-->
+		</div>
+
+        <div data-role="content">
+            <div class="sub-header">
+                <h1 id="sub-header-title"></h1>
+            </div>
+
+            <div class="types" style="padding-left: 10px; float: left; width: 100%;">  
+                <form class="mini" id="all_chapter_articles"></form>
+            </div>
+       </div>  
+
+        <div data-role="footer" data-position="fixed">
+            <button name="toEstimator" onClick="callTheEstimator()" style="text-align:center">ESTIMATE MOVE</button>
+        </div>
+        
+        <span id="popup_win"></span>
+    </div>
+
+    
+  <script>
+        document.getElementById("sub-header-title").innerHTML = "Rooms you want to move : ";
+		document.getElementById('all_chapter_articles').innerHTML = tmp_ckbx_room;
+		document.getElementById('popup_win').innerHTML = tmp_popup_win;
+    </script>
+
+</body>
+</html>
+
