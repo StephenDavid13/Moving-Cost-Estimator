@@ -13,13 +13,21 @@
     <script type="text/javascript"></script>
     
     <script>
-	var listing_text =[], txt;
+	
+
+var 
+     listing_text =[] 
+    ,txt = ""
+;
+
         
-    var 
-        amt_volume = 0
-    ;
-      
-        
+/**
+* f_set_checkbox_articles :
+* create
+*
+* in : []
+* out:
+**/
 function f_set_checkbox_articles(ckbx_to_create) 
 {
     var  j = 0; 
@@ -28,7 +36,7 @@ function f_set_checkbox_articles(ckbx_to_create)
        var 
            tmp_ckbx_id="get-amt-"+ckbx_to_create[j].item_room_id
           ,dropDown = document.getElementById(tmp_ckbx_id)
-        ;
+       ;
         
         for (var i=0; i<=20; i++) 
         {
@@ -39,118 +47,116 @@ function f_set_checkbox_articles(ckbx_to_create)
         }
      }
 }
-   
-$(document).ready(function(){     
-$(function()
+
+//
+function f_cal_set_amount()
 {
-    window.f_checkbox_articles = function f_checkbox_articles(ckbx_id) 
+    var amt_volume = 0;
+    
+    // works just the first page add all volumes
+    for(var i_item_runner = 0; i_item_runner < gl_item_room_id_collector.length; i_item_runner++)
     {
+        amt_volume += gl_item_room_id_collector[i_item_runner].volume;
+    }
+    
+    for(var i_item_runner = 0; i_item_runner < gl_item_room_id_collector.length; i_item_runner++)
+    {
+		var two_dec_places = parseFloat(amt_volume).toFixed(2);
+        $(".total-amt").html(two_dec_places); 
+    }
+}
+      
         
-//       $(".checkbox_items").on("click", function(e) 
-         $("#"+ckbx_id).on("change", function(e) 
-         {
+        
+function f_checkbox_articles(item_room_id) 
+{
+    var
+         tmp_number_of_items = 0
+        ,tmp_i_item = 0
+    ;
+    
+   if($("#checkbox-"+item_room_id).is(":checked")) 
+   {
+        $("#popup-num-rooms-"+item_room_id).popup("open");
+        // problem it s loop multiple 
+        $("#set-amt-"+item_room_id).click(function() 
+        {
             var 
-                        item_room_id = this.value
-                         ,drp = document.getElementById("get-amt-"+item_room_id)
-                        ,founded = false
-                        ,tmp_volume = 0
-                        ,number_of_items = 0
+                 drp = document.getElementById("get-amt-"+item_room_id)
+                ,tmp_number_of_items =  drp.options[ drp.options.selectedIndex ].value
+                ,founded = false
             ;
-             
-           if($(this).is(":checked") ) 
-//             if ($(this).prop("checked"))
-//             if($(this).is(':checked'))
-             {
-                $("#popup-num-rooms-"+item_room_id).popup("open");
-                 
-                $("#set-amt-"+item_room_id).on("click", function(f) 
+            
+            var i_item = 0;
+            while ((!founded) && (i_item < gl_item_room_id_collector.length))
+            {
+                if((!founded) && (gl_item_room_id_collector[i_item].item_room_id == item_room_id))
                 {
                     var 
-                        number_of_items = drp.options[ drp.options.selectedIndex ].value
+                        tmp_item_volume = parseFloat(gl_item_room_id_collector[i_item].item_volume)
+                       ,tmp_item_amount = parseFloat((tmp_item_volume * tmp_number_of_items))
                     ;
+
+                    tmp_i_item = i_item; 
                     
-                    $("#amt-"+ item_room_id).html(number_of_items);
+                    gl_item_room_id_collector[i_item].volume = tmp_item_amount;
                     
-                        
-                    var i_item = 0
-                    while ((!founded) && (i_item < gl_item_room_id_collector.length))
-                    {
-                        console.log(i_item + ': ' +founded);
-                        if( (!founded) && (gl_item_room_id_collector[i_item].item_room_id == item_room_id))
-                        {
-                            founded = true;
-                            
-                            if(founded)
-                            {
-                                tmp_volume = gl_item_room_id_collector[i_item].item_volume;
+                    $("#popup-num-rooms-"+item_room_id).popup("close"); 
+					
+					var two_dec_places_item_amount = parseFloat(tmp_item_amount).toFixed(2);
+					var two_dec_places_number_of_items = parseFloat(tmp_number_of_items).toFixed(2);
+					
+                    $("#vol-"+ item_room_id).html("Volume:  "+two_dec_places_item_amount);
+                    $("#amt-"+ item_room_id).html("Amount:  "+two_dec_places_number_of_items);
+                    
+                    f_cal_set_amount();
+                    
+                    founded = true;
+                }
+                i_item++
+            }
+        });
+        
+        var add_list = gl_item_room_id_collector[tmp_i_item].item_name + " ("+tmp_number_of_items+")";
+        
+        listing_text.push(add_list);
+        
+    }// if checkbox checked
+    else
+    {
+        var   
+           founded = false
+          ,i_item = 0
+        ;
 
-                                amt_volume += (tmp_volume * number_of_items);
-                                
-                                // give me price
-    //                            console.log(tmp_volume);
-
-                                $(".total-amt").html(amt_volume); 
-
-                                $("#amt-"+ item_room_id).html(number_of_items);
-								
-								var add_list = gl_item_room_id_collector[i_item].item_name + " (" + $("#amt-"+ item_room_id).text() + ")";
-								listing_text.push(add_list);
-
-                                $("#popup-num-rooms-"+item_room_id).popup("close");
-                                
-                                number_of_items = 0;
-                            }
-                            
-                        }
-                        i_item++
-                    }
-                     f.stopPropagation();
-                });
-            }// if checkbox cehecked
-            else
+        while ((!founded) && (i_item < gl_item_room_id_collector.length))
+        {
+            if ((!founded) && (gl_item_room_id_collector[i_item].item_room_id == item_room_id))
             {
-                var   
-                     founded = false
-                    ,tmp_volume = 0
+                var 
+                     remove_list = gl_item_room_id_collector[i_item].item_name + " (" + $("#amt-"+ item_room_id).text() + ")"
+                    ,remove_index = listing_text.indexOf(remove_list)
                 ;
                 
-                var i_item = 0
-                while ((!founded) && (i_item < gl_item_room_id_collector.length))
+                if(remove_index > -1) 
                 {
-                    if( gl_item_room_id_collector[i_item].item_room_id == item_room_id)
-                    {
-                        number_of_items = $("#amt-"+ item_room_id).text();
-						
-						var remove_list = gl_item_room_id_collector[i_item].item_name + " (" + $("#amt-"+ item_room_id).text() + ")";
-						var remove_index = listing_text.indexOf(remove_list);
-						if(remove_index > -1) {
-							listing_text.splice(remove_index, 1);
-						}
-                        
-                        tmp_volume = gl_item_room_id_collector[i_item].item_volume;
-                            
-                        amt_volume -= (tmp_volume * number_of_items);
-                        
-                        $(".total-amt").html(amt_volume); 
-                        
-                        founded = true;
-                    }
-                    i_item++;
+                    listing_text.splice(remove_index, 1);
                 }
                 
-                $("#amt-"+ item_room_id).html("0");
+                gl_item_room_id_collector[i_item].volume = 0;
                 
-            } // else
-              e.stopPropagation();
-			  
-			console.log(listing_text);
-         }); //checkbox change
-        
-    } // window function
-	
-    return false;
-});
-});
+                f_cal_set_amount();
+
+                $("#amt-"+ item_room_id).html("Amount: 0.00");
+                $("#vol-"+ item_room_id).html("Volume: 0.00");
+                
+                founded = true;
+            }
+            i_item++;
+        }
+    } // else
+}
+
         
 var 
      rooms = 0
@@ -176,7 +182,7 @@ for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++)
         for(j_room; j_room <= rooms_to_create; j_room++) 
         {      
              var newPage = $("<div data-role=page data-url=room-" +crnt_room+ "_" +j_room+ ">\n"+
-                                 "<div data-role=header data-theme=b data-position=fixed data-id=footer id=header>\n"+
+                                 "<div data-role=header data-theme=b data-position=fixed data-id=footer>\n"+
                                     "<p class=header-checklist>Volume calculator and checklist</p>\n"+
                                     "<p id=amount-" +crnt_room+ "_" +j_room+ " class=meter-cubic><span class=total-amt>0.00</span> M<sup>3</sup></p>\n"+
                                 "</div>\n"+
@@ -189,14 +195,12 @@ for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++)
                                      "</div>\n"+
                                 "</div>\n"+
                                 "<div data-role=footer data-position=fixed>\n"+
-                                    "<button name=toNext id=toNext-"+i_rooms+"_"+j_room+" class=button-next>NEXT</button>\n"+
+                                    "<button name=toNext id=toNext class='button-next toNext_"+crnt_room+"_"+j_room+"'>DONE</button>\n"+
                                 "</div>\n"+
                                 "<span id=popup_win_"+crnt_room+"_"+j_room+"></span>\n"+
                             "</div>");
                    
             newPage.appendTo('body');
-            
-            
             
             var 
                  k_item     = 0
@@ -212,6 +216,7 @@ for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++)
                      tmp_item_id   = gl_room_info[i_rooms].items[k_item].item_id
                     ,tmp_item_name = gl_room_info[i_rooms].items[k_item].item_name
                     ,tmp_item_volume = gl_room_info[i_rooms].items[k_item].volume
+                    ,tmp_description = gl_room_info[i_rooms].items[k_item].description
                     ,tmp_room_name = gl_room_info[i_rooms].room_name
                     ,tmp_item_room_id  = tmp_item_id+"_"+j_room+"_"+k_item
                 ;
@@ -223,16 +228,28 @@ for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++)
                                                 item_id      : tmp_item_id,
                                                 room_id      : crnt_room,
                                                 room_name    : tmp_room_name,
-                                                room_number  : j_room
+                                                room_number  : j_room,
+                                                room_sort    : i_rooms,
+                                                item_number  : k_item,
+                                                volume       : 0
                                              });
 
                 
-                tmp_ckbx_item +=    " <input type='checkbox'   name="+tmp_item_name+"\n"+                    
-                                    " onClick='f_checkbox_articles(this.id)' id='checkbox-"+tmp_item_room_id+"'\n"+
+                tmp_ckbx_item +=    " <input type='checkbox' name="+tmp_item_name+"\n"+                    
+                                    " onClick='f_checkbox_articles(this.value)'\n"+
                                     " id='checkbox-"+tmp_item_room_id+"'\n"+
-                                    " value="+tmp_item_room_id+">\n"+" <label for='checkbox-"+tmp_item_room_id+"' id='label-"+tmp_item_room_id+"'>\n"+  
-                                      tmp_item_name +"<span id='amt-"+tmp_item_room_id+"'\n"+ 
-                                    " style='float: right'>0</span></label>";
+                                    " value="+tmp_item_room_id+">\n"+
+                                    " <label for='checkbox-"+tmp_item_room_id+"' id='label-"+tmp_item_room_id+"'>\n"+  
+                                    " <ul style='vertical-align:middle;  display:inline-block;\n";
+									if(tmp_description == null) {
+									tmp_ckbx_item += " list-style-type:none; padding-left: 10px;'><li style='margin-top: 5px;'>"+tmp_item_name +"</li><li class='desc hide'>"+tmp_description+"</li></ul>\n";
+									}
+									else {
+									tmp_ckbx_item += " list-style-type:none; padding-left: 10px;'><li >"+tmp_item_name +"</li><li class=desc>"+tmp_description+"</li></ul>\n";
+									}
+                tmp_ckbx_item +=    " <ul style='float: right;  font-size:13px; display: inline-block; list-style-type:none;'>\n"+
+                                    " <li id='amt-"+tmp_item_room_id+ "'>Amount: 0.00</li>\n"+
+                                    " <li id='vol-"+tmp_item_room_id+"'>Volume:  0.00</li></ul></label>";              
 
                 tmp_popup_win += " <div data-role='popup' id='popup-num-rooms-"+tmp_item_room_id+"'\n"+ 
                                  " style='max-width: 100%;'><div data-role='content'>\n"+
@@ -250,31 +267,44 @@ for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++)
             $("#popup_win_" + crnt_room + "_" + j_room).html(tmp_popup_win);
             
             $("#sub_header_title_" + crnt_room + "_" + j_room).html(gl_room_info[i_rooms].room_name+ ": " + j_room);
+            
+   //BUTTON TEXT
+            if ((j_room) < rooms_to_create) // (i_rooms < number_of_total_rooms)) 
+            {
+                var tmp_crnt_room_name = gl_room_info[i_rooms].room_name;
+    
+                // change button text                          
+                $("."+"toNext_"+crnt_room+"_"+j_room).html("Next to "+tmp_crnt_room_name+" "+(j_room+1));
+            }
+            
+            if (((j_room) == rooms_to_create)  && ((i_rooms+1) < number_of_total_rooms) && (arrRooms1[gl_room_info[i_rooms+1].room_id]) ) 
+            {
+                var tmp_crnt_room_name = gl_room_info[i_rooms+1].room_name;
+                
+                // change button text                          
+                $("."+"toNext_"+crnt_room+"_"+j_room).html("Next to "+tmp_crnt_room_name +" 1");
+            }
         }
     }
-    else 
+    else if((i_rooms+1) == number_of_total_rooms)
     {
         // call function         
         f_set_checkbox_articles(gl_item_room_id_collector);
     }
-	
     
     // set all header names of popup window
     for(var i_header = 0; i_header < gl_item_room_id_collector.length; i_header++)
     {
         $("#popup-header-"+gl_item_room_id_collector[i_header].item_room_id).html(gl_item_room_id_collector[i_header].item_name);
     }
-    
-
-// change button text    
-
 }
+
         
 var quotePage = $(
                   "<div data-role=page data-url=quote>\n"+
                     "<div data-role=header data-theme=b data-position=fixed data-id=footer>\n"+
                         "<p class=header-checklist>Volume calculator and checklist</p>\n"+
-                        "<p id=amount class=meter-cubic><span class=total-amt id=total-amt-volume>0.00</span> M<sup>3</sup></p>\n"+
+                        "<p id=amount class=meter-cubic><span class=total-amt>0.00</span> M<sup>3</sup></p>\n"+
                     "</div>\n"+
                     "<div data-role=content>\n"+
                         "<div class=sub_header><h1 id=sub_header_title-quote>Get A Quote</h1>\n"+
@@ -286,7 +316,7 @@ var quotePage = $(
                  );
 
 quotePage.appendTo('body');
-        
+
 $.support.cors = true;
 $.mobile.allowCrossDomainPages = true;
 $.mobile.pushStateEnabled = false;
@@ -411,12 +441,13 @@ var
                  "<option value=Southland>Southland</option></select><br />\n"+
                  "<label for=pickup>Pickup Address*</label><input data-id=12 type=text name=pickup id=pickup><br />\n"+
                  "<label for=delivery-name>Delivery Address*</label><input data-id=13 type=text name=delivery id=delivery><br />\n"+
-                 "<label for=notes>Notes</label><textarea data-id=8 name=notes id=notes placeholder='Tell us about access, heavy items etc.'></textarea><br />\n"+
+                 "<label for=notes>Notes</label><textarea data-id=8 name=notes id=notes placeholder='Tell us about access, heavy items, extra items etc.'></textarea><br />\n"+
 				 "<textarea data-id=9 name=listing id=listing style=display:none;></textarea><br />\n"+
                  "<button id=btn_submit_quote>GET A QUOTE</button></form>"
 ;
 
 $("#quote_form").html(tmp_quote);
+			
 </script>
     
 </head>
