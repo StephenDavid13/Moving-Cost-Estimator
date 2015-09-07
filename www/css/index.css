@@ -138,6 +138,7 @@ h1 {
 	float: left;
 	width: 230px;
 	font-size: 20px;
+    padding-left: 20px;
 }
 
 .subheader-checklist {
@@ -149,6 +150,7 @@ h1 {
 .meter-cubic {
     float: right;  
     margin-right: 10px;
+    font-size: 20px;
 }
 
 .meter-cubic:before {
