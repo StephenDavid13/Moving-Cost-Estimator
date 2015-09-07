@@ -14,12 +14,13 @@
    
         var arrRooms = {
                             "kitchen":0,
-                            "dining-room":0, 
+                            "dining_room":0, 
                             "lounge":0, 
                             "hall":0, 
                             "laundry":0,
                             "bedroom":0,
-                            "garage-outside":0
+                            "garage_outside":0,
+                            "sundries" : 0
                        };
         
         /*called the function estmator*/
@@ -46,7 +47,7 @@
 			tmp_ckbx_room += " <input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_room_id+"' value="+tmp_room_id+">\n"+
 			                   " <label for='checkbox-"+tmp_room_id+"'>"+tmp_room_label+"<span id='amt-"+tmp_room_id+"' style='float: right'>0</span></label>";
             /**/
-            tmp_popup_win += " <div data-role='popup' id='popup-num-rooms-"+tmp_room_id+"' style='max-width: 100%;'><div data-role='content'>\n"+
+            tmp_popup_win += " <div data-role='popup' data-dismissible='false' id='popup-num-rooms-"+tmp_room_id+"' style='max-width: 100%;'><div data-role='content'>\n"+
                              " <h4 id='popup-header'>"+tmp_room_label+"</h4><form name= 'form_pop_"+tmp_room_id+"'>\n"+
                              " <select name='get-amt-"+tmp_room_id+"' id='get-amt-"+tmp_room_id+"'></select></form>\n"+
                              " <button type='submit' name='set-amt-"+tmp_room_id+"' id='set-amt-"+tmp_room_id+"' form='form_pop_"+tmp_room_id+"'>OK</button>\n"+

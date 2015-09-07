@@ -949,7 +949,7 @@ var
                      {
                         room_name: "Bedroom",
                         room_id: "bedroom",
-                        bedroom: 
+                        items: 
                         [
                              {
                                 item_name: "Double Bed \& Matress",

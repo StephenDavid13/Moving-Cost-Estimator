@@ -48,6 +48,12 @@
                         
                     });
                 }
+                else 
+                {
+                    arrRooms[id_name] = 0;
+                    localStorage.setItem('room', JSON.stringify(arrRooms));
+                    $("#amt-"+id_name).html(0);
+                }
             });
         }
     });

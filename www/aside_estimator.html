@@ -33,7 +33,7 @@ function f_set_checkbox_articles(ckbx_to_create)
     var  j = 0; 
     for (j; j < ckbx_to_create.length ; j++)
     {      
-       var 
+       var
            tmp_ckbx_id="get-amt-"+ckbx_to_create[j].item_room_id
           ,dropDown = document.getElementById(tmp_ckbx_id)
        ;
@@ -75,7 +75,7 @@ function f_btn_ok_popup(item_room_id)
         ,founded = false
         ,i_item = 0
     ;
-
+    
     while ((!founded) && (i_item < gl_item_room_id_collector.length))
     {
         if((!founded) && (gl_item_room_id_collector[i_item].item_room_id == item_room_id))
@@ -146,6 +146,7 @@ function f_checkbox_articles(item_room_id)
                 founded = true;
                 
             }
+            
             i_item++;
             for(var i=0; i<listing_text.length; i++) 
             {
@@ -155,6 +156,7 @@ function f_checkbox_articles(item_room_id)
                     console.log(i + " :: " + listing_text);
                 }
             }
+            
             document.getElementById("listing").value = "";
             for(var i=0; i<listing_text.length; i++) 
             {
@@ -176,7 +178,8 @@ function f_create_room_pages()
         ,number_of_total_rooms = gl_room_info.length
         ,rooms_to_create = []
     ;
-
+    
+    
     /*run thru all chapters*/
     for (i_rooms = 0; i_rooms < number_of_total_rooms ; i_rooms++) 
     {
@@ -266,7 +269,7 @@ function f_create_room_pages()
                                         " <li id='vol-"+tmp_item_room_id+"'>Volume:  0.00</li></ul></label>";    
 
 
-                    tmp_popup_win += " <div data-role='popup' id='popup-num-rooms-"+tmp_item_room_id+"'\n"+ 
+                    tmp_popup_win += " <div data-role='popup' data-dismissible=false id='popup-num-rooms-"+tmp_item_room_id+"'\n"+ 
                                      " style='max-width: 100%;'><div data-role='content'>\n"+
                                      " <h4 id='popup-header-"+tmp_item_room_id+"'></h4><form name= 'form_pop_"+tmp_item_room_id+"'>\n"+
                                      " <select name='get-amt-"+tmp_item_room_id+"'\n"+
@@ -282,55 +285,62 @@ function f_create_room_pages()
                 $("#popup_win_" + crnt_room + "_" + j_room).html(tmp_popup_win);
 
                 $("#sub_header_title_" + crnt_room + "_" + j_room).html(gl_room_info[i_rooms].room_name+ ": " + j_room);
-
+                
                 // BUTTON TEXT
-                if ((j_room) < rooms_to_create) // (i_rooms < number_of_total_rooms)) 
+                if ((j_room) < rooms_to_create) 
                 {
                     var tmp_crnt_room_name = gl_room_info[i_rooms].room_name;
 
                     // change button text                          
                     $("."+"toNext_"+crnt_room+"_"+j_room).html("Next to "+tmp_crnt_room_name+" "+(j_room+1));
-                }
-
-                if (((j_room) == rooms_to_create)  && ((i_rooms+1) < number_of_total_rooms) && (arrRooms1[gl_room_info[i_rooms+1].room_id]) ) 
+                }   
+                
+//                // if it's the last room GO IN
+                if (j_room == rooms_to_create)
                 {
-                    var tmp_crnt_room_name = gl_room_info[i_rooms+1].room_name;
-
-                    // change button text                          
-                    $("."+"toNext_"+crnt_room+"_"+j_room).html("Next to "+tmp_crnt_room_name +" 1");
+                    var tmp_next_index = i_rooms;
+                    tmp_next_index = tmp_next_index +1;
+                    for(tmp_next_index;  tmp_next_index < number_of_total_rooms; tmp_next_index++)
+                    {
+                        if (arrRooms1[gl_room_info[tmp_next_index].room_id] > 0)
+                        {
+                            var tmp_crnt_room_name = gl_room_info[tmp_next_index].room_name;
+                            $("."+"toNext_"+crnt_room+"_" +j_room).html("Next to "+tmp_crnt_room_name +" 1");
+                            return false;
+                        }
+                    }
                 }
+                f_set_checkbox_articles(gl_item_room_id_collector);
             }
         }
-        else if((i_rooms+1) == number_of_total_rooms)
-        {
-            // call function         
-            f_set_checkbox_articles(gl_item_room_id_collector);
-        }
-
+        
+        
         // set all header names of popup window
         for(var i_header = 0; i_header < gl_item_room_id_collector.length; i_header++)
         {
             $("#popup-header-"+gl_item_room_id_collector[i_header].item_room_id).html(gl_item_room_id_collector[i_header].item_name);
         }
     }
+
 };
-        
+   
 f_create_room_pages();
         
+
 var quotePage = $(
-                  "<div data-role=page data-url=quote>\n"+
-                    "<div data-role=header data-theme=b data-position=fixed data-id=footer>\n"+
-                        "<p class=header-checklist>Volume calculator and checklist</p>\n"+
-                        "<p id=amount class=meter-cubic><span class=total-amt>0.00</span> M<sup>3</sup></p>\n"+
-                    "</div>\n"+
-                    "<div data-role=content>\n"+
-                        "<div class=sub_header><h1 id=sub_header_title-quote>Get A Quote</h1>\n"+
-                        "</div>\n"+
-                        "<div class=types class=subheader-checklist><span id=quote_form></span>\n"+
-                        "</div>\n"+
-                    "</div>\n"+
-                 "</div>"
-                 );
+          "<div data-role=page data-url=quote>\n"+
+            "<div data-role=header data-theme=b data-position=fixed data-id=footer>\n"+
+                "<p class=header-checklist>Volume calculator and checklist</p>\n"+
+                "<p id=amount class=meter-cubic><span class=total-amt>0.00</span> M<sup>3</sup></p>\n"+
+            "</div>\n"+
+            "<div data-role=content>\n"+
+                "<div class=sub_header><h1 id=sub_header_title-quote>Get A Quote</h1>\n"+
+                "</div>\n"+
+                "<div class=types class=subheader-checklist><span id=quote_form></span>\n"+
+                "</div>\n"+
+            "</div>\n"+
+         "</div>"
+         );
 
 quotePage.appendTo('body');
 
