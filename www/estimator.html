@@ -11,7 +11,25 @@
     <script src="js/room_info.js"></script>
 	<script src="js/count-rooms.js"></script>  
 	<script type="text/javascript">     
-   
+		function create_checkbox() {
+			for (var j_room = 0; j_room < gl_room_info.length ; j_room++)
+			{       
+				var 
+					 tmp_room_id = gl_room_info[j_room].room_id
+					,tmp="get-amt-"+tmp_room_id
+					,dropDown = document.getElementById(tmp)
+				;
+				
+				for (var i_ckbx = 0; i_ckbx <= 5 ; i_ckbx++) 
+				{
+					var listItem = document.createElement("option");
+					listItem.text = i_ckbx;
+					listItem.value = i_ckbx;
+					
+					dropDown.appendChild(listItem);
+				};
+			}
+		}
         
         var arrRooms = {};
         
@@ -41,7 +59,7 @@
             ;
             
 			tmp_ckbx_room += " <input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_room_id+"' value="+tmp_room_id+">\n"+
-			                   " <label for='checkbox-"+tmp_room_id+"'>"+tmp_room_label+"<span id='amt-"+tmp_room_id+"' style='float: right'>0</span></label>";
+			                   " <label for='checkbox-"+tmp_room_id+"' id='label-"+tmp_room_id+"'>"+tmp_room_label+"<span id='amt-"+tmp_room_id+"' style='float:right; opacity:0.7; color:#0289cc;'>0</span></label>";
             
             tmp_popup_win += " <div data-role='popup' data-dismissible='false' id='popup-num-rooms-"+tmp_room_id+"' style='max-width: 100%;'><div data-role='content'>\n"+
                              " <h4 id='popup-header'>"+tmp_room_label+"</h4><form name= 'form_pop_"+tmp_room_id+"'>\n"+
@@ -79,10 +97,11 @@
     </div>
 
     
-  <script>
-        document.getElementById("sub-header-title").innerHTML = "Rooms you want to move : ";
+	<script>
+        document.getElementById("sub-header-title").innerHTML = "How many rooms in your home?";
 		document.getElementById('all_chapter_articles').innerHTML = tmp_ckbx_room;
 		document.getElementById('popup_win').innerHTML = tmp_popup_win;
+		create_checkbox();
     </script>
 
 </body>

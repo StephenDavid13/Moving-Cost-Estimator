@@ -169,6 +169,10 @@ h1 {
 	color: #000;
 }
 
+.hasAmount {
+	opacity: 1 !important;
+}
+
 p {
     font-size: 14px; 
 }
@@ -252,6 +256,10 @@ button {
 	margin: .5em 12.5% !important;
 	color: #fff !important;
 	text-align: center !important;
+}
+
+.redbtn {
+	background: #ff0000 !important;
 }
 
 .ui-btn-icon-right::after {
