@@ -30,8 +30,7 @@ var
 **/
 function f_set_checkbox_articles(ckbx_to_create) 
 {
-    var  j = 0; 
-    for (j; j < ckbx_to_create.length ; j++)
+    for (var  j = 0; j < ckbx_to_create.length ; j++)
     {      
        var
            tmp_ckbx_id="get-amt-"+ckbx_to_create[j].item_room_id
@@ -62,11 +61,9 @@ function f_cal_set_amount()
     gl_amt_volume = tmp_volume;
     
     $(".total-amt").html(parseFloat(tmp_volume).toFixed(2)); 
-    
-    
 }
 
-        
+//        
 function f_btn_ok_popup(item_room_id)
 {
     var 
@@ -144,10 +141,8 @@ function f_checkbox_articles(item_room_id)
                 $("#vol-"+ item_room_id).html("Volume: 0.00");
                 
                 founded = true;
-                
             }
             
-            i_item++;
             for(var i=0; i<listing_text.length; i++) 
             {
                 if(listing_text[i].id == item_room_id)
@@ -158,12 +153,14 @@ function f_checkbox_articles(item_room_id)
             }
             
             document.getElementById("listing").value = "";
+            
             for(var i=0; i<listing_text.length; i++) 
             {
                 document.getElementById("listing").value += listing_text[i].list + "\n";
                 console.log("1: " + listing_text[i].list);
             }
             
+            i_item++;
         }
     } // else
 }
@@ -298,22 +295,25 @@ function f_create_room_pages()
 //                // if it's the last room GO IN
                 if (j_room == rooms_to_create)
                 {
-                    var tmp_next_index = i_rooms;
-                    tmp_next_index = tmp_next_index +1;
-                    for(tmp_next_index;  tmp_next_index < number_of_total_rooms; tmp_next_index++)
+                    var 
+                         tmp_next_index = i_rooms +1
+                        ,found_index = false
+                    ;
+                
+                    while ((!found_index) && (tmp_next_index < number_of_total_rooms))
                     {
                         if (arrRooms1[gl_room_info[tmp_next_index].room_id] > 0)
                         {
                             var tmp_crnt_room_name = gl_room_info[tmp_next_index].room_name;
-                            $("."+"toNext_"+crnt_room+"_" +j_room).html("Next to "+tmp_crnt_room_name +" 1");
-                            return false;
+                            $(".toNext_"+crnt_room+"_" +j_room).html("Next to "+tmp_crnt_room_name +" 1");
+                            found_index = true;
                         }
+                        tmp_next_index++;
                     }
                 }
                 f_set_checkbox_articles(gl_item_room_id_collector);
             }
         }
-        
         
         // set all header names of popup window
         for(var i_header = 0; i_header < gl_item_room_id_collector.length; i_header++)
@@ -321,12 +321,10 @@ function f_create_room_pages()
             $("#popup-header-"+gl_item_room_id_collector[i_header].item_room_id).html(gl_item_room_id_collector[i_header].item_name);
         }
     }
-
 };
    
 f_create_room_pages();
         
-
 var quotePage = $(
           "<div data-role=page data-url=quote>\n"+
             "<div data-role=header data-theme=b data-position=fixed data-id=footer>\n"+
@@ -444,8 +442,8 @@ $(document).ready(function ()
     });
 });
 
-var
-	tmp_quote  = "<form class='mini quote'><label for=find-us>How did you find us?</label><select data-id=10 name=find-us id=find_us>\n"+
+
+var	tmp_quote  = "<form class='mini quote'><label for=find-us>How did you find us?</label><select data-id=10 name=find-us id=find_us>\n"+
                  "<option value=Google>Google</option><option value=Customer>I'm a customer</option><option value=Friend>Referred by a Friend</option>\n"+
                  "<option value=Social-Media>Social Media, Facebook etc.</option><option value=TradeMe>TradeMe</option><option value=Yellow>\n"+
                  "Yellow, Finda, Localist</option><option value=Truck>Our Trucks and Vans</option>\n"+
