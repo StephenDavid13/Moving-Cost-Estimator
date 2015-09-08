@@ -12,6 +12,14 @@
 	<script src="js/count_rooms.js"></script>  
 	<script type="text/javascript">   
     
+    var arrRooms = {};
+
+    for (var obj in gl_room_info)
+    {
+     arrRooms[obj] = 0;
+    }
+        
+        
     function f_dropdown_page()
     {
         for (var j_room = 0; j_room < gl_room_info.length ; j_room++)
@@ -28,16 +36,9 @@
                 listItem.value = i_ckbx;
 
                 dropDown.appendChild(listItem);
-            };
+            };                
         }
      }
-        
-    var arrRooms = {};
-
-    for (var obj in gl_room_info)
-    {
-     arrRooms[obj] = 0;
-    }
 
     /*called the function estmator*/
     function callTheEstimator() 
