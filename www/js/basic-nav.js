@@ -15,6 +15,9 @@ $(document).on('swiperight', '.ui-page', function(event){
 		if (prevpage.length > 0) {
 			$.mobile.changePage(prevpage, {transition: "slide", reverse: true}, true, true);
 		}
+        else {
+            window.location = "estimator.html";
+        }
 		event.handled = true;
 	}
 	return false;            

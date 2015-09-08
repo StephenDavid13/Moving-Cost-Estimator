@@ -9,46 +9,65 @@
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script src="js/index.js"></script>
     <script src="js/room_info.js"></script>
-	<script src="js/count-rooms.js"></script>  
-	<script type="text/javascript">     
-   
-        
-        var arrRooms = {};
-        
-        for (var obj in gl_room_info)
-        {
-         arrRooms[obj] = 0;
-        }
-
-        /*called the function estmator*/
-		function callTheEstimator() 
-        {
-			localStorage.setItem("room_number", arrRooms);
-			window.location = "aside_estimator.html";
-		}
-        
-        var 
-              tmp_ckbx_room =""
-             ,tmp_popup_win = ""
-             ,number_of_rooms = gl_room_info.length
-       ;
-      
-		for (var i = 0 ; i < number_of_rooms ; i++)
-		{  
-		    var 
-                 tmp_room_label = gl_room_info[i].room_name
-                ,tmp_room_id = gl_room_info[i].room_id
+	<script src="js/count_rooms.js"></script>  
+	<script type="text/javascript">   
+    
+    function f_dropdown_page()
+    {
+        for (var j_room = 0; j_room < gl_room_info.length ; j_room++)
+        {       
+            var 
+                 tmp_id="get-amt-"+gl_room_info[j_room].room_id
+                ,dropDown = document.getElementById(tmp_id)
             ;
-            
-			tmp_ckbx_room += " <input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_room_id+"' value="+tmp_room_id+">\n"+
-			                   " <label for='checkbox-"+tmp_room_id+"'>"+tmp_room_label+"<span id='amt-"+tmp_room_id+"' style='float: right'>0</span></label>";
-            
-            tmp_popup_win += " <div data-role='popup' data-dismissible='false' id='popup-num-rooms-"+tmp_room_id+"' style='max-width: 100%;'><div data-role='content'>\n"+
-                             " <h4 id='popup-header'>"+tmp_room_label+"</h4><form name= 'form_pop_"+tmp_room_id+"'>\n"+
-                             " <select name='get-amt-"+tmp_room_id+"' id='get-amt-"+tmp_room_id+"'></select></form>\n"+
-                             " <button type='submit' name='set-amt-"+tmp_room_id+"' id='set-amt-"+tmp_room_id+"' form='form_pop_"+tmp_room_id+"'>OK</button>\n"+
-                             " </div></div>";
-		}
+
+            for (var i_ckbx = 0; i_ckbx <= 5 ; i_ckbx++) 
+            {
+                var listItem = document.createElement("option");
+                listItem.text = i_ckbx;
+                listItem.value = i_ckbx;
+
+                dropDown.appendChild(listItem);
+            };
+        }
+     }
+        
+    var arrRooms = {};
+
+    for (var obj in gl_room_info)
+    {
+     arrRooms[obj] = 0;
+    }
+
+    /*called the function estmator*/
+    function callTheEstimator() 
+    {
+        localStorage.setItem("room_number", arrRooms);
+        window.location = "aside_estimator.html";
+    }
+
+    var 
+          tmp_ckbx_room =""
+         ,tmp_popup_win = ""
+         ,number_of_rooms = gl_room_info.length
+    ;
+
+    for (var i = 0 ; i < number_of_rooms ; i++)
+    {  
+        var 
+             tmp_room_label = gl_room_info[i].room_name
+            ,tmp_room_id = gl_room_info[i].room_id
+        ;
+
+        tmp_ckbx_room += " <input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_room_id+"' value="+tmp_room_id+">\n"+
+                           " <label for='checkbox-"+tmp_room_id+"' id='label-"+tmp_room_id+"'>"+tmp_room_label+"<span id='amt-"+tmp_room_id+"' style='float: right; opacity:0.7; color:#0289cc;'>0</span></label>";
+
+        tmp_popup_win += " <div data-role='popup' data-dismissible='false' id='popup-num-rooms-"+tmp_room_id+"' style='max-width: 100%;'><div data-role='content'>\n"+
+                         " <h4 id='popup-header'>"+tmp_room_label+"</h4><form name= 'form_pop_"+tmp_room_id+"'>\n"+
+                         " <select name='get-amt-"+tmp_room_id+"' id='get-amt-"+tmp_room_id+"'></select></form>\n"+
+                         " <button type='submit' name='set-amt-"+tmp_room_id+"' id='set-amt-"+tmp_room_id+"' form='form_pop_"+tmp_room_id+"'>OK</button>\n"+
+                         " </div></div>";
+    }
     </script>  
     
 </head>
@@ -63,7 +82,7 @@
 
         <div data-role="content">
             <div class="sub-header">
-                <h1 id="sub-header-title"></h1>
+                <h1 id="sub-header-title">How many rooms are in your home?</h1>
             </div>
 
             <div class="types" style="padding-left: 10px; float: left; width: 100%;">  
@@ -78,13 +97,11 @@
         <span id="popup_win"></span>
     </div>
 
-    
   <script>
-        document.getElementById("sub-header-title").innerHTML = "Rooms you want to move : ";
 		document.getElementById('all_chapter_articles').innerHTML = tmp_ckbx_room;
 		document.getElementById('popup_win').innerHTML = tmp_popup_win;
+        f_dropdown_page();
     </script>
 
 </body>
 </html>
-

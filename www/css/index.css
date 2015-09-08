@@ -37,7 +37,7 @@ body {
     );
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
+    font-size:10px;
     height:100%;
     margin:0px;
     padding:0px;
@@ -116,9 +116,12 @@ h1 {
 
 /* Kiwise Custom CSS
 ---------------------------------------------------------------------------- */
-
 #amount {
 	font-size: 20px;
+}
+
+label {
+    font-size: 8px;
 }
 
 .total-amt {
@@ -136,8 +139,8 @@ h1 {
 
 .header-checklist {
 	float: left;
-	width: 230px;
-	font-size: 20px;
+	width: 40%;
+	font-size: 17px;
     padding-left: 20px;
 }
 
@@ -169,6 +172,10 @@ h1 {
 	color: #000;
 }
 
+.hasAmount {
+	opacity: 1 !important;
+}
+
 p {
     font-size: 14px; 
 }
@@ -183,15 +190,15 @@ p {
 
 .ui-checkbox input {
 	left: 0.7em;
-	width: 18px;
-	height: 18px;
+	width: 20.5px;
+	height: 17px;
 	margin: -9px 0 0 0;
 }
 
 .ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after {
 	width: 16px;
 	height: 16px;
-	margin: -9px 0px 0px 0px;
+	margin: -9px 0px 0px -1.75px;
 }
 
 .ui-page-theme-a .ui-btn {
@@ -237,6 +244,10 @@ select.main-form {
 	background-color: #0289cc;
 }
 
+.ui-footer {
+    opacity: 0.8;
+}
+
 .desc {
 	font-size: 11px;
 }
@@ -252,6 +263,10 @@ button {
 	margin: .5em 12.5% !important;
 	color: #fff !important;
 	text-align: center !important;
+}
+
+.redbtn {
+	background: #ff0000 !important;
 }
 
 .ui-btn-icon-right::after {
