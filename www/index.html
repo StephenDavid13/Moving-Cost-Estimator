@@ -10,7 +10,8 @@
     <script src="js/index.js"></script>
     <script>
         function onLoad() {
-			var temp = setTimeout(callMainPage, 2000);
+			var temp = setTimeout(callMainPage, 4000);
+            $(".ui-loader").css("display", "none");
 		}
 		
 		function callMainPage() {
@@ -28,7 +29,7 @@
 	</style>
 </head>
 
-<body onload="onLoad();">
+<body onload="onLoad();" style="display: block;">
 	<div data-role="page">
 	</div>
 </body>

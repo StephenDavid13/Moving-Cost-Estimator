@@ -1,8 +1,15 @@
+/*
+ * room.info.js has got all informations about all rooms their items and volumes.
+ * This file/object can be used to modify all webpage contents
+ * The biggest array has got indexes of object rooms. 
+ * Each room has got an Array which has got an index of items.
+ */
+
 var 
-    gl_room_info = [
+    gl_room_info = [                                                                                           
                      { 
                          room_name: "Kitchen",
-                         room_id: "kitchen",
+                         room_id: "Kitchen",
                          items: 
                          [                                     
 
@@ -14,7 +21,7 @@ var
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Fridge/Freezer small",
+                                item_name: "Fridge/Freezer Small",
                                 item_id: "fridge_freezer_small",
                                 volume: 1,
                                 description: null, 
@@ -28,21 +35,21 @@ var
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Fridge large",
+                                item_name: "Fridge Large",
                                 item_id: "fridge_large",
                                 volume: 2,
                                 description: null,
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Fridge small",
+                                item_name: "Fridge Small",
                                 item_id: "fridge_small",
                                 volume: 1,
                                 description: null,
                                 info: "keep your body safe by Moving House Company"
                              },
                              {
-                                item_name: "Fridge bar",
+                                item_name: "Fridge Bar",
                                 item_id: "fridge_bar",
                                 volume: 0.8,
                                 description: null, 

@@ -1,3 +1,8 @@
+/* 
+ * basic-nav.js is responsible for going to the next or previous page 
+ * and is able to notice guester as swiping left and right. 
+ */
+
 $(document).on('swipeleft', '.ui-page', function(event){    
 	if(event.handled !== true) {
 		var nextpage = $.mobile.activePage.next('[data-role="page"]');

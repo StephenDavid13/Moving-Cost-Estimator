@@ -1,3 +1,8 @@
+<!--
+This html page is the first page and represents all rooms with their checkboxes.
+The Client can choose the room amount. After continuing the process the client will
+be linked to the second html page where the client get to see rooms which he has chosen.
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,23 +15,55 @@
     <script src="js/index.js"></script>
     <script src="js/room_info.js"></script>
 	<script src="js/count_rooms.js"></script>  
-	<script type="text/javascript">   
-    
-    var arrRooms = {};
+	<script type="text/javascript">
+        function onLoad() {
+            $("div").css("opacity", "0");
+            $(".ui-loader").css("opacity", "0.2");
+            var temp = setTimeout(callEstimatorPage, 1000);
+        }
+        function callEstimatorPage() {
+            $("div").css("opacity", "1");
+            $(".ui-footer").css("opacity", "0.8"); 
+            $(".ui-loader").css("opacity", "0");
+        }
+    // a global object for handling to create all rooms on the second html page 
+    var gl_all_rooms_amt = {};
 
-    for (var obj in gl_room_info)
+    // create the global object immediately        
+    (function create_all_rooms()
     {
-     arrRooms[obj] = 0;
+        for (var obj in gl_room_info)
+        {
+            gl_all_rooms_amt[obj] = 0;
+        }    
+    })();
+
+
+    // set the variable global to the second page
+    function callTheEstimator() 
+    {
+        localStorage.setItem("room_number", gl_all_rooms_amt);
+        window.location = "aside_estimator.html";
     }
+    
         
-        
-    function f_dropdown_page()
+    function f_close(close_id, id_name) 
+    {
+          $("#"+close_id).popup("close");
+          $("#label-"+id_name).addClass('ui-checkbox-off');
+          $("#label-"+id_name).removeClass('ui-checkbox-on');
+          document.getElementById('checkbox-'+id_name).checked = false;
+    
+    }
+
+    // checkbox list gets created  
+    function f_create_dropdown_list()
     {
         for (var j_room = 0; j_room < gl_room_info.length ; j_room++)
         {       
             var 
-                 tmp_id="get-amt-"+gl_room_info[j_room].room_id
-                ,dropDown = document.getElementById(tmp_id)
+                 tmp_ckbx_id="get-amt-"+gl_room_info[j_room].room_id
+                ,dropDown = document.getElementById(tmp_ckbx_id)
             ;
 
             for (var i_ckbx = 0; i_ckbx <= 5 ; i_ckbx++) 
@@ -36,57 +73,61 @@
                 listItem.value = i_ckbx;
 
                 dropDown.appendChild(listItem);
-            };                
+            }  
+            document.getElementById(tmp_ckbx_id).selectedIndex = "1";
         }
      }
 
-    /*called the function estmator*/
-    function callTheEstimator() 
+    // checkbox and popup window get created and displayed on the main page  
+    function f_create_ckbx_popup()
     {
-        localStorage.setItem("room_number", arrRooms);
-        window.location = "aside_estimator.html";
-    }
-
-    var 
-          tmp_ckbx_room =""
-         ,tmp_popup_win = ""
-         ,number_of_rooms = gl_room_info.length
-    ;
-
-    for (var i = 0 ; i < number_of_rooms ; i++)
-    {  
         var 
-             tmp_room_label = gl_room_info[i].room_name
-            ,tmp_room_id = gl_room_info[i].room_id
+              tmp_ckbx_room = ""
+             ,tmp_popup_win = ""
+             ,number_of_rooms = gl_room_info.length
         ;
+        // create all checkboxes and popup windows 
+        for (var i = 0 ; i < number_of_rooms ; i++)
+        {  
+            var 
+                 tmp_room_label = gl_room_info[i].room_name
+                ,tmp_room_id = gl_room_info[i].room_id
+            ;
 
-        tmp_ckbx_room += " <input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_room_id+"' value="+tmp_room_id+">\n"+
-                           " <label for='checkbox-"+tmp_room_id+"' id='label-"+tmp_room_id+"'>"+tmp_room_label+"<span id='amt-"+tmp_room_id+"' style='float: right; opacity:0.7; color:#0289cc;'>0</span></label>";
+            tmp_ckbx_room += " <input type='checkbox' name=checkbox_article onclick='f_checkbox(this.id)' id='checkbox-"+tmp_room_id+"' value="+tmp_room_id+">\n"+
+                             " <label for='checkbox-"+tmp_room_id+"' id='label-"+tmp_room_id+"' style='font-size: 16px !important;'>"+tmp_room_label+"<span id='amt-"+tmp_room_id+"' \n"+
+                             " style='float: right; opacity:0.7; color:#0289cc;'>0</span></label>";
 
-        tmp_popup_win += " <div data-role='popup' data-dismissible='false' id='popup-num-rooms-"+tmp_room_id+"' style='max-width: 100%;'><div data-role='content'>\n"+
-                         " <h4 id='popup-header'>"+tmp_room_label+"</h4><form name= 'form_pop_"+tmp_room_id+"'>\n"+
-                         " <select name='get-amt-"+tmp_room_id+"' id='get-amt-"+tmp_room_id+"'></select></form>\n"+
-                         " <button type='submit' name='set-amt-"+tmp_room_id+"' id='set-amt-"+tmp_room_id+"' form='form_pop_"+tmp_room_id+"'>OK</button>\n"+
-                         " </div></div>";
+            tmp_popup_win += " <div data-role='popup' data-dismissible='false' id='popup-num-rooms-"+tmp_room_id+"' class='popup'><div data-role='content'>\n"+
+                             " <a href=estimator.html value='popup-num-rooms-"+tmp_room_id+"' name='"+tmp_room_id+"' onClick='f_close(this.value, this.name)' class='close-button'></a>\n"+
+                             " <h3 id='popup-header' class='popup-header'>"+tmp_room_label+"</h3><form name= 'form_pop_"+tmp_room_id+"' class='popup-form'>\n"+
+                             " <select name='get-amt-"+tmp_room_id+"' id='get-amt-"+tmp_room_id+"'></select></form>\n"+
+                             " <button type='submit' name='set-amt-"+tmp_room_id+"' id='set-amt-"+tmp_room_id+"' form='form_pop_"+tmp_room_id+"'>OK</button>\n"+
+                             " </div></div>";
+        }
+        document.getElementById('all_chapter_articles').innerHTML = tmp_ckbx_room;
+        document.getElementById('popup_win').innerHTML = tmp_popup_win;
+
+        f_create_dropdown_list();
     }
     </script>  
     
 </head>
 
-<body>
+<body onload="onLoad()">
     
     <div data-role="page" id="main">
 		
-		<div data-role="header" data-theme="b" data-position="fixed" data-id="footer">
-			<p class="header-checklist">Volume calculator and checklist</p>
+		<div data-role="header" data-theme="b" data-position="fixed" data-id="footer" >
+			<p class="header-checklist">Volume checklist</p>
 		</div>
 
         <div data-role="content">
             <div class="sub-header">
-                <h1 id="sub-header-title">How many rooms are in your home?</h1>
+                <h1 id="sub-header-title">How many rooms in your home?</h1>
             </div>
 
-            <div class="types" style="padding-left: 10px; float: left; width: 100%;">  
+            <div class='types subheader-checklist'>  
                 <form class="mini" id="all_chapter_articles"></form>
             </div>
        </div>  
@@ -99,10 +140,8 @@
     </div>
 
   <script>
-		document.getElementById('all_chapter_articles').innerHTML = tmp_ckbx_room;
-		document.getElementById('popup_win').innerHTML = tmp_popup_win;
-        f_dropdown_page();
-    </script>
+        f_create_ckbx_popup();
+  </script>
 
 </body>
 </html>

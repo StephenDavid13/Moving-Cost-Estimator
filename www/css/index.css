@@ -37,11 +37,10 @@ body {
     );
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:10px;
+    font-size:15px;
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
     width:100%;
 }
 
@@ -72,7 +71,7 @@ body {
 h1 {
     font-size:24px;
     font-weight:normal;
-    margin:0px;
+    margin: 0px 0px 10px;
     overflow:visible;
     padding:0px;
     text-align:center;
@@ -120,8 +119,15 @@ h1 {
 	font-size: 20px;
 }
 
+.popup {
+    width: 240px !important;
+    z-index: 999;
+}
+
 label {
-    font-size: 8px;
+    font-size: 15px;
+    color: #3d3d3d !important;
+    font-weight: 100 !important;
 }
 
 .total-amt {
@@ -139,9 +145,11 @@ label {
 
 .header-checklist {
 	float: left;
-	width: 40%;
-	font-size: 17px;
-    padding-left: 20px;
+	width: 55%;
+	font-size: 21.5px;
+    padding-left: 23px;
+    padding-top: 20px;
+    text-transform:uppercase;
 }
 
 .subheader-checklist {
@@ -161,10 +169,17 @@ label {
     text-align: right;
     font-size: 13px;
     display: block;
+    opacity: 0.4;
+    font-weight: 100;
 }
 .ui-select .ui-btn {
 	font-size: 30px !important;
 	color: #0289cc;
+}
+
+.popup-form .ui-select {
+	width: 165px;
+	margin: 1.5em auto !important;
 }
 
 .quote .ui-select .ui-btn {
@@ -198,7 +213,7 @@ p {
 .ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after {
 	width: 16px;
 	height: 16px;
-	margin: -9px 0px 0px -1.75px;
+	margin: -9px 0px 0px 1.25px;
 }
 
 .ui-page-theme-a .ui-btn {
@@ -242,6 +257,7 @@ select.main-form {
 
 .ui-header-fixed {
 	background-color: #0289cc;
+    height: 110px;
 }
 
 .ui-footer {
@@ -271,4 +287,138 @@ button {
 
 .ui-btn-icon-right::after {
 	display: none;
+}
+
+.popup-header {
+    color: #0289cc;
+    display: inline;
+}
+
+.popup-header:after {
+ content:'';
+    position: relative;
+    width: 240px;
+    top:0px;
+    left:-15px;
+    background-color: #0289cc;
+    height: 1.75px;
+    display: inline-block;
+    float: left;   
+}
+
+
+.close-button {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  border: none;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+  font: normal 33px/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: #0289cc;
+  top: 5px;
+  right: 5px;
+}
+
+.close-button::before {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 0.45em;
+  height: 0.1em;
+  position: absolute;
+  content: "";
+  top: 45%;
+  left: 22%;
+  border: none;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: #ffffff;
+  text-shadow: none;
+  -webkit-transform: rotateZ(45deg)   ;
+  transform: rotateZ(45deg)   ;
+}
+
+.close-button::after {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 0.45em;
+  height: 0.1em;
+  position: absolute;
+  content: "";
+  top: 45%;
+  left: 22%;
+  border: none;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: #ffffff;
+  text-shadow: none;
+  -webkit-transform: rotateZ(-45deg)   ;
+  transform: rotateZ(-45deg)   ;
+}
+
+
+.text_field_quoter input {
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px #c9c9c9;
+  transition: border 0.3s;
+}
+
+.text_field_quoter input:focus,
+.text_field_quoter input.focus {
+  border-bottom: solid 2px #0289cc;
+}
+
+.ui-loader {
+    display: block;
+}
+
+#label_listing {
+    text-decoration: none;
+    display: none;
+}
+
+#listing {
+    display: block;
+    background: #eee;
+}
+
+.a_listing::after {
+    content: "\25BC"
+}
+
+.form_label {
+    top: 0px !important;
+    left: 0px !important;
+    position: relative;
+    animation: 3s slide-up;
+}
+
+@keyframes slide-up {
+  from {
+    top: 40px;
+    left: 10px;
+    font-size: 15px;
+  }
+
+  to {
+    top: 0px;
+    left: 0px;
+    font-size: 11px;
+  }
 }
